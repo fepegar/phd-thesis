@@ -24,7 +24,7 @@
 # *.ps
 # *.eps
 main.pdf
-#figures/*pdf
+root.pdf
 
 
 ## Bibliography auxiliary files (bibtex/biblatex/biber):

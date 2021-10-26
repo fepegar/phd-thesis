@@ -1,22 +1,32 @@
 \frontmatter
+% trick to have different page numbers everywhere
+%\pagenumbering{Roman}
+%\pagenumbering{arabic}
+\input{tex/frontmatter/title_page}
+\dominitoc
+\onehalfspacing
 
-% To fix warning from fancyhdr
-\setlength{\headheight}{15pt}
-\addtolength{\topmargin}{-0.9pt}
+\copyrightpage{\the\year}{\theauthor}
+\cleardoublepage
 
-\input{tex/title}
-% \dominitoc
+\input{tex/frontmatter/declaration}
 \cleardoublepage
-\input{tex/preamble}
+
+\input{tex/frontmatter/abstract}
 \cleardoublepage
-\input{tex/abstract}
+
+\input{tex/frontmatter/impact}
 \cleardoublepage
-\input{tex/acknowledgements}
+
+\input{tex/frontmatter/acknowledgments}
 \cleardoublepage
+
+\input{tex/frontmatter/publications}
+\cleardoublepage
+
 \tableofcontents
-\clearpage
-\listoffigures
 \clearpage
 \listoftables
 \clearpage
-% [print acronyms here]
+\listoffigures
+\clearpage
