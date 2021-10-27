@@ -1,0 +1,17 @@
+{
+    "editor.rulers": [
+    100
+    ],
+    "editor.wordWrap": "on",
+    "editor.tabSize": 2,
+    "files.exclude": {
+        "*.brf": true,
+        "*.lof": true,
+        "*.lot": true,
+        "*.maf": true,
+        "*.out": true,
+        "*.thm": true,
+        "*.toc": true,
+        "**/*.mtc*": true
+    }
+}
