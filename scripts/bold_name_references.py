@@ -14,7 +14,8 @@ patterns = (
 lines = []
 for line in src_path.read_text().splitlines():
     if 'garc' in line.lower():
-        print(line)
+        # print(line)
+        pass
     for p in patterns:
         line = line.replace(p, '\\textbf{%s}' % p)
     lines.append(line)
