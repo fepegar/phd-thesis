@@ -19,5 +19,8 @@
 \usepackage[binary-units=true]{siunitx}        % https://tex.stackexchange.com/questions/186846/using-space-instead-of-comma-for-large-numbers
 
 
+\newcommand{\myhref}[1]{\href{#1}{\texttt{#1}}}
+\newcommand{\fnurl}[1]{\footnote{\myhref{#1}}}
+
 \graphicspath{{figures/}}
 \setcounter{secnumdepth}{3}  % number subsubsections https://tex.stackexchange.com/a/338163/216202

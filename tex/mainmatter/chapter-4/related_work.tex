@@ -1,0 +1,35 @@
+\subsection{Related work}
+
+NiftyNet \cite{gibson_niftynet_2018} and the \ac{DLTK} \cite{pawlowski_dltk_2017} are deep learning frameworks designed explicitly for medical image processing using the TensorFlow~1 platform.
+Both of them are no longer being actively maintained.
+They provide implementations of some popular network architectures such as U-Net \cite{cicek_3d_2016}, and can be used to train 3D \acp{CNN} for different tasks.
+For example, NiftyNet was used to train a 3D residual network for brain parcellation \cite{li_compactness_2017}, and \ac{DLTK} was used to perform multi-organ segmentation on \ac{CT} and \ac{MRI} \cite{valindria_multi-modal_2018}.
+
+The \texttt{medicaltorch} library \cite{christian_s_perone_peronemedicaltorch_2018} closely follows the PyTorch design, and provides some functionalities for preprocessing, augmentation and training of medical images.
+However, it does not leverage the power of specialized medical image processing libraries, such as SimpleITK \cite{lowekamp_design_2013}, to process volumetric images.
+Similar to \ac{DLTK}, this library has not seen much activity since 2018.
+
+The \texttt{batchgenerators} library \cite{isensee_batchgenerators_2020}, used within the popular medical segmentation framework nn-UNet \cite{isensee_nnu-net_2021}, includes custom dataset and data loader classes for multithreaded loading of 3D medical images, implemented before data loaders were available in PyTorch.
+In the usage examples from GitHub, preprocessing is applied to the whole dataset before training.
+Then, spatial data augmentation is performed at the volume level, from which one patch is extracted and intensity augmentation is performed at the patch level.
+In this approach, only one patch is extracted per volume, diminishing the efficiency of training pipelines.
+Transforms in \texttt{batchgenerators} are mostly implemented using NumPy \cite{van_der_walt_numpy_2011} and SciPy \cite{virtanen_scipy_2020}.
+
+More recently, a few PyTorch-based libraries for deep learning and medical images have appeared.
+There are two other libraries, developed in parallel to TorchIO, focused on data preprocessing and augmentation.
+Rising\fnurl{https://github.com/PhoenixDL/rising} is a library for data augmentation entirely written in PyTorch, which allows for gradients to be propagated through the transformations and perform all computations on the \ac{GPU}.
+However, this means specialized medical imaging libraries such as SimpleITK cannot be used.
+\texttt{pymia} \cite{jungo_pymia_2021} provides features for data handling (loading, preprocessing, sampling) and evaluation.
+It is compatible with TorchIO transforms, which are typically leveraged for data augmentation, as their data handling is more focused on preprocessing.
+\texttt{pymia} can be easily integrated into either PyTorch or TensorFlow pipelines.
+It was recently used to assess the suitability of evaluation metrics for medical image segmentation \cite{kofler_are_2021}.
+
+\ac{MONAI} \cite{nic_ma_project-monaimonai_2021} and Eisen \cite{mancolo_eisen_2020} are PyTorch-based frameworks for deep learning workflows with medical images.
+Similar to NiftyNet and \ac{DLTK}, they include implementation of network architectures, transforms, and higher-level features to perform training and inference.
+For example, \ac{MONAI} was recently used for brain segmentation on fetal \ac{MRI} \cite{ranzini_monaifbs_2021}.
+As these packages are solving a large problem, i.e., that of workflow in deep learning for medical images, they do not contain all of the data augmentation transforms present in TorchIO.
+However, it is important to note that an end user does not need to select only one open-source package, as TorchIO transforms are compatible with both Eisen and \ac{MONAI}.
+
+TorchIO is a library that specializes in preprocessing and augmentation using PyTorch, focusing on ease of use for researchers.
+This is achieved by providing a PyTorch-like \ac{API}, comprehensive documentation with many usage examples, and tutorials showcasing different features, and by actively addressing feature requests and bug reports from the many users that have already adopted TorchIO.
+This is in contrast with other modern libraries released after TorchIO such as \ac{MONAI}, which aims to deliver a larger umbrella of functionalities including federated learning or active learning, but may have slower development and deployment.
