@@ -1,7 +1,5 @@
 {
-    "editor.rulers": [
-    100
-    ],
+    "editor.rulers": [],
     "editor.wordWrap": "on",
     "editor.tabSize": 2,
     "files.exclude": {

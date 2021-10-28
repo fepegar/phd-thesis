@@ -94,7 +94,8 @@
 % Define a simple copyright page style
 \newcommand{\copyrightpage}[2]{
 \thispagestyle{empty}%              % Empty header styles
-~\\
+% ~\\  % This generated an Underfull hbox warning
+\mbox{}  % https://tex.stackexchange.com/questions/245247/putting-text-at-the-bottom-of-the-page
 \vfill
 \begin{center}
  {\copyright}#1\\
