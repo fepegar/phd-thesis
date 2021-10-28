@@ -1,0 +1,35 @@
+\begin{table}[ht]
+    \caption{
+        Transforms included in TorchIO \torchioversion.
+        Logos indicate the main library used to process the images.
+        \protect\logo{nipy}:~NiBabel\citep{brett_nipynibabel_2020};
+        \protect\logo{itk}:~SimpleITK\citep{lowekamp_design_2013};
+        \protect\logo{numpy}:~NumPy\citep{van_der_walt_numpy_2011};
+        \protect\logo{pytorch}:~PyTorch\citep{paszke_pytorch_2019}.
+    }
+    \footnotesize
+    \begin{center}
+        \begin{tabular}{c||c|c}
+                                                    & \textbf{Spatial}                      & \textbf{Intensity}                                                      \\
+            \hline
+            \hline
+            \multirow{5}{*}{\textbf{Preprocessing}} & \trsfl{ToCanonical}{nipy}             &                                                                         \\
+                                                    & \trsfl{Resample}{itk}                 & \trsfl{HistogramStandardization}{numpy} \cite{nyul_standardizing_1999} \\
+                                                    & \trsfl{Crop}{itk}                     & \trsfl{RescaleIntensity}{numpy}                                         \\
+                                                    & \trsfl{Pad}{itk}                      & \trsfl{ZNormalization}{pytorch}                                         \\
+                                                    & \trsfl{CropOrPad}{itk}                &                                                                         \\
+            \hline
+            \multirow{7}{*}{\textbf{Augmentation}}  &                                       & \trsfl{RandomMotion}{numpy} \cite{shaw_mri_2019}                       \\
+                                                    &                                       & \trsfl{RandomBiasField}{numpy} \cite{sudre_longitudinal_2017}          \\
+                                                    &                                       & \trsfl{RandomGhosting}{numpy}                                           \\
+                                                    & \trsfl{RandomAffine}{itk}             & \trsfl{RandomSpike}{numpy} \cite{shaw_heteroscedastic_2020}            \\
+                                                    & \trsfl{RandomElasticDeformation}{itk} & \trsfl{RandomBlur}{numpy}                                               \\
+                                                    & \trsfl{RandomFlip}{pytorch}           & \trsfl{RandomGamma}{pytorch}                                            \\
+                                                    &                                       & \trsfl{RandomNoise}{pytorch}                                            \\
+                                                    &                                       & \trsfl{RandomSwap}{pytorch} \cite{chen_self-supervised_2019}           \\
+                                                    &                                       & \trsfl{RandomLabelsToImage}{pytorch} \cite{billot_learning_2020}       \\
+                                                    &                                       & \trsfl{RandomAnisotropy}{itk} \cite{billot_partial_2020}               \\
+        \end{tabular}
+    \end{center}
+    \label{tab:transforms}
+\end{table}

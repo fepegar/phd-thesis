@@ -1,0 +1,37 @@
+\section{Methods}
+
+We developed TorchIO, a Python library that focuses on data loading and augmentation of medical images in the context of deep learning.
+
+TorchIO is a unified library to load and augment data that makes explicit use of medical image properties, and is flexible enough to be used for different loading workflows.
+It can accelerate research by avoiding the need to code a processing pipeline for medical images from scratch.
+
+In contrast with Eisen or \ac{MONAI}, we do not implement network architectures, loss functions or training workflows.
+This is to limit the scope of the library and to enforce modularity between training of neural networks and preprocessing and data augmentation.
+
+Following the PyTorch philosophy \cite{paszke_pytorch_2019}, we designed TorchIO with an emphasis on simplicity and usability while reusing PyTorch classes and infrastructure where possible.
+Although we designed TorchIO following PyTorch style, the library could also be used with other deep learning platforms such as TensorFlow or Keras%
+\fnurl{https://keras.io}.
+
+TorchIO makes use of open-source medical imaging software platforms.
+Packages were selected to reduce the number of required external dependencies and the need to re-implement basic medical imaging processing operations (image loading, resampling, etc.).
+
+TorchIO features are divided into two categories: data structures and input/output (\texttt{torchio.data}), and transforms for preprocessing and augmentation (\texttt{torchio.transforms}).
+\cref{fig:torchio} represents a diagram of the codebase and the different interfaces to the library.
+
+\begin{figure}
+  \centering
+  \includegraphics[width=\linewidth]{diagram_torchio}
+  \caption{
+    General diagram of TorchIO, its dependencies and its interfaces.
+    Boxes with a red border (\protect\tikz[baseline=-0.5ex]\protect\draw[thick, color = pytorch_orange] (0,0) -- (0.5,0);) represent elements implemented in TorchIO.
+    Logos indicate lower-level Python libraries used by TorchIO.
+    \protect\logo{nipy}:~NiBabel \cite{brett_nipynibabel_2020};
+    \protect\logo{itk}:~SimpleITK \cite{lowekamp_design_2013};
+    \protect\logo{numpy}:~NumPy \cite{van_der_walt_numpy_2011};
+    \protect\logo{pytorch}:~PyTorch \cite{paszke_pytorch_2019}.
+  }
+  \label{fig:torchio}
+\end{figure}
+
+% \input{sections/methods_data}
+% \input{sections/methods_transforms}

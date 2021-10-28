@@ -30,5 +30,6 @@ for fp in input_dir.rglob('*.tex'):
             for match in all_matches:
                 line = line.replace(match, match.upper())
         line = line.replace(r'~\citep', r' \cite')
+        line = line.replace(r'\citep', r'\cite')
         lines.append(line)
     fp.write_text('\n'.join(lines))
