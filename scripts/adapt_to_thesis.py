@@ -5,10 +5,10 @@ import sys
 from pathlib import Path
 
 replacements = {
-    r'\Glspl': r'\Acp',
-    r'\glspl': r'\acp',
-    r'\Gls': r'\Ac',
-    r'\gls': r'\ac',
+    r'\Glspl{': r'\Acp{',
+    r'\glspl{': r'\acp{',
+    r'\Gls{': r'\Ac{',
+    r'\gls{': r'\ac{',
 }
 
 patterns = (
