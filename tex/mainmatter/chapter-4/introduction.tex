@@ -1,0 +1,17 @@
+\section{Introduction}
+
+Recently, deep learning has become a ubiquitous research approach for solving image understanding and analysis problems.
+
+\Acp{CNN} have become the state of the art for many medical imaging tasks including segmentation~\cite{cicek_3d_2016}, classification~\cite{lu_multimodal_2018}, reconstruction~\cite{chen_variable-density_2018} and registration~\cite{shan_unsupervised_2018}.
+Many of the network architectures and techniques have been adopted from computer vision.
+
+Compared to 2D \acp{RGB} images typically used in computer vision, processing of medical images such as \acp{MRI}, \acp{US} or \acp{CT} presents different challenges.
+These include a lack of labels for large datasets, high computational costs (as the data is typically volumetric), and the use of metadata to describe the physical size and position of voxels.
+
+Open-source frameworks for training \acp{CNN} with medical images have been built on top of TensorFlow~\cite{abadi_tensorflow_2016,pawlowski_dltk_2017,gibson_niftynet_2018}.
+Recently, the popularity of PyTorch~\cite{paszke_pytorch_2019} has increased among researchers due to its improved usability compared to TensorFlow~\cite{he_state_2019}, driving the need for open-source tools compatible with PyTorch.
+To reduce duplication of effort among research groups, improve experimental reproducibility and encourage open-science practices, we have developed TorchIO: an open-source Python library for efficient loading, preprocessing, augmentation, and patch-based sampling of medical images designed to be integrated into deep learning workflows.
+
+TorchIO is a compact and modular library that can be seamlessly used alongside higher-level deep learning frameworks for medical imaging, such as \acp{MONAI}.
+It removes the need for researchers to code their own preprocessing pipelines from scratch, which might be error-prone due to the complexity of medical image representations.
+Instead, it allows researchers to focus on their experiments, supporting experiment reproducibility and traceability of their work, and standardization of the methods used to process medical images for deep learning.
