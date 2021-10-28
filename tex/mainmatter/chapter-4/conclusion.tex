@@ -1,0 +1,57 @@
+\section{Discussion}
+
+We have presented TorchIO, a new library to efficiently load, preprocess,
+augment and sample medical imaging data during the training of \acp{CNN}.
+%
+It is designed in the style of the deep learning framework PyTorch
+to provide medical imaging specific preprocessing and data augmentation
+algorithms.
+
+
+The main motivation for developing TorchIO as an open-source toolkit is to help
+researchers standardize medical image processing pipelines and allow them to
+focus on the deep learning experiments.
+%
+It also encourages good open-science practices, as it supports experiment
+reproducibility and is version-controlled so that the software can be cited
+precisely.
+
+
+The library is compatible with other higher-level deep learning frameworks for
+medical imaging such as \ac{MONAI}.
+%
+For example, users can benefit from TorchIO's \ac{MRI} transforms and
+patch-based sampling while using \ac{MONAI}'s networks, losses, training pipelines
+and evaluation metrics.
+
+\textcolor{rev2}{%
+The main limitation of TorchIO is that most transforms are not differentiable.
+%
+The reason is that PyTorch tensors stored in TorchIO data
+structures must be converted to SimpleITK images or NumPy arrays
+within most transforms, making them not compatible
+with PyTorch's automatic differentiation engine.
+%
+However, compatibility between PyTorch and ITK has recently been
+improved, partly thanks to the appearance of the \ac{MONAI}
+project \cite{mccormick_itk_2021}.
+%
+Therefore, TorchIO might provide differentiable transforms in the future, which
+could be used to implement, e.g., spatial transformer networks for image
+registration \cite{lee_image-and-spatial_2019}.
+%
+Another limitation is that many more transforms that are \ac{MRI}-specific exist than for other imaging modalities such as \ac{CT} or \ac{US}.
+This is in part due to more users working on \ac{MRI} applications and requesting \ac{MRI}-specific transforms.
+However, we welcome contributions for other modalities as well. 
+}
+
+
+In the future, we will work on extending the preprocessing and augmentation
+transforms to different medical imaging modalities
+such as \ac{CT} or \ac{US}, and improving compatibility with related works.
+%
+The source code, as well as examples and documentation,
+are made publicly available online, on GitHub.
+%
+We welcome feedback, feature requests, and contributions to the library,
+either by creating issues on the GitHub repository or by emailing the authors.
