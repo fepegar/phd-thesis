@@ -4,29 +4,8 @@
 \newcommand{\draftnote}{\textcolor[gray]{0.5}{\textbf{DRAFT -- \today}}}
 \include{misc/format_and_defs_thesis_extra}
 
-\usepackage[printonlyused]{acronym}
-\usepackage{import}  % use relative paths for \input
-\usepackage{microtype}  % avoid some overfull hbox warnings
-\usepackage{silence}  % suppress warnings when I want
-\usepackage[nottoc]{tocbibind}  % show list of figures and tables in TOC: https://texblog.org/2013/04/29/latex-table-of-contents-list-of-figurestables-and-some-customizations/
-
-\usepackage{caption}        % to increase space after table caption
-\usepackage{subcaption}     % subfigures
-
-\usepackage{hyperref}
-\usepackage[capitalise]{cleveref}
-
-\usepackage[binary-units=true]{siunitx}        % https://tex.stackexchange.com/questions/186846/using-space-instead-of-comma-for-large-numbers
-\usepackage{tikz}    % for TorchIO logos
-\usepackage{xspace}         % space after newcommand
-
-\newcommand{\myhref}[1]{\href{#1}{\texttt{#1}}}
-\newcommand{\fnurl}[1]{\footnote{\myhref{#1}}}
-\newcommand{\comment}[1]{}
-
-% For chapter 4
-\definecolor{pytorch_orange}{HTML}{F84C36}
-\newcommand{\logo}[1]{\includegraphics[height=8pt]{#1}}  % won't work if defined in the chapter
+\include{tex/packages}
+\include{tex/commands}
 
 \graphicspath{{figures/}}
 \setcounter{secnumdepth}{3}  % number subsubsections https://tex.stackexchange.com/a/338163/216202
