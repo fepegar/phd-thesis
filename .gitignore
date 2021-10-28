@@ -250,5 +250,6 @@ TSWLatexianTemp*
 # .vscode
 
 .DS_Store
+*.pyc
 
 !figures

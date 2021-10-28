@@ -10,5 +10,14 @@
 \usepackage{silence}  % suppress warnings when I want
 \usepackage[nottoc]{tocbibind}  % show list of figures and tables in TOC: https://texblog.org/2013/04/29/latex-table-of-contents-list-of-figurestables-and-some-customizations/
 
+\usepackage{caption}        % to increase space after table caption
+\usepackage{subcaption}     % subfigures
+
 \usepackage{hyperref}
-\usepackage{cleveref}
+\usepackage[capitalise]{cleveref}
+
+\usepackage[binary-units=true]{siunitx}        % https://tex.stackexchange.com/questions/186846/using-space-instead-of-comma-for-large-numbers
+
+
+\graphicspath{{figures/}}
+\setcounter{secnumdepth}{3}  % number subsubsections https://tex.stackexchange.com/a/338163/216202
