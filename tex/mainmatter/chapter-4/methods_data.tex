@@ -35,7 +35,7 @@ The instance of \texttt{LabelMap} contains a brain parcellation of the same subj
     trim = {0 0 4.8cm 0},
     clip,
   ]{data_diagram}
-  \caption{
+  \caption[Usage example of different data structures in TorchIO]{
     Usage example of \texttt{ScalarImage}, \texttt{LabelMap},
     \texttt{Subject} and \texttt{SubjectsDataset}.
     The images store a 4D \ac{dMRI} and a brain parcellation,
@@ -89,7 +89,7 @@ An example of subclassing \texttt{SubjectsDataset} is \texttt{torchio.datasets.I
     \label{fig:diagram_patches}
   \end{subfigure}
 
-  \caption{
+  \caption[Diagram of data pipelines for training with whole volumes and patches]{
     Diagram of data pipelines for training with whole volumes (top)
     and patches (bottom).
     Boxes with a red border represent PyTorch classes
