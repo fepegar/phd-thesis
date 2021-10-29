@@ -1,0 +1,65 @@
+\subsection{Learning strategy}
+\label{sec:learning_strategy}
+
+
+\subsubsection{Problem statement}
+
+\newcommand{\loss}{\mathcal{L}}
+\newcommand{\expec}{\mathbb{E}}
+\newcommand{\exppost}{\expec_{\Dom\post}}
+
+The overall objective is to automatically segment \acp{RC} from postoperative \ac{T1w} \ac{MRI} using a \ac{CNN} $f_{\bm{\theta}}$ parameterized by weights $\bm{\theta}$.
+Let $\X_{\text{post}} : \Omega \to \R$ and $\Y\cav  : \Omega \to \{ 0, 1 \}$ be a postoperative \ac{T1w} \ac{MRI} and its cavity segmentation label, respectively, where $\Omega \subset \R^3$.
+$\X_{\text{post}}$ and $\Y_{\text{cavity}}$ are drawn from the data distribution $\Dom\post$.
+In model training, the aim is to minimize the expected discrepancy between the label $\Y\cav$ and network prediction $f_{\bm{\theta}}(\X\post)$.
+Let $\loss$ be a loss function that estimates this discrepancy (e.g., Dice loss).
+The optimization problem for the network parameters $\bm{\theta}$ is:
+\begin{equation}
+    \bm{\theta}^* =
+    \argmin_{\bm{\theta}}
+    \exppost \left[
+        \loss \left(
+            f_{\bm{\theta}} \left( \X\post \right),
+            \Y\cav
+        \right)
+    \right]
+    \label{eq:problem_optimization}
+\end{equation}
+
+
+In a fully-supervised setting, a labeled dataset $D\post = \{ (\X_{\text{post}_i}, \Y_{\text{cavity}_i}) \}_{i = 1}^{n\post}$ is employed to estimate the expectation defined in \cref{eq:problem_optimization} as:
+\begin{equation}
+    \exppost \left[
+        \loss \left(
+            f_{\bm{\theta}} \left( \X\post \right), \Y\cav
+        \right)
+    \right]
+    \approx \frac{1}{n\post} \sum_{i=1}^{n\post} \loss(f_{\bm{\theta}}(\X_{\text{post}_i}), \Y_{\text{post}_i})
+    \label{eq:problem_optimization_fully}
+\end{equation}
+
+In practice, \acp{CNN} typically require an annotated dataset with a large $n\post$ to generalize well for unseen instances.
+However, given the time and expertise required to annotate scans, $n\post$ is often small.
+We present a method to artificially increase $n\post$ by simulating postoperative \acp{MRI} and associated labels from preoperative scans.
+
+
+\subsubsection{Simulation for domain adaptation and self-supervised learning}
+\label{sec:sim_res_self}
+
+Let $D\pre = \{ \X_{\text{pre}_i} \}_{i = 1}^{n\pre}$ be a dataset of preoperative \ac{T1w} \ac{MRI}, drawn from the data distribution $\Dom\pre$.
+We propose to generate a simulated postoperative dataset $D\simul = \{ (\X_{\text{sim}_i}, \Y_{\text{sim}_i}) \}_{i = 1}^{n\simul}$ using the preoperative dataset $D\pre$.
+Specifically, we aim to build a generative model $\phi\simul : \X\pre \mapsto (\X\simul, \Y\simul)$ that transforms preoperative images into simulated, annotated postoperative images that imitate instances drawn from the postoperative data distribution $\Dom\post$.
+$D\simul$ can then be used to estimate the expectation in \cref{eq:problem_optimization}:
+\begin{equation}
+    \exppost \left[\
+        \loss\left(
+            f_{\bm{\theta}} \left(\X\post \right), \Y\cav \right)
+        \right]
+        \approx \frac{1}{n\simul}\sum_{i=1}^{n\simul} \loss(f_{\bm{\theta}}(\X_{\text{sim}_i}),  \Y_{\text{sim}_i})
+    \label{eq:problem_optimization_sim}
+\end{equation}
+
+Simulated images can be generated from any unlabeled preoperative dataset.
+Therefore, the size of the simulated dataset can be much greater than the annotated dataset $D\post$, i.e., $n\simul\gg n\post$.
+The network parameters $\bm{\theta}$ can be optimized by minimizing \cref{eq:problem_optimization_sim} using stochastic gradient descent, leading to a trained predictive function $f_{\bm{\theta_}{\text{sim}}}$.
+Finally, $f_{\bm{\theta_}{\text{sim}}}$ can be fine-tuned on $D\post$ to improve performance on the postoperative domain $\Dom\post$.
