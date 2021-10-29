@@ -1,0 +1,58 @@
+\section{Introduction}
+
+\subsection{Motivation}
+
+Approximately one third of epilepsy patients are drug-resistant.
+If the \ac{EZ}, i.e., ``the area of cortex indispensable for the generation of clinical seizures'' \cite{rosenow_presurgical_2001}, can be localized, resective surgery to remove the \ac{EZ} may be curative.
+Currently, 40\% to 70\% of patients with refractory focal epilepsy are seizure-free after surgery \cite{jobst_resective_2015}.
+This is, in part, due to limitations identifying the \ac{EZ}.
+Retrospective studies relating presurgical clinical features and resected brain structures to surgical outcome provide useful insight to guide \ac{EZ} resection \cite{jobst_resective_2015}.
+To quantify resected structures, first, the resection cavity must be segmented on the postoperative \ac{MRI}.
+A preoperative image with a corresponding brain parcellation can then be registered to the postoperative \ac{MRI} to identify resected structures.
+
+\Ac{RC} segmentation is also necessary in other applications.
+For neuro-oncology, the gross tumor volume, which is the sum of the \ac{RC} and residual tumor volumes, is estimated for postoperative radiotherapy \cite{ermis_fully_2020}.
+
+Despite recent efforts to segment \acp{RC} in the context of brain cancer \cite{meier_automatic_2017,ermis_fully_2020}, little research has been published in the context of epilepsy surgery.
+Furthermore, previous work is limited by the lack of benchmark datasets, released code or trained models, and evaluation is restricted to single-institution datasets used for both training and testing.
+
+
+\subsection{Related works}
+
+After surgery, \acp{RC} fill with \ac{CSF}.
+This causes an inherent uncertainty in delineating \acp{RC} adjacent to structures such as sulci, ventricles or edemas.
+Nonlinear registration has been presented to segment the \ac{RC} for epilepsy \cite{chitphakdithai_non-rigid_2010} and brain tumor \cite{chen_deformable_2015} surgeries by detecting non-corresponding regions between pre- and postoperative images.
+However, evaluation of these methods was restricted to a very small number of images.
+Furthermore, in cases with intensity changes due to the resection (e.g., brain shift, atrophy, fluid filling), non-corresponding voxels may not correspond to the \ac{RC}.
+
+Decision forests were presented for brain cavity segmentation after glioblastoma surgery, using four \ac{MRI} modalities \cite{meier_automatic_2017}.
+These methods, which aggregate hand-crafted features extracted from all  modalities to train a classifier, can be sensitive to signal inhomogeneity and unable to distinguish regions with intensity patterns similar to \ac{CSF} from \acp{RC}.
+Recently, a 2D \ac{CNN} was trained to segment the \ac{RC} on \ac{MRI} slices in 30 glioblastoma patients \cite{ermis_fully_2020}.
+They obtained a `median (interquartile range)' \ac{DSC} of 84 (10) compared to ground-truth labels by averaging predictions across anatomical axes to compute the 3D segmentation.
+While these approaches require four modalities to segment the resection cavity, some of the modalities are often unavailable in clinical settings \cite{dorent_learning_2021}.
+Furthermore, code and datasets are not publicly available, hindering a fair comparison across methods.
+Applying these techniques requires curating a dataset with manually obtained annotations to train the models, which is expensive.
+
+Unsupervised learning methods can leverage large, unlabeled medical image datasets during training.
+In self-supervised learning, training instances are generated automatically from unlabeled data and used to train a model to perform a pretext task. %such as inpainting or image restoration.
+The model can be fine-tuned on a smaller labeled dataset to perform a downstream task \cite{chen_self-supervised_2019}.
+The pretext and downstream tasks may be the same.
+For example, a \ac{CNN} was trained to reconstruct a skull bone flap by simulating craniectomies on CT scans \cite{matzkin_self-supervised_2020}.
+Lesions simulated in chest CT of healthy subjects were used to train models for nodule detection, improving accuracy compared to training on a smaller dataset of real lesions \cite{pezeshk_seamless_2017}.
+
+% Recovered from long version
+Semi-supervised learning may be used when a large amount of unlabeled data is available.
+A model trained on a labeled dataset (which may have been generated in a self-supervised setting) can generate pseudolabels for unlabeled data.
+Uncertainty estimation may be used to select pseudolabeled instances with a low uncertainty for medical image segmentation tasks, improving model performance compared to using a random subset \cite{venturini_uncertainty_2020}.
+
+
+\subsection{Contributions}
+
+We present a self-supervised learning approach to train a 3D \ac{CNN} to segment brain \acp{RC} from \ac{T1w} \ac{MRI} without annotated data, by simulating resections during training.
+We ensure our work is reproducible by releasing the source code for resection simulation and \ac{CNN} training, the trained \ac{CNN}, and the evaluation dataset.
+To the best of our knowledge, we introduce the first open annotated dataset of postoperative \ac{MRI} for epilepsy surgery.
+
+This work extends our conference paper \cite{perez-garcia_simulation_2020} as follows:
+1) we performed a more comprehensive evaluation, assessing the effect of the resection simulation shape on performance and evaluating datasets from different institutions and pathologies;
+2) we formalized our transfer learning strategy;
+3) we used uncertainty estimation as a selection criterion for pseudolabeled instances within our semi-supervised learning setting.  % from long version
