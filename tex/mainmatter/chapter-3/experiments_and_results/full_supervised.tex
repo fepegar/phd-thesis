@@ -14,12 +14,12 @@ Quantitative evaluation is illustrated in \cref{fig:finetuning_quant}.
 
 \begin{figure}
   \centering
-  \includegraphics[width=\linewidth]{boxplot_finetuning}
+  \includegraphics[trim=1cm 0 0.8cm 0, clip, width=\linewidth]{boxplot_finetuning}
   \caption{
     \ac{DSC} without (blue) and with (orange) fine-tuning of the model training using self-supervision.
     Horizontal lines in the boxes represent the first, second (median) and third quartiles.
     `\textit{EPISURG (worst)}' comprises the 20 cases from EPISURG with the lowest \ac{DSC} in the experiment described in \cref{sec:self}.
-    Numbers in parentheses indicate subjects per dataset
+    Numbers in parentheses indicate subjects per dataset.
   }
   \label{fig:finetuning_quant}
 \end{figure}
