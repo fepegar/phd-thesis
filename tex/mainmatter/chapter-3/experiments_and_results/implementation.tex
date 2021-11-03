@@ -11,7 +11,7 @@ Convolutional layers were initialized using He's method and followed by batch no
 We used adaptive moment estimation (AdamW) \cite{kingma_adam_2014,loshchilov_decoupled_2019} to adjust the learning rate during training, with weight decay of~$10^{-2}$ and a learning scheduler that divides the learning rate by ten every 20 epochs.
 We optimized our network to minimize the mean soft Dice loss \cite{milletari_v-net_2016} of each mini-batch, for all the experiments.
 A mini-batch size of ten images (five per \ac{GPU}) was used for training.
-Unsupervised training took about 27 hours.
+Self-supervised training took about 27 hours.
 Fine-tuning on a small annotated dataset took about seven hours.
 
 We used Sacred \cite{greff_sacred_2017} and TensorBoard \cite{abadi_tensorflow_2016} to configure, log and visualize our experiments.
