@@ -1,0 +1,30 @@
+We use TorchIO transforms to load, preprocess and augment our data during training \cite{perez-garcia_torchio_2020}.
+Instead of preprocessing the images with denoising or bias removal, we simulate different artifacts in the training instances so that our models are robust to them.
+
+Our preprocessing and augmentation transforms are described below.
+For transforms that are not applied to all images, we show the probability $p$ of the transform being applied.
+
+\begin{enumerate}
+    \item Random resection simulation (for self-supervised training only)
+    \item Histogram standardization \cite{nyul_new_2000}
+    \item Simulation of low resolution artifacts ($p = 0.75$). Sampled uniformly from
+    \begin{enumerate}
+        \item Random simulation of anisotropic spacing \cite{billot_partial_2020} and
+        \item Gaussian blurring with random variance
+    \end{enumerate}
+    \item Random simulation of MRI ghosting artifacts \cite{shaw_heteroscedastic_2020} ($p = 0.2$)
+    \item Random simulation of MRI spike artifacts \cite{shaw_heteroscedastic_2020} ($p = 0.2$)
+    \item Random simulation of MRI motion artifacts \cite{shaw_mri_2019} ($p = 0.2$)
+    \item Random simulation of bias field inhomogeneity \cite{sudre_longitudinal_2017} ($p = 0.5$)
+    \item Foreground standardization to zero-mean and unit variance using only voxels with intensity above the mean to compute the statistics
+    \item Gaussian noise with random variance ($p = 0.75$)
+    \item Diffeomorphic spatial transform, sampled from either
+    \begin{enumerate}
+        \item Random rotation and anisotropic scaling ($p = 0.9$) or
+        \item Random elastic deformation ($p = 0.1$)
+    \end{enumerate}
+    \item Random flip around the sagittal plane ($p = 0.5$)
+    \item Crop to a tight bounding box around the brain of size of $176 \times 216 \times 160$ voxels.
+\end{enumerate}
+
+We refer the reader to the GitHub repository for details on the transforms parameters used for our experiments.
