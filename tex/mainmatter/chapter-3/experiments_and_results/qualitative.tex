@@ -42,11 +42,11 @@ The model successfully segmented the \ac{RC} on 11/13 images, even though some c
     \qualitfig{12_motion}
     \caption{Image with \ac{MRI} motion artifacts and adjacent edema \label{fig:bite_motion}}
   \end{subfigure}
-  \caption{
+  \caption[Qualitative evaluation on postoperative brain tumor data]{
     Qualitative evaluation of the self-supervised model on a dataset of postoperative brain tumor \ac{T1wCE} \ac{MRI}.
     The model is robust to multiple challenging scenarios:
     low contrast between the cavity and the brain (\subref{fig:bite_low_contrast}),
-    air and \ac{CSF} within the resection cavity (\subref{fig:bite_air}),
+    air and \ac{CSF} within the \ac{rc} (\subref{fig:bite_air}),
     highly anisotropic voxel spacing (\subref{fig:bite_aniso}),
     motion artifacts and edema (\subref{fig:bite_motion}),
     and a different modality than used for training (all).
@@ -67,7 +67,7 @@ Despite the large domain shift between the training dataset and the intraoperati
 \begin{figure}
   \centering
   \includegraphics[trim=0 0 0 12, clip, width=\linewidth]{intra}
-  \caption{
+  \caption[Qualitative result on an intraoperative \acs{MRI}]{
     Qualitative result on an intraoperative \ac{MRI}.
     The baseline model correctly discarded regions filled with air or \ac{CSF} outside of the \ac{RC}.
   }

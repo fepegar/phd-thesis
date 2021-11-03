@@ -7,7 +7,7 @@ If the \ac{EZ}, i.e., ``the area of cortex indispensable for the generation of c
 Currently, 40\% to 70\% of patients with refractory focal epilepsy are seizure-free after surgery \cite{jobst_resective_2015}.
 This is, in part, due to limitations identifying the \ac{EZ}.
 Retrospective studies relating presurgical clinical features and resected brain structures to surgical outcome provide useful insight to guide \ac{EZ} resection \cite{jobst_resective_2015}.
-To quantify resected structures, first, the resection cavity must be segmented on the postoperative \ac{MRI}.
+To quantify resected structures, first, the \ac{rc} must be segmented on the postoperative \ac{MRI}.
 A preoperative image with a corresponding brain parcellation can then be registered to the postoperative \ac{MRI} to identify resected structures.
 
 \Ac{RC} segmentation is also necessary in other applications.
@@ -29,7 +29,7 @@ Decision forests were presented for brain cavity segmentation after glioblastoma
 These methods, which aggregate hand-crafted features extracted from all  modalities to train a classifier, can be sensitive to signal inhomogeneity and unable to distinguish regions with intensity patterns similar to \ac{CSF} from \acp{RC}.
 Recently, a 2D \ac{CNN} was trained to segment the \ac{RC} on \ac{MRI} slices in 30 glioblastoma patients \cite{ermis_fully_2020}.
 They obtained a `median (interquartile range)' \ac{DSC} of 84 (10) compared to ground-truth labels by averaging predictions across anatomical axes to compute the 3D segmentation.
-While these approaches require four modalities to segment the resection cavity, some of the modalities are often unavailable in clinical settings \cite{dorent_learning_2021}.
+While these approaches require four modalities to segment the \ac{rc}, some of the modalities are often unavailable in clinical settings \cite{dorent_learning_2021}.
 Furthermore, code and datasets are not publicly available, hindering a fair comparison across methods.
 Applying these techniques requires curating a dataset with manually obtained annotations to train the models, which is expensive.
 

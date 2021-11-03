@@ -15,7 +15,7 @@ Quantitative and qualitative evaluations are illustrated in \cref{fig:finetuning
 \begin{figure}
   \centering
   \includegraphics[trim=1cm 0 0.8cm 0, clip, width=\linewidth]{boxplot_finetuning}
-  \caption{
+  \caption[\ac*{DSC} without before and after fine-tuning]{
     \ac{DSC} without (blue) and with (orange) fine-tuning of the model training using self-supervision.
     Horizontal lines in the boxes represent the first, second (median) and third quartiles.
     The `EPISURG (worst)' dataset comprises the 20 cases from EPISURG with the lowest \ac{DSC} in the experiment described in \cref{sec:self}.
@@ -28,15 +28,15 @@ Quantitative and qualitative evaluations are illustrated in \cref{fig:finetuning
 \begin{figure}[ht!]
   \centering
   \includegraphics[width=\linewidth]{finetune}
-  \caption{
-      Qualitative evaluation of fine-tuning for the \textit{Strasbourg} (left) and EPISURG (right) datasets.
-      Rows correspond, from top to bottom, to cases for which the \ac{DSC}
-      1) increased,
-      2) remained high,
-      3) remained low and
-      4) decreased
-      after fine-tuning the self-supervised model.
-      Manual annotations (green) and model predictions (magenta) are overlaid.
+  \caption[Qualitative evaluation of fine-tuning]{
+    Qualitative evaluation of fine-tuning for the \textit{Strasbourg} (left) and EPISURG (right) datasets.
+    Rows correspond, from top to bottom, to cases for which the \ac{DSC}
+    1) increased,
+    2) remained high,
+    3) remained low and
+    4) decreased
+    after fine-tuning the self-supervised model.
+    Manual annotations (green) and model predictions (magenta) are overlaid.
   }
   \label{fig:finetuning_qual}
 \end{figure}
