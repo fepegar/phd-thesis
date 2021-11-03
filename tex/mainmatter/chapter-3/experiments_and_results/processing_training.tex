@@ -3,7 +3,7 @@
 \subsubsection{Resection simulation}
 
 We perform the resection simulation on the fly, i.e., during training.
-Simulation requires 0.6 to 2.2 s for an image of size $193 \times 229 \times 193$, depending on the addition of white matter lesions and blood products (\cref{sec:white,sec:blood}).
+Simulation requires around 0.5 s for an image of size $193 \times 229 \times 193$.%, depending on the addition of white matter lesions and blood products (\cref{sec:white,sec:blood}).
 In practice, we perform expensive operations such as convolutions on subvolumes to reduce computational burden.
 The simulation is implemented using SimpleITK \cite{lowekamp_design_2013}, VTK \cite{schroeder_visualization_2006} and NumPy \cite{van_der_walt_numpy_2011}.
 To generate the noisy sphere, we used \texttt{pyDome}\fnurl{https://github.com/badassdatascience/pyDome} and \texttt{noise}\fnurl{https://github.com/caseman/noise}.

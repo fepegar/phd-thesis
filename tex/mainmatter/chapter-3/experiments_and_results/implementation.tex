@@ -1,18 +1,16 @@
 \subsection{Network architecture and implementation details}
 
-We used the PyTorch deep learning framework \cite{paszke_pytorch_2019}, training with \ac{AMP} on two 32-GB TESLA V100 GPUs.
+We used the PyTorch deep learning framework \cite{paszke_pytorch_2019}, training with \ac{AMP} on two 32-GB TESLA V100 \acp{GPU}.
 In the \ac{AMP} setting, some operations such as convolution are computed using half precision (i.e., 16-bit floating point) to reduce the computational burden while maintaining a similar performance.
 
 We implemented a variant of 3D U-Net \cite{cicek_3d_2016} using two downsampling and upsampling blocks, upsampling with trilinear interpolation for the synthesis path, and 1/4 of the filters for each convolutional layer.
 We used dilated convolutions \cite{chen_deeplab_2017}, starting with a dilation factor of one, then increased or decreased in steps of one after each downsampling or upsampling block, respectively.
 This results in a model with the same receptive field (a cube of length 88 mm) but $\approx 77 \times$ fewer parameters (\num{246156}) than the original 3D U-Net, reducing overfitting and computational burden.
 
-All convolutional layers were initialized using He's method and followed by batch normalization and nonlinear PReLU activation functions \cite{ioffe_batch_2015,he_delving_2015}.
-A dropout layer with probability 0. \cite{srivastava_dropout_2014} was added before the last convolutional layer to reduce overfitting.
-We used adaptive moment estimation (AdamW) \cite{kingma_adam_2014,loshchilov_decoupled_2019} to adjust the learning rate during training, with an initial learning rate of~$10^{-3}$ and weight decay of~$10^{-2}$,
-and a learning scheduler that divides the learning rate by ten every 20 epochs.
+Convolutional layers were initialized using He's method and followed by batch normalization and nonlinear PReLU activation functions \cite{ioffe_batch_2015,he_delving_2015}.
+We used adaptive moment estimation (AdamW) \cite{kingma_adam_2014,loshchilov_decoupled_2019} to adjust the learning rate during training, with weight decay of~$10^{-2}$ and a learning scheduler that divides the learning rate by ten every 20 epochs.
 We optimized our network to minimize the mean soft Dice loss \cite{milletari_v-net_2016} of each mini-batch, for all the experiments.
-A mini-batch size of ten images (five per GPU) was used for training.
+A mini-batch size of ten images (five per \ac{GPU}) was used for training.
 Unsupervised training took about 27 hours.
 Fine-tuning on a small annotated dataset took about seven hours.
 
