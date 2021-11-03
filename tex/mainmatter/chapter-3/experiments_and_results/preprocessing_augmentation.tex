@@ -1,8 +1,11 @@
-We use TorchIO transforms to load, preprocess and augment our data during training \cite{perez-garcia_torchio_2020}.
+\subsubsection{Preprocessing and augmentation}
+\label{sec:preprocessing_augmentation}
+
+We use TorchIO transforms to load, preprocess and augment our data during training \cite{perez-garcia_torchio_2021}.
 Instead of preprocessing the images with denoising or bias removal, we simulate different artifacts in the training instances so that our models are robust to them.
 
 Our preprocessing and augmentation transforms are described below.
-For transforms that are not applied to all images, we show the probability $p$ of the transform being applied.
+For transforms that are not applied to all images, we show the probability $p$ of the transform being applied:
 
 \begin{enumerate}
     \item Random resection simulation (for self-supervised training only)
@@ -27,4 +30,4 @@ For transforms that are not applied to all images, we show the probability $p$ o
     \item Crop to a tight bounding box around the brain of size of $176 \times 216 \times 160$ voxels.
 \end{enumerate}
 
-We refer the reader to the GitHub repository for details on the transforms parameters used for our experiments.
+We refer the reader to the GitHub repository\fnurl{https://github.com/fepegar/resseg-ijcars} for details on the transforms parameters used for our experiments.
