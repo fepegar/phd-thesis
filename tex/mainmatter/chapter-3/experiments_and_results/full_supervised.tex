@@ -9,7 +9,7 @@ To minimize data leakage, we determined the above hyperparameters using the vali
 
 We observed a consistent increase in \ac{DSC} for all fine-tuned models, up to a maximum of 89.2 (13.3) for the \textit{Milan} dataset.
 For comparison, inter-rater agreement between human annotators in our previous study was 84.0 (9.9) \cite{perez-garcia_simulation_2020}.
-Quantitative evaluation is illustrated in \cref{fig:finetuning_quant}.
+Quantitative and qualitative evaluations are illustrated in \cref{fig:finetuning_quant,fig:finetuning_qual}, respectively.
 
 
 \begin{figure}
@@ -18,8 +18,25 @@ Quantitative evaluation is illustrated in \cref{fig:finetuning_quant}.
   \caption{
     \ac{DSC} without (blue) and with (orange) fine-tuning of the model training using self-supervision.
     Horizontal lines in the boxes represent the first, second (median) and third quartiles.
-    `\textit{EPISURG (worst)}' comprises the 20 cases from EPISURG with the lowest \ac{DSC} in the experiment described in \cref{sec:self}.
+    The `EPISURG (worst)' dataset comprises the 20 cases from EPISURG with the lowest \ac{DSC} in the experiment described in \cref{sec:self}.
     Numbers in parentheses indicate subjects per dataset.
   }
   \label{fig:finetuning_quant}
+\end{figure}
+
+
+\begin{figure}[ht!]
+  \centering
+  \includegraphics[width=\linewidth]{finetune}
+  \caption{
+      Qualitative evaluation of fine-tuning for the \textit{Strasbourg} (left) and EPISURG (right) datasets.
+      Rows correspond, from top to bottom, to cases for which the \ac{DSC}
+      1) increased,
+      2) remained high,
+      3) remained low and
+      4) decreased
+      after fine-tuning the self-supervised model.
+      Manual annotations (green) and model predictions (magenta) are overlaid.
+  }
+  \label{fig:finetuning_qual}
 \end{figure}
