@@ -1,0 +1,31 @@
+\section{Discussion and conclusion}
+\label{sec:discussion}
+
+We addressed the challenge of segmenting postoperative brain resection cavities from \ac{T1w} \ac{MRI} without annotated data.
+We developed a self-supervised learning strategy to train without manually annotated data, and a method to simulate \acp{RC} from preoperative \ac{MRI} to generate training data.
+Our novel approach is conceptually simple, easy to implement, and relies on clinical knowledge about postoperative phenomena.
+The resection simulation is computationally efficient ($< \SI{1}{\second}$), so it can run during training as part of a data augmentation pipeline.
+It is compatible with the TorchIO framework \cite{perez-garcia_torchio_2021} to leverage other data argumentation techniques during training, enabling our model to have a robust performance across \ac{MRI} of variable quality.
+
+Modeling a realistic cavity shape is important (\cref{sec:self}).
+Our model generalizes well to clinical data from different institutions and pathologies, including epilepsy and glioma.
+Models may be easily fine-tuned using small annotated clinical datasets to improve performance.
+Moreover, our resection simulation and learning strategy may be extended to train with arbitrary modalities, or synthetic modalities generated from brain parcellations \cite{billot_learning_2020}.
+Therefore, our strategy can be adopted by institutions with a large amount of unlabeled data, while fine-tuning and testing on a smaller labeled dataset.
+
+Poor segmentation performance is often due to very small cavities, where the cavity was not detected, and large brain shift or subdural edema, where regions were incorrectly segmented.
+The former issue may be overcome by training with a distribution of cavity volumes which oversamples small resections.
+The latter can be addressed by extending our method to simulate displacement with biomechanical models or nonlinear deformations of the brain \cite{granados_generative_2021}.
+
+The baseline model performance improved by leveraging unlabeled postoperative images for semi-supervised learning, but remained lower than inter-rater variability \cite{perez-garcia_simulation_2020}.  % TODO: add this info in this thesis!
+We believe that a setting with a smaller training dataset might benefit further from the semi-supervised approach.
+However, we did not perform an extensive assessment of our semi-supervised approach as this is out of the scope of this paper.
+
+We showed that our model correctly segmented an intraoperative image, respecting imaginary boundaries between brain and skull, suggesting a good inductive bias of human neuroanatomy.
+Qualitative results and execution time, which is in the order of milliseconds, suggest that our method could be used intraoperatively, for image guidance during resection or to improve registration with preoperative images by masking the cost function using the \ac{RC} segmentation \cite{brett_spatial_2001}.
+Segmenting the \ac{RC} may also be used to study potential damage to white matter tracts postoperatively \cite{winston_optic_2012}.
+Our method could be easily adapted to simulate other lesions for self-supervised training, such as cerebral microbleeds \cite{cuadrado-godia_cerebral_2018}, narrow and snake-shaped \acp{RC} typical of disconnective surgeries \cite{mohamed_temporoparietooccipital_2011}, or \acp{RC} with residual tumor \cite{meier_automatic_2017}.
+
+As part of this work, we curated and released EPISURG, an \ac{MRI} dataset with annotations from three independent raters.
+EPISURG could serve as a benchmark dataset for quantitative analysis of pre- and postoperative imaging of open resection for epilepsy treatment.
+To the best of our knowledge, this is the first open annotated database of post-resection \ac{MRI} for epilepsy patients.
