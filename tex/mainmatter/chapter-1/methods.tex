@@ -1,0 +1,88 @@
+%\subsection{Ground-truth definitions}
+
+% Let a seizure video $S$ be a sequence of frames $(\f_0, \dots, \f_{K - 1})$ starting at $t_0$, the onset of the clinical seizure.
+% The ground-truth label $\Yb$ for the seizure is $1$ if it generalizes and $0$ if it does not.
+Let a seizure video be a sequence of $K$ frames starting at $t_0$.
+%The ground-truth label is $\Yb \in \{0, 1\}$, corresponding to \acp{FOS} and \acp{TCS}, respectively.
+%
+Let the time of frame $k \in \{ 0, \dots, K - 1 \}$ be ${t_k = t_0 + \frac{k}{f}}$, where $f$ is the video frame rate.
+%
+%\Ac{FOS} are labeled as 0 and \acp{TCS} are labeled as 1.
+We use 0 and 1 to represent \ac{FOS} and \ac{TCS} labels, respectively.
+The ground-truth label $y_k \in \{0, 1\}$ for frame $k$ is defined as
+$y_k \coloneqq 0$ if $t_k < t_G$ and 1 otherwise,
+where $t_G \rightarrow \infty$ for \acp{FOS}.
+
+Let $\x \in \R ^ {3 \times l \times h \times w}$ be a stack of frames or \textit{snippet}, where
+$3$ denotes the RGB channels,
+$l$ is the number of frames,
+and $h$ and $w$ are the number of rows and columns in a frame, respectively.
+The label for a snippet starting at frame $k$ is
+\begin{equation}
+    Y_k \coloneqq
+    \left\{
+        \begin{array}{ll}
+            0 & \mbox{if } \frac{t_k + t_{k + l}}{2} < t_G \\
+            1 & \mbox{otherwise}
+        \end{array}
+    \right.
+\end{equation}
+
+
+\subsection{Snippet-level classification}
+\label{sec:snippet-level}
+
+% A snippet $\x_k$ starting at frame $k$ may be represented by a feature vector
+% ${\z_k \in \R ^ {512} = \F_\x(\x_k, \thetab_\x)}$,
+% where $\F_\x(\cdot, \thetab_\x)$ is a spatiotemporal \ac{CNN} used as a feature extractor. % \cite{ghadiyaram_large-scale_2019}.
+
+% The probability that the patient presents generalizing features within the snippet is computed as
+
+
+%A snippet $\x_k$ starting at frame $k$ may be represented by a feature vector
+%${\z_k \in \R ^ {512} = \Cx(\x_k)}$,
+%where $\Cx$ is a spatiotemporal \ac{CNN} parameterized by $\pars{\x}$ used as a feature extractor. % \cite{ghadiyaram_large-scale_2019}.
+
+The probability $\hat{Y}_k$ that a patient presents generalizing features within snippet $\x_k$ starting at frame $k$ is computed as
+\begin{equation}
+    \Ypred_k = \Pr(Y_k = 1 \mid \x_k) = \Fzx( \Cx(\x_k) ) = \Fzx( \z_k)
+\end{equation}
+where
+% $\z_k$ is the feature vector corresponding to the snippet starting at frame $k$,
+% and
+$\Cx$ is an \ac{STCNN} parameterized by $\pars{\x}$ that extracts features,
+$\z_k \in \R ^ m$ is a vector of $m$ features representing $\x_k$ in a latent space,
+and
+$\Fzx$ is a fully-connected layer parameterized by $\pars{\z,\x}$ followed by a sigmoid function that maps logits to probabilities.
+In this work, we do not update $\pars{\x}$ during training.
+
+\subsection{Seizure-level classification}
+\label{sec:meth_seizure}
+
+\subsubsection{Temporal segment network}
+Let $V = \{ \x_k \}_{k=1}^{K-l}$ be the set of all possible snippets sampled from a seizure video.
+We define a sampling function $f : (V, n, \gamma) \mapsto S$ that extracts a sequence $S$ of $n$ snippets by splitting $V$ into $n$ non-overlapping segments and randomly sampling one snippet per segment.
+There are two design choices: the number of segments $n$ and the probability distribution used for sampling within a segment.
+If a uniform distribution is used,
+information from two adjacent segments might be redundant.
+Using the middle snippet of a segment minimizes redundancy, but reduces the proportion of data leveraged during training.
+%We use a symmetric beta distribution ($\text{Beta}(\gamma, \gamma)$) to model both as well as intermediate cases, and evaluate the effect of sampling using different values of the shape parameter $\gamma$.
+We propose using a symmetric beta distribution ($\text{Beta}(\gamma, \gamma)$) to model the sampling function,
+where $\gamma$ controls the dispersion of the probability distribution (\cref{fig:betas}).
+The set of latent snippet representations is $Z = \{ \Cx (\x_i) \}_{i = 1}^{n}$.
+
+
+\subsubsection{Recurrent neural network}
+
+To perform a seizure-level prediction $\hat{\Yb}$, $Z$ is aggregated as follows:
+\begin{equation}
+    \hat{\Yb}
+    = \Pr(\Yb = 1 \mid S)
+    %= \Fzs( \Rs ( \Cx(S) ) )
+    = \Fzs( \Rs ( Z ) )
+    = \Fzs( \z )
+\end{equation}
+where
+$\Rs$ is an \ac{RNN} parameterized by $\pars{\sss}$,
+$\Fzs$ is a fully-connected layer parameterized by $\pars{\z,\sss}$ which uses a softmax function to output probabilities,
+and $\z$ is a feature-vector representation of the entire seizure video, corresponding to the last hidden state of $\Rs$.

@@ -1,0 +1,29 @@
+\subsection{Video acquisition}
+
+Patients were recorded using two full high-definition ($1920 \times 1080$ pixels, 30 \ac{FPS}) cameras installed in the \ac{EMU} as part of standard clinical practice.
+Infrared is used for acquisition in scenes with low light intensity, such as during nighttime.
+The acquisition software (Micromed, Treviso, Italy) automatically resizes one of the video streams ($800 \times 450$), superimposes it onto the top-left corner of the other stream and stores the montage using MPEG-2.
+See the supplementary materials for six examples of videos in our dataset.
+
+\subsection{Dataset description and ground-truth definitions}
+\label{sec:dataset}
+
+A neurophysiologist (A.A.) annotated for each seizure the following times: clinical seizure onset $t_0$, onset of the clonic phase $t_G$ (\acp{TCS} only) and clinical seizure offset $t_1$.
+The annotations were confirmed using \ac{EEG}.
+
+We curated a dataset comprising 141 \acp{FOS} and 77 \acp{TCS} videos from 68 epileptic patients undergoing presurgical evaluation at the National Hospital for Neurology and Neurosurgery, London, United Kingdom.
+% As patients with only generalized onset seizures are typically not considered for surgery \cite{duncan_brain_2016}, our dataset does not contain any seizure of this type.
+To reduce the seizure class imbalance, we discarded seizures where $t_1 - t_0 < \SI{15}{\second}$, as this threshold is well under the shortest reported time for \acp{TCS} \cite{jenssen_how_2006}.
+%which is approximately half of the shortest median duration of \acp{TCS} reported in \cite{jenssen_how_2006}.
+After discarding short videos,
+%which accounted for 1\% of the duration of the dataset,
+there were 106 \acp{FOS}.
+The `median (min, max)' number of seizures per patient is 2 (1, 16).
+The duration of \ac{FOS} and \ac{TCS} is 53 (16, 701) s and 93 (51, 1098) s, respectively.
+The total duration of the dataset is 298 minutes, 20\% of which correspond to \ac{TCS} phase (i.e., the time interval $[t_G, t_1]$).
+Two patients had only \ac{FOS}, 32 patients had only \ac{TCS}, and 34 had seizures of both types.
+The `mean (standard deviation)' of the percentage of the seizure duration before the appearance of generalizing semiology, i.e., $r = (t_G - t_0) / (t_1 - t_0)$, is 0.56 (0.18), indicating that patients typically present generalizing semiological features in the second half of the seizure.
+
+
+%\subsubsection{Preprocessing}
+%Pretrained models take square inputs, our frames are 16:9. Multiple strategies possible. Resizing generates geometric distortion. Cropping reduces \ac{FOV}. Padding wastes resolution. We use a mix of cropping and padding. EXPLAIN HOW.

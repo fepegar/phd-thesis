@@ -1,0 +1,67 @@
+\section{Discussion and conclusion}
+
+%% Big picture
+Objective assessment of seizure semiology from videos is important to determine appropriate treatment for the diagnosed epilepsy type and help reduce \ac{SUDEP} risk.
+%the specific epilepsy type(s) experiences by the patient.
+%and help to reduce SUDEP risk
+Related works focus on \ac{EZ} localization by averaging classifications of short snippets from multiple seizures, ignoring order of semiologies, and are not robust to variations seen in real world datasets such as changes in the \ac{FOV}.
+Moreover, their performance is limited by the size of the training datasets, which are small due to the expense of curating datasets.
+Methods that take into account the sequential nature of semiologies and represent the entirety of seizures are needed.
+
+
+%% Critical analysis of major findings
+We presented \ac{GESTURE}, a method combining \acp{TSN} and \acp{RNN} to model long-range sequences of seizure semiologies. 
+\ac{GESTURE} can classify seizures into \acp{FOS} and \acp{TCS} with high accuracy.
+To overcome the challenge of training on limited data, we used a network pre-trained on large \ac{HAR} datasets to extract relevant features from seizure videos, highlighting the importance of transfer learning in medical applications.
+\ac{GESTURE} can take videos from multiple cameras, which makes it robust to patients being out of the \ac{FOV}.
+
+
+%% Additional findings and how these fit with existing literature
+\comrem{
+We found that \acp{STCNN} were better feature extractors than \acp{SFCNN} (\cref{tab:models}).
+Accuracy of snippets classification was proportional to the snippet duration.
+As in \cite{ghadiyaram_large-scale_2019}, we did not observe a large difference in performance between the \acp{STCNN} trained using snippets of 8 and 32 frames.
+Therefore, we selected the former model for extracting snippet features, as it is less computationally expensive.
+Computational cost becomes especially relevant if data augmentation is used during training or if the model is trained end-to-end, which was not the case in this study.
+
+Although we tried to perform a fair comparison between the \acp{SFCNN} and \acp{STCNN} by matching number of layers and parameters, we recognize the effect the domain of the training set has for transfer learning; \acp{SFCNN} were trained on ImageNet, a large dataset of photographs of which only a small fraction contain humans.
+We observed overfitting when training with Wide R2D-50-2, probably due to the larger number of output features with respect to R2D-34, which leads to a classifier with more parameters.
+However, it seems clear that models designed to capture human motion are more suitable for characterizing seizure semiology.
+}
+
+In \cref{sec:exp_feat} we compared \acp{STCNN} to \acp{SFCNN} for snippet-level classification.
+To make comparisons fair, we selected models with a similar number of layers (R2D-34) or parameters (Wide R2D-50-2).
+We found the larger \ac{SFCNN} had worse performance, due to overfitting to the training dataset.
+Classification accuracy was proportional to snippet duration (\cref{tab:models}), meaning that both \acp{STCNN} outperformed \acp{SFCNN}.
+We selected R(2+1)D-34 (8) for the aggregation experiment (\cref{sec:exp_agg}), as performance between the two \acp{STCNN} was similar and this model is less computationally expensive.
+
+Using \ac{LSTM} or \ac{BLSTM} units to aggregate features from snippets improved accuracy compared to averaging (\cref{fig:aggregation}), confirming that modeling the order of semiologies is important for accurate seizure representation.
+Model performance was proportional to the number of temporal segments, with more segments providing a denser sampling of seizure semiologies. % and a better classification performance.
+Ensuring some dispersion in the probability distributions used to sample snippets improved classification.
+One of the two false positives was caused by the patient being out of the \ac{FOV} in one of the video streams.
+We did not observe overfitting to unrelated events in the videos, such as nurses in the room, to predict \ac{TCS}, and models correctly discriminated between \acp{TCS} and hyperkinetic \acp{FOS}.
+
+%% Overall conclusion, major impact and future directions
+We demonstrated that methods designed for \ac{HAR} can be adapted to learn deep representations of epileptic seizures.
+This enables a fast, automated and quantitative assessment of seizures.
+\Ac{GESTURE} takes arbitrarily long videos and is robust to occlusions, changes in \ac{FOV} and multiple people in the room.
+In the future, we will investigate the potential of \ac{GESTURE} to classify different types of \acp{TCS} and to localize the \ac{EZ}, using datasets from multiple \acp{EMU}.
+
+
+\comrem{
+Key points
+What others have done?
+What's new compared to others
+Mechanistic implications
+Clinical implications
+Prognostication
+Risk stratification
+High-level of risk, more medication and more monitoring
+Hyperkinetic seizures in one patient, with nurses, still correctly classified as fos.
+Limitations
+Limited clinical value?
+Only tested on our data
+Further work
+GCS seizure classification?
+Multiview techniques
+}

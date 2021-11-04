@@ -17,6 +17,7 @@ patterns = (
     r'\\Ac(\{\w+\})',
     r'\\ac(\{\w+\})',
     r'\\acs(\{\w+\})',
+    r'\\acl(\{\w+\})',
 )
 
 input_dir = sys.argv[1]
