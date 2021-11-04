@@ -2,18 +2,16 @@
 
 %% Big picture
 Objective assessment of seizure semiology from videos is important to determine appropriate treatment for the diagnosed epilepsy type and help reduce \ac{SUDEP} risk.
-%the specific epilepsy type(s) experiences by the patient.
-%and help to reduce SUDEP risk
 Related works focus on \ac{EZ} localization by averaging classifications of short snippets from multiple seizures, ignoring order of semiologies, and are not robust to variations seen in real world datasets such as changes in the \ac{FOV}.
 Moreover, their performance is limited by the size of the training datasets, which are small due to the expense of curating datasets.
 Methods that take into account the sequential nature of semiologies and represent the entirety of seizures are needed.
 
 
 %% Critical analysis of major findings
-We presented \ac{GESTURE}, a method combining \acp{TSN} and \acp{RNN} to model long-range sequences of seizure semiologies. 
-\ac{GESTURE} can classify seizures into \acp{FOS} and \acp{TCS} with high accuracy.
+We presented \ac{GESTURES}, a method combining \acp{TSN} and \acp{RNN} to model long-range sequences of seizure semiologies.
+\ac{GESTURES} can classify seizures into \acp{FOS} and \acp{TCS} with high accuracy.
 To overcome the challenge of training on limited data, we used a network pre-trained on large \ac{HAR} datasets to extract relevant features from seizure videos, highlighting the importance of transfer learning in medical applications.
-\ac{GESTURE} can take videos from multiple cameras, which makes it robust to patients being out of the \ac{FOV}.
+\ac{GESTURES} can take videos from multiple cameras, which makes it robust to patients being out of the \ac{FOV}.
 
 
 %% Additional findings and how these fit with existing literature
@@ -44,24 +42,5 @@ We did not observe overfitting to unrelated events in the videos, such as nurses
 %% Overall conclusion, major impact and future directions
 We demonstrated that methods designed for \ac{HAR} can be adapted to learn deep representations of epileptic seizures.
 This enables a fast, automated and quantitative assessment of seizures.
-\Ac{GESTURE} takes arbitrarily long videos and is robust to occlusions, changes in \ac{FOV} and multiple people in the room.
-In the future, we will investigate the potential of \ac{GESTURE} to classify different types of \acp{TCS} and to localize the \ac{EZ}, using datasets from multiple \acp{EMU}.
-
-
-\comrem{
-Key points
-What others have done?
-What's new compared to others
-Mechanistic implications
-Clinical implications
-Prognostication
-Risk stratification
-High-level of risk, more medication and more monitoring
-Hyperkinetic seizures in one patient, with nurses, still correctly classified as fos.
-Limitations
-Limited clinical value?
-Only tested on our data
-Further work
-GCS seizure classification?
-Multiview techniques
-}
+\Ac{GESTURES} takes arbitrarily long videos and is robust to occlusions, changes in \ac{FOV} and multiple people in the room.
+In the future, we will investigate the potential of \ac{GESTURES} to classify different types of \acp{TCS} and to localize the \ac{EZ}, using datasets from multiple \acp{EMU}.
