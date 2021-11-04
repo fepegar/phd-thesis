@@ -1,29 +1,17 @@
 \subsection{Snippet-level classification}
 \label{sec:snippet-level}
 
-% A snippet $\x_k$ starting at frame $k$ may be represented by a feature vector
-% ${\z_k \in \R ^ {512} = \F_\x(\x_k, \thetab_\x)}$,
-% where $\F_\x(\cdot, \thetab_\x)$ is a spatiotemporal \ac{CNN} used as a feature extractor. % \cite{ghadiyaram_large-scale_2019}.
-
-% The probability that the patient presents generalizing features within the snippet is computed as
-
-
-%A snippet $\x_k$ starting at frame $k$ may be represented by a feature vector
-%${\z_k \in \R ^ {512} = \Cx(\x_k)}$,
-%where $\Cx$ is a spatiotemporal \ac{CNN} parameterized by $\pars{\x}$ used as a feature extractor. % \cite{ghadiyaram_large-scale_2019}.
-
 The probability $\hat{Y}_k$ that a patient presents generalizing features within snippet $\x_k$ starting at frame $k$ is computed as
 \begin{equation}
     \Ypred_k = \Pr(Y_k = 1 \mid \x_k) = \Fzx( \Cx(\x_k) ) = \Fzx( \z_k)
 \end{equation}
 where
-% $\z_k$ is the feature vector corresponding to the snippet starting at frame $k$,
-% and
 $\Cx$ is an \ac{STCNN} parameterized by $\pars{\x}$ that extracts features,
 $\z_k \in \R ^ m$ is a vector of $m$ features representing $\x_k$ in a latent space,
 and
 $\Fzx$ is a fully-connected layer parameterized by $\pars{\z,\x}$ followed by a sigmoid function that maps logits to probabilities.
 In this work, we do not update $\pars{\x}$ during training.
+
 
 \subsection{Seizure-level classification}
 \label{sec:meth_seizure}
@@ -35,7 +23,6 @@ There are two design choices: the number of segments $n$ and the probability dis
 If a uniform distribution is used,
 information from two adjacent segments might be redundant.
 Using the middle snippet of a segment minimizes redundancy, but reduces the proportion of data leveraged during training.
-%We use a symmetric beta distribution ($\text{Beta}(\gamma, \gamma)$) to model both as well as intermediate cases, and evaluate the effect of sampling using different values of the shape parameter $\gamma$.
 We propose using a symmetric beta distribution ($\text{Beta}(\gamma, \gamma)$) to model the sampling function,
 where $\gamma$ controls the dispersion of the probability distribution (\cref{fig:betas}).
 The set of latent snippet representations is $Z = \{ \Cx (\x_i) \}_{i = 1}^{n}$.
@@ -47,7 +34,6 @@ To perform a seizure-level prediction $\hat{\Yb}$, $Z$ is aggregated as follows:
 \begin{equation}
     \hat{\Yb}
     = \Pr(\Yb = 1 \mid S)
-    %= \Fzs( \Rs ( \Cx(S) ) )
     = \Fzs( \Rs ( Z ) )
     = \Fzs( \z )
 \end{equation}
