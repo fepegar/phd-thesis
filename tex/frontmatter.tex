@@ -10,39 +10,41 @@
 \onehalfspacing
 
 \copyrightpage{\the\year}{\theauthor}
-\cleardoublepage
 
-\input{tex/frontmatter/declaration}
 \cleardoublepage
+\declarationpage{\theauthor}
 
+\cleardoublepage
 \input{tex/frontmatter/abstract}
-\cleardoublepage
 
+\cleardoublepage
 \input{tex/frontmatter/impact}
-\cleardoublepage
 
+\cleardoublepage
 \input{tex/frontmatter/acknowledgments}
-\cleardoublepage
 
+\cleardoublepage
 \input{tex/frontmatter/publications}
+
 \cleardoublepage
-
 \tableofcontents
-\clearpage
 
+\clearpage
 \input{tex/acronyms}
-\clearpage
 
+\clearpage
 \addcontentsline{toc}{chapter}{List of Figures}
 \listoffigures
-\clearpage
 
+\clearpage
+% This is so that minitocs in chapters don't disappear
 % https://tex.stackexchange.com/a/432046/216202
 \adjustmtc
 
 \addcontentsline{toc}{chapter}{List of Tables}
 \listoftables
-\clearpage
 
+\clearpage
+% Not sure this is needed here as well
 % https://tex.stackexchange.com/a/432046/216202
 \adjustmtc
