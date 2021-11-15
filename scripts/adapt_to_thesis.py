@@ -9,6 +9,8 @@ replacements = {
     r'\glspl{': r'\acp{',
     r'\Gls{': r'\Ac{',
     r'\gls{': r'\ac{',
+    r'\acrshort{': r'\ac{',
+    r'\acrfull{': r'\ac{',
 }
 
 patterns = (
