@@ -104,7 +104,7 @@ For example, the size of a high-resolution lung \ac{CT}-scan used for quantifyin
 In computer vision applications, images used for training are grouped in batches whose size is often in the order of hundreds~\cite{krizhevsky_imagenet_2012} or even thousands~\cite{chen_simple_2020} of training instances, depending on the available \ac{GPU} memory.
 In medical image applications, batches rarely contain more than one~\cite{cicek_3d_2016} or two~\cite{milletari_v-net_2016} training instances due to their larger memory footprint compared to natural images.
 This reduces the utility of techniques such as batch normalization, which rely on batches being large enough to estimate dataset variance appropriately~\cite{ioffe_batch_2015}.
-Moreover, large image size and small batches result in longer training time, hindering the experimental cycle that is necessary for hyperparameter optimisation.
+Moreover, large image size and small batches result in longer training time, hindering the experimental cycle that is necessary for hyperparameter optimization.
 In cases where \ac{GPU} memory is limited and the network architecture is large, it is possible that not even the entirety of a single volume can be processed during a training iteration.
 To overcome this challenge, it is common in medical imaging to train using subsets of the image, or image \textit{patches}, randomly extracted from the volumes.
 
