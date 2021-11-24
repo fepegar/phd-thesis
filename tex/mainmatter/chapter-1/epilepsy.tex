@@ -5,7 +5,7 @@ Epilepsy is a neurological condition characterized by abnormal brain activity th
 This means that around 1\% of the world population live with epilepsy.
 
 % Personal and global burden
-Epilepsy is associated with "stigma, psychiatric comorbidity, and high economic costs", and it has been ranked by the \ac{WHO} as the second most burdensome neurological disorder in terms of disability-adjusted life years \cite{fiest_prevalence_2017}.
+Epilepsy is associated with ``stigma, psychiatric comorbidity, and high economic costs'', and it has been ranked by the \ac{WHO} as the second most burdensome neurological disorder in terms of disability-adjusted life years \cite{fiest_prevalence_2017}.
 % Deaths in the UK/SUDEP
 There are 21 epilepsy-related deaths in the UK every week%
 \fnurl{https://sudep.org/epilepsy-deaths},
@@ -19,10 +19,25 @@ It is the most common category of epilepsy-related deaths \cite{devinsky_sudden_
 The underlying mechanisms of \ac{SUDEP} are not fully understood, and looking for patterns to predict its risk is an active research field \cite{so_what_2008,jha_sudden_2021}.
 
 Seizure semiology, the analysis of clinical signs during an epileptic seizure, is an essential component of any evaluation to determine if patients with refractory epilepsy are candidates for surgery.
-Some motor semiologies such as decerebration have been associated with \ac{PGES}, which has in turn been associated with a higher risk of \ac{SUDEP} \cite{alexandre_risk_2015,vilella_association_2021}.
+Some motor semiologies such as decerebration (\cref{fig:decerebration}) have been associated with \ac{PGES}, which has in turn been associated with a higher risk of \ac{SUDEP} \cite{alexandre_risk_2015,vilella_association_2021}.
 Therefore, seizure classification could be used to assess the risk of \ac{SUDEP} and modify the treatment of epilepsy or give higher priority for surgery to patients with a higher risk.
 However, manual assessment of seizure videos by neurophysiologists is time-consuming, as videos can be very long, and presents a high intra- and inter-rater variability, especially between observers from different epilepsy centers \cite{tufenkjian_seizure_2012}.
-We present our research on automatic classification of seizure videos in \cref{chap:videos}.
+Our research on automatic classification of seizure videos is presented in \cref{chap:videos}.
+
+\begin{figure}
+  \centering
+
+  \begin{subfigure}{0.49\linewidth}
+    \includegraphics[width=0.98\linewidth]{016_01}
+  \end{subfigure}
+  \begin{subfigure}{0.49\linewidth}
+    \includegraphics[width=0.98\linewidth]{030_01_blurred}
+  \end{subfigure}
+  \caption[Examples of decerebrate posturing]{
+    Examples of decerebrate posturing during \acp{TCS}.
+  }
+  \label{fig:decerebration}
+\end{figure}
 
 
 \subsection{Presurgical evaluation}
@@ -40,15 +55,44 @@ If a structural lesion is found that is concordant with the results of \ac{EEG} 
 However, 15 to 30\% of patients with focal epilepsy are \ac{MRI}-negative, meaning they have no distinct abnormalities visible from imaging or have discordant video \ac{EEG} telemetry \cite{bien_characteristics_2009}.
 Results are discordant when they suggest different \ac{EZ} localizations.
 For example, an \ac{MRI} can show a lesion near the motor cortex, but \ac{EEG} shows abnormal activity in the occipital lobe.
-In such cases, intracranial electrodes may be implanted to acquire \ac{icEEG} signals that for precise localization of the \ac{EZ}.
-% simultaneous video-telemetry and \ac{icEEG} are acquired to link areas of seizure onset and cortical hyperexcitability (\ac{icEEG}) and seizure semiology (video-telemetry).
+In such cases, intracranial electrodes may be implanted to acquire \ac{icEEG} signals that for precise localization of the \ac{EZ} (\cref{fig:electrodes}).
 
-Currently, there are no objective methods to determine in which brain structures the electrodes should be implanted.
-The targets are chosen by clinicians after interpretation of the aforementioned non-invasive data, particularly seizure semiology, \ac{EEG} and \ac{MRI}.
+\begin{figure}
+  \centering
+  \includegraphics[width=\linewidth]{electrodes}
+  \caption[Electrodes used for intracranial EEG]{
+    Electrodes used for \ac{icEEG}.
+    Left: subdural grid electrode;
+    right: \ac{SEEG} depth electrodes.
+    Top: intraoperative photos after electrode placement for each implantation procedure;
+    bottom: volume renderings and \acp{MIP} of post-implantation images.
+    The skull is shown in green. The electrodes and cables are shown in yellow.
+  }\label{fig:electrodes}
+\end{figure}
+
+The brain structures in which the electrodes are implanted are chosen by clinicians after interpretation of the aforementioned non-invasive data acquisition modalities, particularly seizure semiology, \ac{EEG} and \ac{MRI}.
 There are variations in implantation strategies between centers, based on views regarding the relationship between semiological features and brain regions involved.
 
-[...]
-
+To determine an objective implantation plan for the \ac{icEEG} electrodes, automatic data-driven methods may be used.
+Our tool to objectively map seizure semiologies to brain structures based on the literature is presented in \cref{chap:svt}.
 
 
 \subsection{Resective surgery}
+
+If the \ac{icEEG} findings are concordant with the previous investigations, surgery to resect the determined \ac{EZ} may be performed.
+
+If concordance and conditions ok, resective surgery
+
+Doesn't work well
+
+We need to understand why
+
+For that quantification
+
+Manual is hard
+
+There's some data, let's do DL
+
+Not enough though, SSL
+
+Figure?
