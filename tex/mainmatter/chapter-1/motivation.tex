@@ -1,4 +1,4 @@
-\section{Background}
+\section{Motivation}
 
 % What it is, prevalence
 Epilepsy is a neurological condition characterized by abnormal brain activity that gives rise to recurring seizures, affecting about 600 000 people in the UK and 50 million people worldwide \cite{nice_epilepsies_2012,fiest_prevalence_2017}.
@@ -6,6 +6,8 @@ This means that around 1\% of the world population live with epilepsy.
 
 % Personal and global burden
 Epilepsy is associated with ``stigma, psychiatric comorbidity, and high economic costs'', and it has been ranked by the \ac{WHO} as the second most burdensome neurological disorder in terms of disability-adjusted life years \cite{fiest_prevalence_2017}.
+Epileptic seizures, especially repeated, prolonged and uncontrolled tonic-clonic seizures, induce neuronal loss and have long-term behavioral and cognitive consequences \cite{sutula_epileptic_2003}.
+The overall risk of dying is 1.6 to 3 times higher in people with epilepsy than in the general population \cite{forsgren_mortality_2005}.
 % Deaths in the UK/SUDEP
 There are 21 epilepsy-related deaths in the UK every week%
 \fnurl{https://sudep.org/epilepsy-deaths},
@@ -16,11 +18,11 @@ half of which are \acp{SUDEP}.  % 600/year -> 11.5/week, according to https://ep
 
 \ac{SUDEP} is more formally defined as ``the sudden, unexpected, witnessed or unwitnessed, non-traumatic, and non-drowning death in patients with epilepsy with or without evidence for a seizure, and excluding documented status epilepticus, in which postmortem examination does not reveal a structural or toxicological cause for death'' \cite{nashef_sudden_1997}.
 It is the most common category of epilepsy-related deaths \cite{devinsky_sudden_2016}.
-The underlying mechanisms of \ac{SUDEP} are not fully understood, and looking for patterns to predict its risk is an active research field \cite{so_what_2008,jha_sudden_2021}.
-
-Seizure semiology, the analysis of clinical signs during an epileptic seizure, is an essential component of any evaluation to determine if patients with refractory epilepsy are candidates for surgery.
+Although the underlying mechanisms of \ac{SUDEP} are not fully understood, several prognostic risk factors have been identified \cite{so_what_2008, jha_sudden_2021}.
+Seizure semiology, the analysis of clinical signs during an epileptic seizure, is an important tool to predict the risk of \ac{SUDEP}.
 Some motor semiologies such as decerebration (\cref{fig:decerebration}) have been associated with \ac{PGES}, which has in turn been associated with a higher risk of \ac{SUDEP} \cite{alexandre_risk_2015,vilella_association_2021}.
-Therefore, seizure classification could be used to assess the risk of \ac{SUDEP} and modify the treatment of epilepsy or give higher priority for surgery to patients with a higher risk.
+% mention seizure classification
+Therefore, seizure classification using semiology could be used to assess the risk of \ac{SUDEP} and modify the treatment of epilepsy or give higher priority for surgery to patients with a higher risk.
 However, manual assessment of seizure videos by neurophysiologists is time-consuming, as videos can be very long, and presents a high intra- and inter-rater variability, especially between observers from different epilepsy centers \cite{tufenkjian_seizure_2012}.
 Our research on automatic classification of seizure videos is presented in \cref{chap:videos}.
 
@@ -28,10 +30,10 @@ Our research on automatic classification of seizure videos is presented in \cref
   \centering
 
   \begin{subfigure}{0.49\linewidth}
-    \includegraphics[width=0.98\linewidth]{016_01}
+    \includegraphics[width=\linewidth]{016_01}
   \end{subfigure}
   \begin{subfigure}{0.49\linewidth}
-    \includegraphics[width=0.98\linewidth]{030_01_blurred}
+    \includegraphics[width=\linewidth]{030_01_blurred}
   \end{subfigure}
   \caption[Examples of decerebrate posturing]{
     Examples of decerebrate posturing during \acp{TCS}.
@@ -42,8 +44,15 @@ Our research on automatic classification of seizure videos is presented in \cref
 
 \subsection{Presurgical evaluation}
 
+% Goal is to cure
+% Seizure control is not curative, but clincally interesting
+% If you reduce to 50% the likelihood of injury or comorbidity decreases
+% Also, there's SUDEP
+% Treat for 1) quality of life, 2) but also morbidity and 3) mortality
+
 Antiepileptic drugs are normally used to treat epilepsy.
-However, in roughly one third of the patients, antiepileptic drugs do not adequately control seizures.
+The aim of these drugs is not to cure the epilepsy, but to decrease the seizure frequency.
+In roughly one third of the patients, antiepileptic drugs do not adequately control seizures.
 These patients are described as being medically refractory.
 Half of the medically refractory epileptic patients have focal epilepsy, which may be treated by curative resective surgery.
 
@@ -79,9 +88,7 @@ Our tool to objectively map seizure semiologies to brain structures based on the
 
 \subsection{Resective surgery}
 
-If the \ac{icEEG} findings are concordant with the previous investigations, surgery to resect the determined \ac{EZ} may be performed.
-
-If concordance and conditions ok, resective surgery
+If the \ac{icEEG} findings enable a definitive localization of the \ac{EZ}, surgery to resect the determined \ac{EZ} may be performed.
 
 Doesn't work well
 
