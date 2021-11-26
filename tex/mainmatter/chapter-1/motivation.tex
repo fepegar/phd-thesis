@@ -21,9 +21,9 @@ It is the most common category of epilepsy-related deaths \cite{devinsky_sudden_
 Although the underlying mechanisms of \ac{SUDEP} are not fully understood, several prognostic risk factors have been identified \cite{so_what_2008, jha_sudden_2021}.
 Seizure semiology, the analysis of clinical signs during an epileptic seizure, is an important tool to predict the risk of \ac{SUDEP}.
 Some motor semiologies such as decerebration (\cref{fig:decerebration}) have been associated with \ac{PGES}, which has in turn been associated with a higher risk of \ac{SUDEP} \cite{alexandre_risk_2015,vilella_association_2021}.
-% mention seizure classification
-Therefore, seizure classification using semiology could be used to assess the risk of \ac{SUDEP} and modify the treatment of epilepsy or give higher priority for surgery to patients with a higher risk.
+Therefore, classifying seizures by motor semiologies could be used to assess the risk of \ac{SUDEP} and modify the treatment of epilepsy or give higher priority for surgery to patients with a higher risk.
 However, manual assessment of seizure videos by neurophysiologists is time-consuming, as videos can be very long, and presents a high intra- and inter-rater variability, especially between observers from different epilepsy centers \cite{tufenkjian_seizure_2012}.
+
 Our research on automatic classification of seizure videos is presented in \cref{chap:videos}.
 
 \begin{figure}
@@ -43,12 +43,6 @@ Our research on automatic classification of seizure videos is presented in \cref
 
 
 \subsection{Presurgical evaluation}
-
-% Goal is to cure
-% Seizure control is not curative, but clincally interesting
-% If you reduce to 50% the likelihood of injury or comorbidity decreases
-% Also, there's SUDEP
-% Treat for 1) quality of life, 2) but also morbidity and 3) mortality
 
 Antiepileptic drugs are normally used to treat epilepsy.
 The aim of these drugs is not to cure the epilepsy, but to decrease the seizure frequency.
@@ -89,17 +83,38 @@ Our tool to objectively map seizure semiologies to brain structures based on the
 \subsection{Resective surgery}
 
 If the \ac{icEEG} findings enable a definitive localization of the \ac{EZ}, surgery to resect the determined \ac{EZ} may be performed.
+Currently, 40\% to 70\% of patients with refractory focal epilepsy are seizure-free%
+\footnote{In this context, ``seizure freedom'' refers to one year without seizures from the surgery.}
+after surgery \cite{jobst_resective_2015}.
+This is, in part, due to limitations identifying the \ac{EZ}.
+Retrospective studies relating presurgical clinical features and resected brain structures to surgical outcome provide useful insight to guide \ac{EZ} resection \cite{jobst_resective_2015}.
+To quantify resected structures, the resection cavity, which is mostly composed of \ac{CSF} (\cref{fig:cavities}), must be segmented on the postoperative \ac{MRI}.
+A preoperative image with a corresponding brain parcellation can then be registered to the postoperative \ac{MRI} to identify resected structures.
 
-Doesn't work well
+3D manual segmentation of brain resection cavities is a time-consuming process requiring highly trained individuals, and a high inter-rater variability is usual \cite{havaei_brain_2017}.
+A tool for automatic segmentation would facilitate and accelerate the research to better understand the relation between the clinical features and surgical outcomes.
+% However, automatic techniques for cavity segmentation are challenging as other structures in the brain may look similar, such as the ventricles, cysts or oedemas (\cref{fig:}).
+% Moreover, brain shift can happen during surgery, creating parts of the images that are also filled with \ac{CSF}.
+Our work on automatic segmentation of brain resection cavities is presented in \cref{chap:resection}.
 
-We need to understand why
 
-For that quantification
+\newcommand{\plotcavities}[2]{
+  \begin{subfigure}{0.8\linewidth}
+    \includegraphics[trim=0 0 0 50, clip, width=\linewidth]{percentiles/#1}
+    \caption{#2}
+  \end{subfigure}
+}
 
-Manual is hard
+\begin{figure}
+  \centering
 
-There's some data, let's do DL
+  \plotcavities{p_050_0185_without}{Resection cavity in the temporal lobe}
+  \plotcavities{p_075_1263_without}{Resection cavity in the frontal lobe}
+  \plotcavities{p_025_0039_without}{Resection cavity in the parietal lobe}
 
-Not enough though, SSL
-
-Figure?
+  \caption[Examples of brain resection cavities after curative epilepsy surgery.]{
+    Examples of brain resection cavities (marked with arrows) after curative epilepsy surgery.
+    \textcolor{brown}{TODO: add arrow annotations}
+  }
+  \label{fig:cavities}
+\end{figure}
