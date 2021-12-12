@@ -17,19 +17,36 @@ However, large datasets are typically not readily available in clinical settings
 % How we're solving them
 In this thesis, we leverage techniques such as transfer learning, self-supervised learning and semi-supervised learning to overcome these low-data regimes.
 
-This thesis is structured in six chapters.
-The order of \cref{chap:videos,chap:svt,chap:resection} mimics the temporal order of the associated elements of the clinical pathway.
+The document is structured in six chapters.
+The order of \cref{chap:videos,chap:svt,chap:resection} follows the temporal order of the associated elements of the clinical pathway.
 The literature review related to each topic is presented in the corresponding chapters.
+
 
 In the \textbf{current chapter}, an overview of epilepsy was first presented.
 Then, the relevant elements in the clinical pathway for the treatment of epilepsy and their corresponding challenges were described.
 
-The \textbf{second chapter} (\nameref{chap:videos}),
 
-The \textbf{third chapter} (\nameref{chap:svt}),
+The \textbf{second chapter} (\nameref{chap:videos}) introduces \ac{GESTURES} our open-source framework for automatic classification of seizures from videos.
+I present a novel method combining convolutional and recurrent neural networks to model seizures of arbitrary duration.
+Our deep learning approach is robust to occlusions by bed linens and clinical staff, differences in illumination and pose, and poor video quality caused by compression artifacts or details out of focus.
+The code is available on GitHub%
+\fnurl{https://github.com/fepegar/gestures-miccai-2021}.
+
+
+The \textbf{third chapter} (\nameref{chap:svt}) describes a piece of software developed in collaboration with neurologists Ali Alim-Marvasti and Gloria Romagnoli.
+They performed a systematic literature review to generate the Semio2Brain database, which maps seizure semiologies to brain regions \cite{alim-marvasti_probabilistic_2021}.
+Ali also wrote software to query the database, which is an Excel spreadsheet.
+The input is a set of observed semiologies and some additional optional patient information such as the dominant hemisphere.
+My contributions to this project are 1) a 3D Slicer module \cite{fedorov_3d_2012} that reads the output of the querying tool and generates a 3D visualization on a parcellated brain \ac{MRI}, where the brightness associated to each brain structure is proportional to the probability of the \ac{EZ} being in the structure; and 2) the software engineering aspects of the project: \ac{PIP}-compatible Python package for the querying software, \ac{CI}, and an \ac{API} to access the Python package from 3D Slicer.
+The database and code are freely available on GitHub%
+\fnurl{https://github.com/thenineteen/Semiology-Visualisation-Tool}.
+Our \ac{SVT}...  % TODO
+
 
 The \textbf{fourth chapter} (\nameref{chap:resection}),
 
+
 The \textbf{fifth chapter} (\nameref{chap:torchio}),
+
 
 Finally, the \textbf{sixth chapter} (\nameref{chap:conclusion}), concludes the thesis and outlines potential future research directions.
