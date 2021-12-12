@@ -11,3 +11,25 @@
 \setcounter{secnumdepth}{3}  % number subsubsections https://tex.stackexchange.com/a/338163/216202
 
 \renewcommand{\contentsname}{Table of contents}
+
+% This is so that \acresetall doesn't give dozens of warnings
+% https://tex.stackexchange.com/a/269518/216202
+\makeatletter
+\newcommand*{\org@overidelabel}{}
+\let\org@overridelabel\@verridelabel
+\@ifpackagelater{acronym}{2015/03/21}{% v1.41
+  \renewcommand*{\@verridelabel}[1]{%
+    \@bsphack
+    \protected@write\@auxout{}{\string\AC@undonewlabel{#1@cref}}%
+    \org@overridelabel{#1}%
+    \@esphack
+  }%
+}{% older versions
+  \renewcommand*{\@verridelabel}[1]{%
+    \@bsphack
+    \protected@write\@auxout{}{\string\undonewlabel{#1@cref}}%
+    \org@overridelabel{#1}%
+    \@esphack
+  }%
+}
+\makeatother
