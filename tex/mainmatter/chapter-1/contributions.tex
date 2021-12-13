@@ -28,23 +28,49 @@ Then, the relevant elements in the clinical pathway for the treatment of epileps
 
 The \textbf{second chapter} (\nameref{chap:videos}) introduces \ac{GESTURES} our open-source framework for automatic classification of seizures from videos.
 I present a novel method combining convolutional and recurrent neural networks to model seizures of arbitrary duration.
-Our deep learning approach is robust to occlusions by bed linens and clinical staff, differences in illumination and pose, and poor video quality caused by compression artifacts or details out of focus.
+Our deep learning approach is robust to occlusions by bed linens and clinical staff, differences in illumination and pose, and poor video quality caused by compression artifacts or details out of focus \cite{perez-garcia_transfer_2021}.
 The code is available on GitHub%
 \fnurl{https://github.com/fepegar/gestures-miccai-2021}.
+
+Due to privacy concerns, we were not able to share the video data used in the study.
+A derived dataset of per-frame feature vectors with no identifiable patient data has been made open-access and it is freely available for download at the UCL Research Data Repository \cite{perez-garcia_data_2021}.
 
 
 The \textbf{third chapter} (\nameref{chap:svt}) describes a piece of software developed in collaboration with neurologists Ali Alim-Marvasti and Gloria Romagnoli.
 They performed a systematic literature review to generate the Semio2Brain database, which maps seizure semiologies to brain regions \cite{alim-marvasti_probabilistic_2021}.
 Ali also wrote software to query the database, which is an Excel spreadsheet.
 The input is a set of observed semiologies and some additional optional patient information such as the dominant hemisphere.
-My contributions to this project are 1) a 3D Slicer module \cite{fedorov_3d_2012} that reads the output of the querying tool and generates a 3D visualization on a parcellated brain \ac{MRI}, where the brightness associated to each brain structure is proportional to the probability of the \ac{EZ} being in the structure; and 2) the software engineering aspects of the project: \ac{PIP}-compatible Python package for the querying software, \ac{CI}, and an \ac{API} to access the Python package from 3D Slicer.
+
+My specific contributions to this project are 1) a 3D Slicer module \cite{fedorov_3d_2012} that reads the output of the querying tool and generates a 3D visualization on a parcellated brain \ac{MRI}, where the brightness associated to each brain structure is proportional to the probability of the \ac{EZ} being in the structure; and 2) the software engineering aspects of the project: a \ac{PIP}-installable Python package for the querying software, \ac{CI}, and an \ac{API} to access the Python package from 3D Slicer.
 The database and code are freely available on GitHub%
 \fnurl{https://github.com/thenineteen/Semiology-Visualisation-Tool}.
-Our \ac{SVT}...  % TODO
+Our \ac{SVT} may be used to better understand the relation between the seizure onset zone and the observed seizure semiologies, and to perform an objective planning of \ac{iEEG} electrodes implantation.
 
 
-The \textbf{fourth chapter} (\nameref{chap:resection}),
+The \textbf{fourth chapter} (\nameref{chap:resection}) presents our framework for resective surgery quantification.
+I first describe our method to simulate resection cavities on normal (preoperative) \ac{T1w}.
+The \ac{PIP}-installable Python package \texttt{resector} is available on GitHub%
+\fnurl{https://github.com/fepegar/resector}%
+and has recently been used in the context of brain tumor segmentation by researchers in China and the UK \cite{zhang_self-supervised_2021}.
 
+The resection simulator was used to train a cavity segmentation model without manual annotations, obtaining a performance comparable to human inter-rater variability \cite{perez-garcia_simulation_2020}.
+A \ac{PIP}-installable \ac{CLI} tool to segment resection cavities, \texttt{resseg}, is available online%
+\fnurl{https://github.com/fepegar/resseg}.
+A convenient 3D Slicer module that uses \texttt{resseg} is available as a \ac{GUI} for users without coding experience%
+\fnurl{https://github.com/fepegar/SlicerParcellation\#brain-resection-cavity-segmentation}.
+A 3D Slicer extension for the deep learning framework PyTorch was created in the context of this project%
+\fnurl{https://github.com/fepegar/SlicerPyTorch}.
+It can be installed from the built-in 3D Slicer Extensions Manager.
+
+In the context of this project, we curated the EPISURG dataset, comprising 699 \acp{MRI} from 430 patients who underwent epilepsy surgery at the \ac{NHNN} between 1990 and 2018, including 200 manual annotations from three different human raters (133 of which were performed by myself).
+To the best of our knowledge, EPISURG is the first open annotated database of post-resection \ac{MRI} for epilepsy patients.
+EPISURG is an open-access dataset and can be freely downloaded from the UCL Research Data Repository \cite{perez-garcia_episurg_2020}.
+A 3D Slicer extension to download and visualize EPISURG is available on GitHub%
+\fnurl{https://github.com/fepegar/SlicerEPISURG}.
+
+We collaborated with hospitals in Milan, Paris and Marseille to validate our segmentation framework using heterogeneous clinical data \cite{perez-garcia_self-supervised_2021}.
+The code is available on GitHub%
+\fnurl{https://github.com/fepegar/resseg-ijcars}.
 
 The \textbf{fifth chapter} (\nameref{chap:torchio}),
 
