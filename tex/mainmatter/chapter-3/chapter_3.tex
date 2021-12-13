@@ -4,18 +4,63 @@
 \label{chap:svt}
 \minitoc
 
-% \begin{center}
-%   \begin{minipage}[b]{0.9\linewidth}
-%     \small
-%     \textbf{Foreword\,}
-%     This chapter is adapted and contains content from the work presented in:
-%     \begin{itemize}
-%       \item \bibentry{perez-garcia_transfer_2021}
-%     \end{itemize}
-%   \end{minipage}
-% \end{center}
+\begin{center}
+  \begin{minipage}[b]{0.9\linewidth}
+    \small
+    \textbf{Foreword\,}
+    This chapter describes the output of a collaboration with neurologists Ali Alim-Marvasti and Gloria Romagnoli.
+    Ali and Gloria performed a systematic literature review to generate the \textit{Semio2Brain} database, which maps seizure semiologies to brain regions.
+    The related publications, currently under review, are:
+    \begin{itemize}
+      \item \bibentry{alim-marvasti_probabilistic_2021}
+      \item \bibentry{alim-marvasti_mapping_2021}
+    \end{itemize}
+
+    My specific contributions to this project are:
+    \begin{itemize}
+      \item A 3D Slicer module \cite{fedorov_3d_2012} that reads the output of the querying tool and generates a 3D visualization on a parcellated brain \ac{MRI}, where the brightness associated to each brain structure is proportional to the probability of the \ac{EZ} being in the structure.
+      \item The software engineering aspects of the project: a \ac{PIP}-installable Python package for the querying tool, including \ac{CI}, and an \ac{API} to access the Python package from 3D Slicer or from the command line.
+      \item The implementation of the online demo, which does not require installing 3D Slicer%
+      \fnurl{https://github.com/fepegar/SVT-web}.
+    \end{itemize}
+
+  \end{minipage}
+\end{center}
 
 \acresetall
 \doublespacing
 
 \onehalfspacing % a blank line seems to be needed before this command
+
+
+\section{Introduction}
+
+% Seizure semiology is a non-invasive instrument used along with video-\ac{EEG}, \ac{MRI} and other investigations to localise the symptomatogenic zone, which is generally close to, or overlapping the \ac{EZ}.
+
+% However, the choice of targets for \ac{iEEG} electrodes suffers from high intra- and inter-rater variability.
+% Therefore, the diagnostic pathway for surgical planning would benefit from an objective decision support tool to aid clinicians in deducing the epileptogenic zone from seizure semiology.
+% We have performed a systematic literature review to generate a database that allows to map seizure semiologies to brain regions.
+% We have also developed a set of software tools that allow users to query the database and generates a probability map of the epileptogenic zone.
+% It can be used to support clinical decisions during surgical planning.
+
+Drugs are used to treat epilepsy
+
+If refractory, candidate for surgery
+
+Analysis. If discordant, iEEG
+
+Suspected targets from semiology, according to experience. iEEG around suspected targets
+
+Variability, subjective, complex
+
+Data-driven, objective, reproducible
+
+Literature review
+
+Database
+
+Query
+
+Visualization
+
+Automatic planning?

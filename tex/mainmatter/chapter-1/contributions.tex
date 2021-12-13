@@ -38,14 +38,14 @@ A derived dataset of per-frame feature vectors with no identifiable patient data
 
 The \textbf{third chapter} (\nameref{chap:svt}) describes a piece of software developed in collaboration with neurologists Ali Alim-Marvasti and Gloria Romagnoli.
 They performed a systematic literature review to generate the \textit{Semio2Brain} database, which maps seizure semiologies to brain regions \cite{alim-marvasti_probabilistic_2021}.
-Ali also wrote software to query the database, which is an Excel spreadsheet.
-The input is a set of observed semiologies and some additional optional patient information such as the dominant hemisphere.
+Ali also wrote software to query the database, which is an Excel spreadsheet \cite{alim-marvasti_mapping_2021}.
+The input is a set of observed semiologies and some additional optional patient information such as the dominant hemisphere;
+the output is a list of brain structures and the number of patients in the literature that were seizure-free after removal of the structure.
 
-My specific contributions to this project are 1) a 3D Slicer module \cite{fedorov_3d_2012} that reads the output of the querying tool and generates a 3D visualization on a parcellated brain \ac{MRI}, where the brightness associated to each brain structure is proportional to the probability of the \ac{EZ} being in the structure; and 2) the software engineering aspects of the project: a \ac{PIP}-installable Python package for the querying tool, including \ac{CI}, and an \ac{API} to access the Python package from 3D Slicer.
+My specific contributions to this project are 1) a 3D Slicer module \cite{fedorov_3d_2012} that reads the output of the querying tool and generates a 3D visualization on a parcellated brain \ac{MRI}, where the brightness associated to each brain structure is proportional to the probability of the \ac{EZ} being in the structure; 2) the software engineering aspects of the project: a \ac{PIP}-installable Python package for the querying tool, including \ac{CI}, and an \ac{API} to access the Python package from 3D Slicer or from the command line; and 3) the implementation of the online demo, which does not require installing 3D Slicer%
+\fnurl{https://github.com/fepegar/SVT-web}.
 The database and code are freely available on GitHub%
 \fnurl{https://github.com/thenineteen/Semiology-Visualisation-Tool}.
-An online version that does not require installing 3D Slicer is also available%
-\fnurl{https://github.com/fepegar/SVT-web}.
 Our \ac{SVT} may be used to better understand the relation between the seizure onset zone and the observed seizure semiologies, and to perform an objective planning of \ac{iEEG} electrodes implantation.
 
 
