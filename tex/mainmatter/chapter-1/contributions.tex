@@ -37,20 +37,22 @@ A derived dataset of per-frame feature vectors with no identifiable patient data
 
 
 The \textbf{third chapter} (\nameref{chap:svt}) describes a piece of software developed in collaboration with neurologists Ali Alim-Marvasti and Gloria Romagnoli.
-They performed a systematic literature review to generate the Semio2Brain database, which maps seizure semiologies to brain regions \cite{alim-marvasti_probabilistic_2021}.
+They performed a systematic literature review to generate the \textit{Semio2Brain} database, which maps seizure semiologies to brain regions \cite{alim-marvasti_probabilistic_2021}.
 Ali also wrote software to query the database, which is an Excel spreadsheet.
 The input is a set of observed semiologies and some additional optional patient information such as the dominant hemisphere.
 
-My specific contributions to this project are 1) a 3D Slicer module \cite{fedorov_3d_2012} that reads the output of the querying tool and generates a 3D visualization on a parcellated brain \ac{MRI}, where the brightness associated to each brain structure is proportional to the probability of the \ac{EZ} being in the structure; and 2) the software engineering aspects of the project: a \ac{PIP}-installable Python package for the querying software, \ac{CI}, and an \ac{API} to access the Python package from 3D Slicer.
+My specific contributions to this project are 1) a 3D Slicer module \cite{fedorov_3d_2012} that reads the output of the querying tool and generates a 3D visualization on a parcellated brain \ac{MRI}, where the brightness associated to each brain structure is proportional to the probability of the \ac{EZ} being in the structure; and 2) the software engineering aspects of the project: a \ac{PIP}-installable Python package for the querying tool, including \ac{CI}, and an \ac{API} to access the Python package from 3D Slicer.
 The database and code are freely available on GitHub%
 \fnurl{https://github.com/thenineteen/Semiology-Visualisation-Tool}.
+An online version that does not require installing 3D Slicer is also available%
+\fnurl{https://github.com/fepegar/SVT-web}.
 Our \ac{SVT} may be used to better understand the relation between the seizure onset zone and the observed seizure semiologies, and to perform an objective planning of \ac{iEEG} electrodes implantation.
 
 
 The \textbf{fourth chapter} (\nameref{chap:resection}) presents our framework for resective surgery quantification.
 I first describe our method to simulate resection cavities on normal (preoperative) \ac{T1w}.
 The \ac{PIP}-installable Python package \texttt{resector} is available on GitHub%
-\fnurl{https://github.com/fepegar/resector}%
+\fnurl{https://github.com/fepegar/resector}
 and has recently been used in the context of brain tumor segmentation by researchers in China and the UK \cite{zhang_self-supervised_2021}.
 
 The resection simulator was used to train a cavity segmentation model without manual annotations, obtaining a performance comparable to human inter-rater variability \cite{perez-garcia_simulation_2020}.
@@ -72,7 +74,14 @@ We collaborated with hospitals in Milan, Paris and Marseille to validate our seg
 The code is available on GitHub%
 \fnurl{https://github.com/fepegar/resseg-ijcars}.
 
-The \textbf{fifth chapter} (\nameref{chap:torchio}),
+The \textbf{fifth chapter} (\nameref{chap:torchio}) describes our open-source Python  library TorchIO \cite{perez-garcia_torchio_2021}, which was initially developed in the context of the work presented in \cref{chap:resection}.
+The documentation%
+\fnurl{http://torchio.rtfd.io/}
+and code%
+\fnurl{https://github.com/fepegar/torchio}
+are available online.
+A 3D Slicer extension to use TorchIO without the need to code can be installed from the Extensions Manager%
+\fnurl{https://github.com/fepegar/SlicerTorchIO}.
 
 
-Finally, the \textbf{sixth chapter} (\nameref{chap:conclusion}), concludes the thesis and outlines potential future research directions.
+Finally, the \textbf{sixth chapter} (\nameref{chap:conclusion}) concludes the thesis and outlines potential future research directions.
