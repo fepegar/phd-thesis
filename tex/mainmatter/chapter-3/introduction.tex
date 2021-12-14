@@ -1,0 +1,48 @@
+\section{Introduction}
+
+\Acp{AED} are normally used to treat epilepsy.
+One third of epilepsies are drug-resistant \cite{engel_what_2016}.
+Curative resective surgery can be performed to remove the \ac{EZ} (\cref{chap:resection}).
+The location of the \ac{EZ}, ``the area of cortex indispensable for the generation of clinical seizures'' \cite{rosenow_presurgical_2001}, is normally inferred by a multidisciplanary team following non-invasive evaluation such as video-\ac{EEG}, \ac{MRI} or neuropsychological tests.
+If the information regarding the location of the \ac{EZ} is discordant between the different tests, \ac{iEEG} electrodes may be implanted to localize it precisely.
+To determine the brain regions that need to be recorded, i.e., the targets for the \ac{iEEG} electrodes, the team leverages information from the non-invasive examinations, including seizure semiology from the recorded videos (\cref{chap:videos}).
+The choice of targets is therefore influenced by the team's subjective experience and knowledge of the literature.
+This leads to substantial variations of implantation strategies across different epilepsy centers \cite{tufenkjian_seizure_2012}.
+The diagnostic pathway for surgical planning would benefit from an objective decision support tool to aid clinicians in deducing the \ac{EZ} location from seizure semiology.
+
+One way to plan the implantation objectively is developing a data-driven, automated method.
+We performed a systematic literature review to generate an open-access database containing 11230 datapoints, where each datapoint represents a patient with epilepsym showing a certain semiology who became seizure-free after resection of a certain brain structure \cite{alim-marvasti_probabilistic_2021}.
+In this context, seizure-free refers to one full year without seizures after resective surgery.
+The database, called \textit{Semio2Brain}, can be queried to quantitatively map observed seizure semiologies to brain structures that were removed leading to seizure freedom.
+\Cref{tab:single_semiology} shows a conceptual usage example.
+
+\begin{table}
+  \setlength{\tabcolsep}{3pt}
+  \centering
+  \caption[Short]{
+    Long.
+  }
+  \label{tab:single_semiology}
+  \begin{tabular}{l*3c}
+    \toprule
+                          & \textbf{Structure 1} & \textbf{Structure 2} & \textbf{Structure 3} \\
+    \midrule
+    \textbf{Head version} &                    0 &                    5 &                   20 \\
+  \end{tabular}
+\end{table}
+
+Show example of multiple semiologies and aggregation
+
+Details on the methods used for aggregation are out of the scope of this thesis
+
+Convenient for clinicians who do not want to code
+
+3D is useful, cite Mark Nowell
+
+Generates a probability map of the epileptogenic zone.
+
+It can be used to support clinical decisions during surgical planning.
+
+Visualization
+
+Automatic planning?

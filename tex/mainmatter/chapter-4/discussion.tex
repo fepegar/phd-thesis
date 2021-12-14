@@ -5,7 +5,7 @@ We addressed the challenge of segmenting postoperative brain \acp{RC} from \ac{T
 We developed a self-supervised learning strategy to train without manually annotated data, and a method to simulate \acp{RC} from preoperative \ac{MRI} to generate training data.
 Our novel approach is conceptually simple, easy to implement, and relies on clinical knowledge about postoperative phenomena.
 The resection simulation is computationally efficient ($< \SI{1}{\second}$), so it can run during training as part of a data augmentation pipeline.
-It is compatible with the TorchIO framework \cite{perez-garcia_torchio_2021} to leverage other data argumentation techniques during training, enabling our model to have a robust performance across \ac{MRI} of variable quality.
+It is compatible with the TorchIO framework \cite{perez-garcia_torchio_2021} (\cref{chap:torchio}) to leverage other data argumentation techniques during training, enabling our model to have a robust performance across \ac{MRI} of variable quality.
 
 Modeling a realistic cavity shape is important (\cref{sec:self}).
 Our model generalizes well to clinical data from different institutions and pathologies, including epilepsy and glioma.

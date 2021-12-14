@@ -1,16 +1,21 @@
 \chapter{Impact statement}
 
 The algorithms and software developed in this thesis have potential benefits both outside and inside academia.
-The publications and tools that we have shared and present here are already accelerating research and facilitating clinical practice.
+The publications and tools that I have shared and present here are already accelerating research and facilitating clinical practice.
 
 Inside the academic environment, our work is already being used and built upon by multiple institutions.
 We curated the EPISURG dataset, comprising 699 \acp{MRI} from 430 patients who underwent epilepsy surgery at the \ac{NHNN} between 1990 and 2018, including 200 manual annotations from three different human raters.
 To the best of our knowledge, EPISURG is the first open annotated database of post-resection \ac{MRI} for epilepsy patients.
-EPISURG and the dataset of seizure videos features have been made open-access and can be freely downloaded from the UCL Research Data Repository \cite{perez-garcia_episurg_2020,perez-garcia_data_2021}.
-As we proposed in \cite{perez-garcia_self-supervised_2021} (a collaboration between the \ac{NHNN}, two hospitals in France and one in Italy), our method to simulate brain lesions is being used for brain tumor segmentation \cite{zhang_self-supervised_2021}, which demonstrates its generalizability and potential to solve similar problems.
+% EPISURG and the dataset of seizure videos features have been made open-access and can be freely downloaded from the UCL Research Data Repository \cite{perez-garcia_episurg_2020,perez-garcia_data_2021}.
+EPISURG has been made open-access and can be freely downloaded from the UCL Research Data Repository \cite{perez-garcia_episurg_2020}.
+As we proposed in \cite{perez-garcia_self-supervised_2021} (a collaboration between the \ac{NHNN}, two hospitals in France and one in Italy), our method to simulate brain lesions is being used in research for brain tumor segmentation \cite{zhang_self-supervised_2021}, which demonstrates its generalizability and potential to solve related problems.
 
-TorchIO, our software library for medical image processing, has been used as a research tool at numerous hospitals and leading academic institutions in various countries including
-the UK, the US, Canada, Russia, China, Australia, India, Korea, Singapore, Iran, Pakistan, Switzerland, Germany, Austria, France, Sweden, Spain, Italy, Belgium and the Netherlands, accumulating over \torchiocitations citations%
+TorchIO, our software library for medical image processing,
+% has been used as a research tool
+has been cited over \torchiocitations by researchers
+at numerous hospitals and leading academic institutions in various countries including
+the United Kingdom, the United States, Canada, Australia, China, Korea, Singapore, India, Iran, Pakistan, Saudi Arabia, Egypt, Kazakhstan, Russia, Switzerland, Germany, Austria, France, Sweden, Spain, Italy, Belgium and the Netherlands%
+% accumulating over \torchiocitations citations%
 \fnurl{https://scholar.google.co.uk/scholar?oi=bibs\&cites=11818021599290863762}.
 The package is downloaded from the \ac{PyPI} over \torchiomonthdownloads times per month%
 \fnurl{https://pypistats.org/packages/torchio}%
@@ -21,7 +26,7 @@ the UCL \ac{CMIC},
 the UCL \ac{WEISS},
 the UCL \ac{INM}, and
 the \ac{BMEIS} at King's College London.
-Additionally, I was invited to present the library at multiple events organized by Facebook: the PyTorch Ecosystem Day 2021%
+Additionally, I was invited to present the library at multiple events organized by Meta: the PyTorch Ecosystem Day 2021%
 \fnurl{https://pytorch.org/ecosystem/pted/2021},
 the PyTorch Community Voices Webinar Series%
 \fnurl{https://www.youtube.com/watch?v=UEUVSw5-M9M},
