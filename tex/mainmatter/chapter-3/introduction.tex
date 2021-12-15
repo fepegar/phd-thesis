@@ -11,19 +11,27 @@ This leads to substantial variations of implantation strategies across different
 The diagnostic pathway for surgical planning would benefit from an objective decision support tool to aid clinicians in deducing the \ac{EZ} location from seizure semiology.
 
 One way to plan the implantation objectively is developing a data-driven, automated method.
-We performed a systematic literature review to generate an open-access database containing ``11230 datapoints from 4643 patients across 309 articles'', where each datapoint represents a patient showing a certain semiology who became seizure-free after resection of a certain brain structure \cite{alim-marvasti_probabilistic_2021}.
+We performed a systematic literature review to generate an open-access database containing ``11230 datapoints from 4643 patients across 309 articles'', where each datapoint represents a patient showing a certain semiology who became seizure-free after resection of a certain brain structure \cite{alim-marvasti_probabilistic_2021} (\cref{fig:semiology_review}).
 In this context, seizure-free refers to one full year without seizures after resective surgery.
 The database, called \svtdatabase, can be queried to quantitatively map observed seizure semiologies to brain structures that were removed leading to seizure freedom.
 The brain structures included in \svtdatabase are extracted from the Neuromorphometrics atlas%
 \fnurl{http://www.neuromorphometrics.com}.
 \Cref{tab:single_semiology} shows a conceptual usage example.
 
+\begin{figure}
+  \centering
+  \includegraphics[trim=0 150 0 150, clip, width=\linewidth]{svt_1}
+  \caption[Systematic semiology literature review to build the \svtdatabase database]{
+    Systematic semiology literature review to build the \svtdatabase database.
+  }\label{fig:semiology_review}
+\end{figure}
+
 \begin{table}
   \setlength{\tabcolsep}{3pt}
   \centering
   \caption[Result of querying an imaginary database with one semiology]{
-    Result of querying an imaginary database with the semiology `Head version' and exemplar brain structures A, B and C.
-    In this example, 20 patients presenting `Head version' become seizure-free after removal of structure C according to the literature, suggesting a high probability of the \ac{EZ} being associated with that structure.
+    Result of querying an imaginary database with the semiology \textit{Head version} and exemplar brain structures A, B and C.
+    In this example, 20 patients presenting \textit{Head version} become seizure-free after removal of structure C according to the literature, suggesting a high probability of the \ac{EZ} being associated with that structure.
     Five patients became seizure-free after resection of structure B, and none after resection of structure A.
     This result would support the decision of implanting electrodes in structure C (and maybe B), as they are likely to be associated with the \ac{EZ} according to the retrospective information in the literature.
     The actual list of brain structures depends on the method used to parcellate the brain.
