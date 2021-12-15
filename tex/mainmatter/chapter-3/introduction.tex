@@ -11,38 +11,37 @@ This leads to substantial variations of implantation strategies across different
 The diagnostic pathway for surgical planning would benefit from an objective decision support tool to aid clinicians in deducing the \ac{EZ} location from seizure semiology.
 
 One way to plan the implantation objectively is developing a data-driven, automated method.
-We performed a systematic literature review to generate an open-access database containing 11230 datapoints, where each datapoint represents a patient with epilepsym showing a certain semiology who became seizure-free after resection of a certain brain structure \cite{alim-marvasti_probabilistic_2021}.
+We performed a systematic literature review to generate an open-access database containing ``11230 datapoints from 4643 patients across 309 articles'', where each datapoint represents a patient showing a certain semiology who became seizure-free after resection of a certain brain structure \cite{alim-marvasti_probabilistic_2021}.
 In this context, seizure-free refers to one full year without seizures after resective surgery.
-The database, called \textit{Semio2Brain}, can be queried to quantitatively map observed seizure semiologies to brain structures that were removed leading to seizure freedom.
+The database, called \svtdatabase, can be queried to quantitatively map observed seizure semiologies to brain structures that were removed leading to seizure freedom.
+The brain structures included in \svtdatabase are extracted from the Neuromorphometrics atlas%
+\fnurl{http://www.neuromorphometrics.com}.
 \Cref{tab:single_semiology} shows a conceptual usage example.
 
 \begin{table}
   \setlength{\tabcolsep}{3pt}
   \centering
-  \caption[Short]{
-    Long.
+  \caption[Result of querying an imaginary database with one semiology]{
+    Result of querying an imaginary database with the semiology `Head version' and exemplar brain structures A, B and C.
+    In this example, 20 patients presenting `Head version' become seizure-free after removal of structure C according to the literature, suggesting a high probability of the \ac{EZ} being associated with that structure.
+    Five patients became seizure-free after resection of structure B, and none after resection of structure A.
+    This result would support the decision of implanting electrodes in structure C (and maybe B), as they are likely to be associated with the \ac{EZ} according to the retrospective information in the literature.
+    The actual list of brain structures depends on the method used to parcellate the brain.
   }
   \label{tab:single_semiology}
   \begin{tabular}{l*3c}
     \toprule
-                          & \textbf{Structure 1} & \textbf{Structure 2} & \textbf{Structure 3} \\
+                          & \textbf{Structure A} & \textbf{Structure B} & \textbf{Structure C} \\
     \midrule
     \textbf{Head version} &                    0 &                    5 &                   20 \\
   \end{tabular}
 \end{table}
 
-Show example of multiple semiologies and aggregation
+Researchers who do not wish to code would benefit from a \ac{GUI} to query the database.
+Moreover, visualizing the probability of each structure containing the \ac{EZ} on \ac{3DMMI} could help plan the resection and \ac{iEEG} implantation strategies \cite{nowell_resection_2017, nowell_utility_2015}, potentially using \ac{ATP} \cite{sparks_automated_2017}.
+Finally, a \ac{3DMMI} visualization could be used to perform qualitative and quantitative analyses of the retrospective information contained in the \svtdatabase.
 
-Details on the methods used for aggregation are out of the scope of this thesis
+In this work, we present our software tool to visualize the \ac{EZ} probability map on \ac{3DMMI}.
 
-Convenient for clinicians who do not want to code
-
-3D is useful, cite Mark Nowell
-
-Generates a probability map of the epileptogenic zone.
-
-It can be used to support clinical decisions during surgical planning.
-
-Visualization
-
-Automatic planning?
+% Show example of multiple semiologies and aggregation
+% Details on the methods used for aggregation are out of the scope of this thesis
