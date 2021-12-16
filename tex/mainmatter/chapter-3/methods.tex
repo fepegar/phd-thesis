@@ -9,17 +9,18 @@ We developed a Slicer module that leverages \ac{ITK} for image processing \cite{
 The Python package used to query the \svtdatabase database, called \texttt{mega\_analysis}, can be installed with \ac{PIP}.
 The code, written in Python 3, is available on GitHub%
 \fnurl{\svtgithub}.
-We have also developed an online version hosted on Binder \cite{bussonnier_binder_2018}, which does not require installation of 3D Slicer and can be accessed through a web browser.
+We have also developed an lite online version hosted on Binder \cite{bussonnier_binder_2018}, which does not require installation of 3D Slicer and can be accessed through a web browser%
+\fnurl{https://mybinder.org/v2/gh/fepegar/SVT-web/HEAD?filepath=SVT-web.ipynb}.
 Our \ac{SVT} can be used on all major platforms: Windows, Linux and macOS.
 
 \begin{figure}
   \centering
   \includegraphics[trim=0 50 75 25, clip, width=\linewidth]{svt_2}
-  \caption[Systematic semiology literature review to build the \svtdatabase database]{
-    \ac{SVT} architecture.
+  \caption[General architecture of the Semiology Visualization Tool]{
+    General architecture of the \ac{SVT}.
     The user inputs a list of observed seizure semiologies and (optionally) an \ac{MRI} of the patient for visualization in the patient's space.
-    The \ac{GUI} is used to pass the information, without the need to code.
-    The Slicer module generates a machine-readable query for the \svtdatabase database.
+    The \ac{GUI} is used to input the observed semiologies to the software, without the need to code.
+    The Slicer module generates a structured query that can be processed by the \svtdatabase database querying module.
     The database is queried and the retrieved datapoints are converted into a \ac{3DMMI} visualization showing the \ac{EZ} probability map.
   }
   \label{fig:svt_architecture}
@@ -46,9 +47,10 @@ Finally, a Slicer segmentation node is instantiated from the parcellation label 
   \centering
   \svtscreenshot{svt_loaded_patient}
   \caption[Semiology visualization module after loading a patient's data]{
-  Semiology visualization module after loading a patient's \ac{T1w} \ac{MRI} and a corresponding brain parcellation.
-  Left: main panel containing a list of suggested semiology terms to be selected by the user;
-  right: neuroimages in the patient's space.
+    Semiology visualization module after loading a patient's \ac{T1w} \ac{MRI} and a corresponding brain parcellation.
+    Left: main panel containing a list of suggested semiology terms to be selected by the user;
+    right: neuroimages in the patient's space.
+    Images are shown using the radiological convention, i.e., the left hemisphere is shown on the right and vice versa.
   }
   \label{fig:svt_loaded}
 \end{figure}
@@ -56,23 +58,23 @@ Finally, a Slicer segmentation node is instantiated from the parcellation label 
 
 \subsection{Semiologies}
 
-Once the data have been loaded, a pre-defined list of common semiologies is shown on the left-hand side of the screen (\cref{fig:svt_loaded}).
+Once the data have been loaded, a pre-defined list of common semiologies is shown on the left-hand side of the screen (\cref{fig:svt_semiologies}).
 Certain semiologies such as \textit{Head version} require a laterality (left or right).
 Semiologies such as \textit{Hypermotor} may not have an associated laterality, meaning it was observed for both sides.
 Some lateralities such as \textit{Ictal speech} never have an associated laterality.
 The dominant hemisphere may also be specified, if known.
 Custom semiologies may also be entered, which may be matched to one of the pre-defined semiologies using regular expressions \cite{alim-marvasti_mapping_2021}.
-The matching is performed in real time every time the characters in the widget are modified, as long as at least three characters have been typed (\cref{fig:svt_custom}).
+Matching is performed in real time every time the characters in the widget are modified, as long as at least three characters have been typed (\cref{fig:svt_custom}).
 
 \begin{figure}
   \centering
   \includegraphics[width=\linewidth]{svt_semiologies}
-  \caption[Semiology visualization module after loading a patient's data]{
-    Semiology visualization module after loading a patient's \ac{T1w} \ac{MRI} and a corresponding brain parcellation.
-    Left: main panel containing a list of suggested semiology terms to be selected by the user;
-    right: neuroimages in the patient's space.
+  \caption[List of pre-defined semiologies in the GUI]{
+    List of pre-defined semiologies in the \ac{GUI}.
+    Users can select a semiology in the list or add a custom one, which might be matched to a pre-defined semiology using regular expressions to match concepts associated to that semiology.
+    For example, `butterflies' and `déjà vu' would be matched with epigrastric and psychic auras, respectively.
   }
-  \label{fig:svt_loaded}
+  \label{fig:svt_semiologies}
 \end{figure}
 
 \begin{figure}
@@ -92,13 +94,15 @@ The matching is performed in real time every time the characters in the widget a
 The Slicer module reads the patient's semiologies and settings from the \ac{GUI} and generates a machine-readable query for the querying module.
 As the waiting time to query the database is sometimes in the order of tens of seconds, previous queries result are cached in the disk for faster retrieval.
 The result from querying the database is a table containing the number of datapoints for each brain structure (\cref{tab:single_semiology}).
+If multiple semiologies are selected, results are combined and a number between 0 and 1 is computed for each brain structure by the querying module.
+Details on how the datapoints are combined can be found in \cite{alim-marvasti_mapping_2021}.
 
 The table is displayed on the \ac{GUI}, sorting the structures by number of datapoints, showing first the structures with the highest number of datapoints in the database (\cref{fig:svt_query}).
 
-The probability map is generated and displayed, and the 2D views are centered on the brain structure with the highest number of associated datapoints.
+The probability map is generated and displayed, and the 2D slice views are centered on the brain structure with the highest number of associated datapoints.
 Brain structures without datapoints are hidden from the 2D slice views and shown in gray on the 3D view.
 To emphasize the importance of brain structures with a high number of datapoints, the opacity of each structure on the 2D slice views is linearly proportional to the number of associated datapoints.
-We chose an open-source perceptually uniform colormap, \textit{viridis}, as default colormap for this application.
+We chose an open-source perceptually uniform sequential colormap, \textit{viridis}, as default for this application.
 This implies that the brightness of each structure is also linearly proportional to the number of associated datapoints.
 However, other colormaps are available if desired.
 The colorbars on the 2D slice views help mapping colors to number of datapoints.
@@ -118,16 +122,17 @@ The colorbars on the 2D slice views help mapping colors to number of datapoints.
 Advanced visualization settings may be selected, such as
 showing only one hemisphere on the 3D view,
 defining the minimum opacity on the 2D views or
-enabling the color blind mode, in which the color-blind-friendly \textit{cividis} colormap is used \cite{nunez_optimizing_2018}.
+enabling the color blind mode, in which the color-blind-friendly \textit{cividis} colormap is used \cite{nunez_optimizing_2018} (\cref{fig:svt_advanced}).
 
 \begin{figure}
   \centering
   \svtscreenshot{svt_advanced}
   \caption[Advanced visualization settings]{
-    Advanced visualization settings:
+    Advanced visualization settings.
+    The selected settings are:
     show only the right hemisphere,
-    jump to a specific brain structure (right thalamus),
-    set minimum opacity to 50\% (default is 25\%),
+    center the views on the right thalamus,
+    set minimum opacity to 50\% (default is 25\%)
     and enable color-blind mode.
   }
   \label{fig:svt_advanced}
