@@ -40,14 +40,14 @@ All figures in this chapter show parcellations based on the Neuromorphometrics a
 Finally, a Slicer segmentation node is instantiated from the parcellation label map, 3D meshes are generated for visualization using the marching cubes algorithm \cite{lorensen_marching_1987,pinter_polymorph_2019} and the user is presented with the preprocessed data (\cref{fig:svt_loaded}).
 
 \newcommand{\svtscreenshot}[1]{
-  \includegraphics[trim=0 33 0 25, clip, width=\linewidth]{#1}
+  \includegraphics[trim=0 65 0 47, clip, width=\linewidth]{#1}
 }
 
 \begin{figure}
   \centering
-  \svtscreenshot{svt_loaded_patient}
+  \svtscreenshot{svt_loaded}
   \caption[Semiology visualization module after loading a patient's data]{
-    Semiology visualization module after loading a patient's \ac{T1w} \ac{MRI} and a corresponding brain parcellation.
+    Semiology visualization module after loading an \ac{MNI} template as image reference (as opposed to a patient's data) and its corresponding brain parcellation.
     Left: main panel containing a list of suggested semiology terms to be selected by the user;
     right: neuroimages in the patient's space.
     Images are shown using the radiological convention, i.e., the left hemisphere is shown on the right and vice versa.
@@ -110,8 +110,8 @@ The colorbars on the 2D slice views help mapping colors to number of datapoints.
 \begin{figure}
   \centering
   \svtscreenshot{svt_query}
-  \caption[Results of querying the database with the \textit{Head version (left)} semiology]{
-    Results of querying the database with the \textit{Head version (left)} semiology, using an \ac{MNI} template as image reference (as opposed to a patient's data).
+  \caption[Results of querying the database with the \textit{Epigastric} semiology]{
+    Results of querying the database with the \textit{Epigastric} semiology.
     Left: table showing the number of datapoints associated to each brain structure;
     right: \ac{EZ} probability map, where brightness (and opacity, on the 2D views) is linearly proportional to the number of datapoints.
   }
@@ -127,12 +127,12 @@ enabling the color blind mode, in which the color-blind-friendly \textit{cividis
 \begin{figure}
   \centering
   \svtscreenshot{svt_advanced}
-  \caption[Advanced visualization settings]{
-    Advanced visualization settings.
+  \caption[Demonstration of advanced visualization settings]{
+    Demonstration of advanced visualization settings.
     The selected settings are:
     show only the right hemisphere,
     center the views on the right thalamus,
-    set minimum opacity to 50\% (default is 25\%)
+    set minimum opacity to 75\% (default is 25\%)
     and enable color-blind mode.
   }
   \label{fig:svt_advanced}
