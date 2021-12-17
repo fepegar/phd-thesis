@@ -8,22 +8,27 @@
   \begin{minipage}[b]{0.9\linewidth}
     \small
     \textbf{Foreword\,}
-    This chapter describes the work carried out during collaboration with neurologists Ali Alim-Marvasti and Gloria Romagnoli.
-    They performed a systematic literature review to generate the \svtdatabase database, which maps seizure semiologies to brain regions.
-    The related publications are:
-    \begin{itemize}
-      \item \bibentry{perez-garcia_towards_2020}
-      \item \bibentry{perez-garcia_towards_2020-1}
-      \item \bibentry{alim-marvasti_probabilistic_2021}
-      \item \bibentry{alim-marvasti_mapping_2021}
-    \end{itemize}
+    This chapter describes the software developed in the context of a collaboration with neurologists Ali Alim-Marvasti and Gloria Romagnoli.
 
-    My specific contributions to this project are:
+    My contributions to this project are:
     \begin{itemize}
       \item A 3D Slicer module \cite{fedorov_3d_2012} that reads the output of the querying tool and generates a 3D visualization on a parcellated brain \ac{MRI}, where the brightness associated to each brain structure is proportional to the probability of the \ac{EZ} being in the structure.
       \item The software engineering aspects of the project: a \ac{PIP}-installable Python package for the querying tool, including \ac{CI}, and an \ac{API} to access the Python package from 3D Slicer or from the command line.
       \item The implementation of the online demo, which does not require installing 3D Slicer%
       \fnurl{https://github.com/fepegar/SVT-web}.
+    \end{itemize}
+
+    Ali and Gloria performed the systematic literature review to generate the database (which is an Excel spreadsheet) that maps seizure semiologies to brain regions.
+    Ali wrote most of the code to query the database, and contributed to the Slicer module.
+    The code and the database are available on GitHub%
+    \fnurl{\svtgithub}.
+
+    The relevant publications are:
+    \begin{itemize}
+      \item \bibentry{perez-garcia_towards_2020}
+      \item \bibentry{perez-garcia_towards_2020-1}
+      \item \bibentry{alim-marvasti_probabilistic_2021}
+      \item \bibentry{alim-marvasti_mapping_2021}
     \end{itemize}
 
   \end{minipage}

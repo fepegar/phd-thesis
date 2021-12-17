@@ -1,33 +1,52 @@
-\section{Methods and results}
+\section{System architecture}
 
-Our \ac{SVT} is built on top of 3D Slicer \cite{fedorov_3d_2012}.
-3D Slicer, or simply `Slicer', is ``a free, open source and multi-platform software package widely used for medical, biomedical, and related imaging research''%
-\fnurl{https://www.slicer.org/}.
+% DESCRIBE WORKFLOW
+In this section, we describe the elements that compose our \ac{SVT} and their interconnections (\cref{fig:svt_architecture}).
+The visualization module depends on an external \ac{API} that must be able to provide the following:
+\begin{itemize}
+  \item At start-up, a list of pre-defined semiologies that are used to generate the \ac{GUI} and a list of additional settings to perform the query
+  \item When queried with a list of semiologies and additional settings, a table with datapoints in the literature associated to each brain structure
+\end{itemize}
 
-We developed a Slicer module that leverages \ac{ITK} for image processing \cite{mccormick_itk_2014}, \ac{VTK} for visualization \cite{schroeder_visualization_2006} and Qt for the \ac{GUI}%
-\fnurl{https://www.qt.io}.
-The Python package used to query the \svtdatabase database, called \texttt{mega\_analysis}, can be installed with \ac{PIP}.
-The code, written in Python 3, is available on GitHub%
-\fnurl{\svtgithub}.
-We have also developed an lite online version hosted on Binder \cite{bussonnier_binder_2018}, which does not require installation of 3D Slicer and can be accessed through a web browser%
-\fnurl{https://mybinder.org/v2/gh/fepegar/SVT-web/HEAD?filepath=SVT-web.ipynb}.
-Our \ac{SVT} can be used on all major platforms: Windows, Linux and macOS.
+At start-up, the user is asked to load a patient's \ac{MRI} that will be used as reference image and a corresponding brain parcellation that must be compatible with the querying module.
+If no patient data are available, data from an \ac{MNI} template is used.
+Then, a list of pre-defined semiology terms and additional settings compatible with the \ac{API} are displayed, and the user fills in the observed semiologies.
+Finally, the query is submitted using the \ac{API}, which returns the table of datapoints that is used to generate the 3D \ac{EZ} probability map.
+These steps and the implementation details are described in \cref{sec:svt_loading,sec:svt_semiologies,sec:svt_querying,sec:svt_visualization} and \cref{sec:svt_implementation}, respectively.
 
 \begin{figure}
   \centering
-  \includegraphics[trim=0 50 75 25, clip, width=\linewidth]{svt_2}
+  \includegraphics[trim=25 5 25 25, clip, width=\linewidth]{svt_2}
   \caption[General architecture of the Semiology Visualization Tool]{
     General architecture of the \ac{SVT}.
     The user inputs a list of observed seizure semiologies and (optionally) an \ac{MRI} of the patient for visualization in the patient's space.
     The \ac{GUI} is used to input the observed semiologies to the software, without the need to code.
-    The Slicer module generates a structured query that can be processed by the \svtdatabase database querying module.
+    The Slicer module generates a structured query that can be processed by the database querying module.
     The database is queried and the retrieved datapoints are converted into a \ac{3DMMI} visualization showing the \ac{EZ} probability map.
   }
   \label{fig:svt_architecture}
 \end{figure}
 
 
+\subsection{Implementation}
+\label{sec:svt_implementation}
+
+Our \ac{SVT} is built on top of 3D Slicer \cite{fedorov_3d_2012}.
+3D Slicer, or simply `Slicer', is ``a free, open source and multi-platform software package widely used for medical, biomedical, and related imaging research''%
+\fnurl{https://www.slicer.org/}.
+
+We developed a Slicer Python module that leverages \ac{ITK} for image processing \cite{mccormick_itk_2014}, \ac{VTK} for visualization \cite{schroeder_visualization_2006} and Qt for the \ac{GUI}%
+\fnurl{https://www.qt.io}.
+The Python package used to query the \svtdatabase database, called \texttt{mega\_analysis}, can be installed with \ac{PIP}.
+The code, written in Python 3, is available on GitHub%
+\fnurl{\svtgithub}.
+We have also developed an lite online version hosted on Binder \cite{bussonnier_binder_2018}, which does not require installation of 3D Slicer and can be accessed through a web browser%
+\fnurl{\svtweb}.
+Our \ac{SVT} can be used on all major platforms: Windows, Linux and macOS.
+
+
 \subsection{Data loading}
+\label{sec:svt_loading}
 
 At start-up, the querying Python module is installed in the Slicer environment in the background, if it was not installed previously.
 
@@ -56,14 +75,15 @@ Finally, a Slicer segmentation node is instantiated from the parcellation label 
 \end{figure}
 
 
-\subsection{Semiologies}
+\subsection{Input semiologies}
+\label{sec:svt_semiologies}
 
 Once the data have been loaded, a pre-defined list of common semiologies is shown on the left-hand side of the screen (\cref{fig:svt_semiologies}).
 Certain semiologies such as \textit{Head version} require a laterality (left or right).
 Semiologies such as \textit{Hypermotor} may not have an associated laterality, meaning it was observed for both sides.
 Some lateralities such as \textit{Ictal speech} never have an associated laterality.
 The dominant hemisphere may also be specified, if known.
-Custom semiologies may also be entered, which may be matched to one of the pre-defined semiologies using regular expressions \cite{alim-marvasti_mapping_2021}.
+The used \ac{API} allows for custom semiologies may also be entered, which may be matched to one of the pre-defined semiologies using regular expressions \cite{alim-marvasti_mapping_2021}.
 Matching is performed in real time every time the characters in the widget are modified, as long as at least three characters have been typed (\cref{fig:svt_custom}).
 
 \begin{figure}
@@ -80,7 +100,7 @@ Matching is performed in real time every time the characters in the widget are m
 \begin{figure}
   \centering
   \includegraphics[width=\linewidth]{svt_custom}
-  \caption[Adding a custom semiology term to the semiology visualization module]{
+  \caption[Adding a custom semiology to the semiology visualization module]{
     Adding a custom semiology term to the semiology visualization module.
     In this case, the term \textit{butterfly} was entered as the patient described ``a butterfly feeling in my stomach''.
     The querying module matches the input term with the \textit{Epigastric} semiology term, and therefore the Slicer module suggests matching \textit{Epigastric} to the list of selected semiologies.
@@ -89,17 +109,22 @@ Matching is performed in real time every time the characters in the widget are m
 \end{figure}
 
 
-\subsection{Query}
+\subsection{Querying the database}
+\label{sec:svt_querying}
 
 The Slicer module reads the patient's semiologies and settings from the \ac{GUI} and generates a machine-readable query for the querying module.
 As the waiting time to query the database is sometimes in the order of tens of seconds, previous queries result are cached in the disk for faster retrieval.
 The result from querying the database is a table containing the number of datapoints for each brain structure (\cref{tab:single_semiology}).
 If multiple semiologies are selected, results are combined and a number between 0 and 1 is computed for each brain structure by the querying module.
-Details on how the datapoints are combined can be found in \cite{alim-marvasti_mapping_2021}.
+Details on how the datapoints for multiple semiologies are combined can be found in \cite{alim-marvasti_mapping_2021}.
 
-The table is displayed on the \ac{GUI}, sorting the structures by number of datapoints, showing first the structures with the highest number of datapoints in the database (\cref{fig:svt_query}).
 
-The probability map is generated and displayed, and the 2D slice views are centered on the brain structure with the highest number of associated datapoints.
+\subsection{Visualization}
+\label{sec:svt_visualization}
+
+The datapoints table is displayed on the \ac{GUI}, sorting the structures by number of datapoints, showing first the structures with the highest number of datapoints in the database (\cref{fig:svt_query}).
+
+The probability map is generated and displayed on the 2D slice views and the 3D view, and the 2D slice views are centered on the brain structure with the highest number of associated datapoints.
 Brain structures without datapoints are hidden from the 2D slice views and shown in gray on the 3D view.
 To emphasize the importance of brain structures with a high number of datapoints, the opacity of each structure on the 2D slice views is linearly proportional to the number of associated datapoints.
 We chose an open-source perceptually uniform sequential colormap, \textit{viridis}, as default for this application.
@@ -121,7 +146,7 @@ The colorbars on the 2D slice views help mapping colors to number of datapoints.
 
 Advanced visualization settings may be selected, such as
 showing only one hemisphere on the 3D view,
-defining the minimum opacity on the 2D views or
+setting the minimum opacity on the 2D views or
 enabling the color blind mode, in which the color-blind-friendly \textit{cividis} colormap is used \cite{nunez_optimizing_2018} (\cref{fig:svt_advanced}).
 
 \begin{figure}
