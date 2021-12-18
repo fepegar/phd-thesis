@@ -253,3 +253,5 @@ TSWLatexianTemp*
 *.pyc
 
 !figures
+**/__pycache__/
+
