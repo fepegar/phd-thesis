@@ -1,32 +1,26 @@
-\section{Thesis outline and contributions}
+\section{Contributions}
 
-% Should I merge with outline?
-
-% Intro
+% Background
 Epilepsy is a complex disorder with a complicated treatment pathway.
 Symptoms are strongly heterogeneous and may sometimes be interpreted differently by teams in different institutions.
 Decisions are often taken subjectively, based on clinicians' experience, who have seen a finite number of cases in their careers.
 Data-driven techniques, such as machine learning, may be used to take objective decisions based on large amounts of retrospective data.
 
 % Problem statement
-The overall goal of this thesis is to identify elements in the current clinical pathway for the treatment of epilepsy that are highly subjective or labor-intensive, and propose data-driven computational methods for clinical decision support.
+The overall goal of this thesis is to identify elements in the current clinical pathway for the treatment of epilepsy that could be supported by data-driven computational methods.
+
 
 % Challenges
 Deep learning, the main set of techniques utilized in this thesis, has seen great success in the last decade, mostly thanks to improvements in hardware, such as \acp{GPU}, and the vast amount of data generated every day.
 However, large datasets are typically not readily available in clinical settings because of privacy concerns and expensive annotation.
+
 % How we're solving them
 In this thesis, we leverage techniques such as transfer learning, self-supervised learning and semi-supervised learning to overcome these low-data regimes.
 
-The document is structured in six chapters.
-The order of \cref{chap:videos,chap:svt,chap:resection} follows the temporal order of the associated elements of the clinical pathway.
-The literature review related to each topic is presented in the corresponding chapters.
 
+\subsection{\nameref{chap:videos}}
 
-In the \textbf{current chapter}, an overview of epilepsy was first presented.
-Then, the relevant elements in the clinical pathway for the treatment of epilepsy and their corresponding challenges were described.
-
-
-The \textbf{second chapter} (\nameref{chap:videos}) introduces \ac{GESTURES} our open-source framework for automatic classification of seizures from videos.
+\Cref{chap:videos} introduces \ac{GESTURES} our open-source framework for automatic classification of seizures from videos.
 I present a novel method combining convolutional and recurrent neural networks to model seizures of arbitrary duration.
 Our deep learning approach is robust to occlusions by bed linens and clinical staff, differences in illumination and pose, and poor video quality caused by compression artifacts or details out of focus \cite{perez-garcia_transfer_2021}.
 The code is available on GitHub%
@@ -36,7 +30,10 @@ Due to privacy concerns, we were not able to share the video data used in the st
 A derived dataset of per-frame feature vectors with no identifiable patient data has been made open-access and it is freely available for download at the UCL Research Data Repository \cite{perez-garcia_data_2021}.
 
 
-The \textbf{third chapter} (\nameref{chap:svt}) describes a piece of software developed in collaboration with neurologists Ali Alim-Marvasti and Gloria Romagnoli.
+
+\subsection{\nameref{chap:svt}}
+
+\Cref{chap:svt} describes a piece of software developed in collaboration with neurologists Ali Alim-Marvasti and Gloria Romagnoli.
 % They performed a systematic literature review to generate the \textit{Semio2Brain} database, which maps seizure semiologies to brain regions \cite{alim-marvasti_probabilistic_2021}.
 % Ali also wrote software to query the database, which is an Excel spreadsheet \cite{alim-marvasti_mapping_2021}.
 % The input is a set of observed semiologies and some additional optional patient information such as the dominant hemisphere;
@@ -48,7 +45,9 @@ The database and code are freely available on GitHub%
 Our \ac{SVT} may be used to better understand the relation between the seizure onset zone and the observed seizure semiologies, and to perform an objective planning of \ac{iEEG} electrodes implantation.
 
 
-The \textbf{fourth chapter} (\nameref{chap:resection}) presents our framework for resective surgery quantification.
+\subsection{\nameref{chap:resection}}
+
+\Cref{chap:resection} presents our framework for resective surgery quantification.
 I first describe our method to simulate resection cavities on normal (preoperative) \ac{T1w}.
 The \ac{PIP}-installable Python package \texttt{resector} is available on GitHub%
 \fnurl{https://github.com/fepegar/resector}
@@ -73,7 +72,10 @@ We collaborated with hospitals in Milan, Paris and Marseille to validate our seg
 The code is available on GitHub%
 \fnurl{https://github.com/fepegar/resseg-ijcars}.
 
-The \textbf{fifth chapter} (\nameref{chap:torchio}) describes our open-source Python  library TorchIO \cite{perez-garcia_torchio_2021}, which was initially developed in the context of the work presented in \cref{chap:resection}.
+
+\subsection{\nameref{chap:torchio}}
+
+\Cref{chap:torchio} describes our open-source Python library TorchIO \cite{perez-garcia_torchio_2021}, which was initially developed in the context of the work presented in \cref{chap:resection}.
 The documentation%
 \fnurl{http://torchio.rtfd.io/}
 and code%
@@ -81,6 +83,3 @@ and code%
 are available online.
 A 3D Slicer extension to use TorchIO without the need to code can be installed from the Extensions Manager%
 \fnurl{https://github.com/fepegar/SlicerTorchIO}.
-
-
-Finally, the \textbf{sixth chapter} (\nameref{chap:conclusion}) concludes the thesis and outlines potential future research directions.

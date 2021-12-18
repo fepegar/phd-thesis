@@ -1,17 +1,22 @@
 \section{Discussion}
 
-Interpretations: what do the results mean?
-Implications: why do the results matter?
-Limitations: what can’t the results tell us?
-Recommendations: what practical actions or scientific studies should follow?
+The choice of targets for \ac{iEEG} electrodes implantation would benefit from an objective, data-driven method.
+In this work, we present an open-source software tool to visualize regions of the brain with a high probability of being associated with the \ac{EZ}, given a set of observed seizure semiologies.
 
+Our tool is not designed to replace clinicians in planning the \ac{iEEG} implantation or the resective surgery, but to support their decisions using a data-driven approach that represents patterns in the literature intuitively.
 
-Use deep learning to compute parcellation
+In the future, we will improve the generalizability of our framework to improve the compatibility with custom databases and other brain parcellation strategies, such as the Desikan-Killiany atlas \cite{desikan_automated_2006}.
+We will also develop an online version of our \ac{SVT} that uses a well-established cloud infrastructure service, such as Azure or the Google Cloud Platform, which would allow for a fast and seamless user experience.
+Another potential improvement is adding support to parcellate the brain at loading time using deep learning \cite{li_compactness_2017,perez-garcia_fepegarhighresnet_2019}, according to the requirements of the \ac{API}.
+This would spare the user the need to wait for hours before the parcellation is generated, which is typically the case for \ac{GIF} \cite{cardoso_geodesic_2015} or FreeSurfer%
+\fnurl{https://surfer.nmr.mgh.harvard.edu/}.
 
-HTTP API for database
+% Use deep learning to compute parcellation
 
-Cloud version hosted on e.g. Azure
+% HTTP API for database
 
-Add support to pass weights or times of semiologies
+% Cloud version hosted on e.g. Azure
 
-Improve compatibility with FreeSurfer and custom databases
+% Add support to pass weights or times of semiologies
+
+% Improve compatibility with FreeSurfer and custom databases
