@@ -2,19 +2,23 @@
 
 % The signed declaration should be followed by an abstract consisting of no more than 300 words.
 
-% What is epilepsy
-% Epilepsy is bad
 Epilepsy is the most common neurological disorder, affecting around 1\% of the population.
-
-% We are not great at diagnosis or surgery
-It is normally treated with \acl{AED}.
 Around one third of epilepsies are drug-resistant.
+If the epileptogenic zone can be localized precisely, curative resective surgery may be performed.
+However, only 40 to 70\% of patients remain seizure-free after the surgery.
 
+% Clinical pathway
+Presurgical evaluation is a complex, multimodal process that requires subjective clinical decisions, often relying mostly on the multidisciplinary team's experience.
+Thus, the clinical pathway could benefit from data-driven methods for clinical decision support.
 
 % Machines/ML could help
-
+In the last decade, deep learning has seen great advancements thanks to the improvement of \acp{GPU}, the development of new algorithms and the large amounts of data available for training.
 % We don't have much data
+Using deep learning in clinical settings is challenging as large datasets are rare due to privacy concerns and expensive annotation processes.
 
 % We worked on this and that
-
-% We contributed like this and that?
+This thesis introduces computational methods to pave the way towards a more data-driven clinical pathway for the treatment of epilepsy, overcoming the relatively small datasets available.
+We used transfer learning from human action recognition datasets to characterize epileptic seizures from video-telemetry data.
+We developed a software framework to predict the location of the epileptogenic zone given seizure semiologies, based on retrospective information from the literature.
+We trained models using self-supervised and semi-supervised learning to perform quantitative analysis of resective surgery by segmenting resection cavities on brain \acp{MRI}.
+Finally, we shared datasets and software tools that will accelerate research in medical image computing, particularly in the field of epilepsy.
