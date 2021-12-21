@@ -17,6 +17,8 @@ for line in src_path.read_text().splitlines():
         # print(line)
         pass
     for p in patterns:
-        line = line.replace(p, '\\textbf{%s}' % p)
+        if 'Tharindu' not in line:
+            line = line.replace(p, '\\textbf{%s}' % p)
     lines.append(line)
-dst_path.write_text('\n'.join(lines))
+text = '\n'.join(lines)
+dst_path.write_text(text)
