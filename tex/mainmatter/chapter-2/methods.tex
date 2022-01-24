@@ -6,7 +6,7 @@ The probability $\hat{Y}_k$ that a patient presents generalizing features within
     \Ypred_k = \Pr(Y_k = 1 \mid \x_k) = \Fzx( \Cx(\x_k) ) = \Fzx( \z_k)
 \end{equation}
 where
-$\Cx$ is an \ac{STCNN} parameterized by $\pars{\x}$ that extracts features,
+$\Cx$ is an \ac{STCNN} parameterized by $\pars{\x}$ that extracts features from a snippet,
 $\z_k \in \R ^ m$ is a vector of $m$ features representing $\x_k$ in a latent space,
 and
 $\Fzx$ is a fully-connected layer parameterized by $\pars{\z,\x}$ followed by a sigmoid function that maps logits to probabilities.
@@ -20,11 +20,9 @@ In this work, we do not update $\pars{\x}$ during training.
 Let $V = \{ \x_k \}_{k=1}^{K-l}$ be the set of all possible snippets sampled from a seizure video.
 We define a sampling function $f : (V, n, \gamma) \mapsto S$ that extracts a sequence $S$ of $n$ snippets by splitting $V$ into $n$ non-overlapping segments and randomly sampling one snippet per segment.
 There are two design choices: the number of segments $n$ and the probability distribution used for sampling within a segment.
-If a uniform distribution is used,
-information from two adjacent segments might be redundant.
-Using the middle snippet of a segment minimizes redundancy, but reduces the proportion of data leveraged during training.
-We propose using a symmetric beta distribution ($\text{Beta}(\gamma, \gamma)$) to model the sampling function,
-where $\gamma$ controls the dispersion of the probability distribution (\cref{fig:betas}).
+If a uniform distribution is used, the last snippet from a segment and the first from the next could potentially be sampled, and very little variation would be expected between them, making information from two adjacent segments redundant.
+Using always the middle snippet of a segment minimizes redundancy, but reduces the proportion of data leveraged during training.
+We propose using a symmetric beta distribution ($\text{Beta}(\gamma, \gamma)$) to model the sampling function, where $\gamma$ controls the dispersion of the probability distribution (\cref{fig:betas}).
 The set of latent snippet representations is $Z = \{ \Cx (\x_i) \}_{i = 1}^{n}$.
 
 
