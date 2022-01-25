@@ -2,7 +2,7 @@
 \label{sec:preprocessing_augmentation}
 
 We use TorchIO transforms to load, preprocess and augment our data during training \cite{perez-garcia_torchio_2021} (\cref{chap:torchio}).
-Instead of preprocessing the images with denoising or bias removal, we simulate different artifacts in the training instances so that our models are robust to them.
+Instead of preprocessing the images with denoising or bias removal, we simulate different artifacts in the training instances so that our models are robust to images of varying quality.
 
 Our preprocessing and augmentation transforms are described below.
 For transforms that are not applied to all images, we show the probability $p$ of the transform being applied:
