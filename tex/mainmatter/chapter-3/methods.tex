@@ -1,13 +1,13 @@
 \section{System architecture}
 
-In this section, we describe the elements that compose our \ac{SVT} and their interconnections (\cref{fig:svt_architecture}).
+In this section, we describe the elements that compose our \ac{SVT} and how they connect to each other (\cref{fig:svt_architecture}).
 The visualization module depends on an external \ac{API} that must be able to provide the following:
 \begin{itemize}
-  \item At start-up, a list of pre-defined semiologies that are used to generate the \ac{GUI} and a list of additional settings to perform the query
-  \item When queried with a list of semiologies and additional settings, a table with datapoints in the literature associated to each brain structure
+  \item At start-up, a list of pre-defined semiologies that are used to generate the \ac{GUI} and a list of additional settings to perform the database query
+  \item After the database is queried with a list of semiologies and additional settings, a table with datapoints found in the literature associated to each brain structure
 \end{itemize}
 
-At start-up, the user is asked to load a patient's \ac{MRI} that will be used as reference image and a corresponding brain parcellation that must be compatible with the querying module.
+At start-up, the user is asked to load a patient's \ac{MRI} that will be used as reference image and a corresponding brain parcellation that must be compatible with the software package used to query the database.
 If no patient data are available, data from an \ac{MNI} template is used.
 Then, a list of pre-defined semiology terms and additional settings compatible with the \ac{API} are displayed, and the user fills in the observed semiologies.
 Finally, the query is submitted using the \ac{API}, which returns the table of datapoints that is used to generate the 3D \ac{EZ} probability map.
@@ -47,7 +47,7 @@ Our \ac{SVT} can be used on all major platforms: Windows, Linux and macOS.
 \subsection{Data loading}
 \label{sec:svt_loading}
 
-At start-up, the querying Python module is installed in the Slicer environment in the background, if it was not installed previously.
+At start-up, the software package used to query the database is installed within the Slicer environment in the background, unless it was already installed.
 
 Then, the user is asked to load the patient's \ac{MRI} and a corresponding brain parcellation.
 If the patient's data is not available or the \ac{SVT} is being used to explore the database and not for surgical planning, a generic \ac{MNI} template is loaded instead \cite{fonov_unbiased_2009}.
@@ -65,7 +65,7 @@ Finally, a Slicer segmentation node is instantiated from the parcellation label 
   \centering
   \svtscreenshot{svt_loaded}
   \caption[Semiology visualization module after loading a patient's data]{
-    Semiology visualization module after loading an \ac{MNI} template as image reference (as opposed to a patient's data) and its corresponding brain parcellation.
+    Semiology visualization module after loading an \ac{MNI} template as image reference and its corresponding brain parcellation.
     Left: main panel containing a list of suggested semiology terms to be selected by the user;
     right: neuroimages in the patient's space.
     Images are shown using the radiological convention, i.e., the left hemisphere is shown on the right and vice versa.
@@ -79,11 +79,11 @@ Finally, a Slicer segmentation node is instantiated from the parcellation label 
 
 Once the data have been loaded, a pre-defined list of common semiologies is shown on the left-hand side of the screen (\cref{fig:svt_semiologies}).
 Certain semiologies such as \textit{Head version} require a laterality (left or right).
-Semiologies such as \textit{Hypermotor} may not have an associated laterality, meaning it was observed for both sides.
-Some lateralities such as \textit{Ictal speech} never have an associated laterality.
+Semiologies such as \textit{Hypermotor} may not have an associated laterality, indicating it was observed for both sides.
+Some semiologies such as \textit{Ictal speech} never have an associated laterality.
 The dominant hemisphere may also be specified, if known.
-The used \ac{API} allows for custom semiologies may also be entered, which may be matched to one of the pre-defined semiologies using regular expressions \cite{alim-marvasti_mapping_2021}.
-Matching is performed in real time every time the characters in the widget are modified, as long as at least three characters have been typed (\cref{fig:svt_custom}).
+The \ac{API} for querying the database allows for custom semiologies may also be entered, which may be matched to one of the pre-defined semiologies using regular expressions \cite{alim-marvasti_mapping_2021}.
+Matching is performed in real time within the \ac{GUI} whenever the characters in the widget are modified, as long as three or more characters have been entered (\cref{fig:svt_custom}).
 
 \begin{figure}
   \centering
@@ -91,7 +91,6 @@ Matching is performed in real time every time the characters in the widget are m
   \caption[List of pre-defined semiologies in the GUI]{
     List of pre-defined semiologies in the \ac{GUI}.
     Users can select a semiology in the list or add a custom one, which might be matched to a pre-defined semiology using regular expressions to match concepts associated to that semiology.
-    For example, `butterflies' and `déjà vu' would be matched with epigrastric and psychic auras, respectively.
   }
   \label{fig:svt_semiologies}
 \end{figure}
@@ -101,6 +100,7 @@ Matching is performed in real time every time the characters in the widget are m
   \includegraphics[width=\linewidth]{svt_custom}
   \caption[Adding a custom semiology to the semiology visualization module]{
     Adding a custom semiology term to the semiology visualization module.
+    For example, `butterflies' and `déjà vu' would be matched with epigastric and psychic auras, respectively.
     In this case, the term \textit{butterfly} was entered as the patient described ``a butterfly feeling in my stomach''.
     The querying module matches the input term with the \textit{Epigastric} semiology term, and therefore the Slicer module suggests matching \textit{Epigastric} to the list of selected semiologies.
   }
@@ -121,14 +121,14 @@ Details on how the datapoints for multiple semiologies are combined can be found
 \subsection{Visualization}
 \label{sec:svt_visualization}
 
-The datapoints table is displayed on the \ac{GUI}, sorting the structures by number of datapoints, showing first the structures with the highest number of datapoints in the database (\cref{fig:svt_query}).
+The datapoints table is displayed on the \ac{GUI} and the list of structures is sorted by the number of datapoints, showing first the structures with the highest number of datapoints in the database (\cref{fig:svt_query}).
 
 The probability map is generated and displayed on the 2D slice views and the 3D view, and the 2D slice views are centered on the brain structure with the highest number of associated datapoints.
 Brain structures without datapoints are hidden from the 2D slice views and shown in gray on the 3D view.
-To emphasize the importance of brain structures with a high number of datapoints, the opacity of each structure on the 2D slice views is linearly proportional to the number of associated datapoints.
-We chose an open-source perceptually uniform sequential colormap, \textit{viridis}, as default for this application.
+To emphasize the importance of brain structures with a high number of datapoints, the opacity of each structure on the 2D slice views is adjusted to be linearly proportional to the number of associated datapoints.
+We chose an open-source, perceptually uniform, sequential colormap, \textit{viridis}, as default for this application.
 This implies that the brightness of each structure is also linearly proportional to the number of associated datapoints.
-However, other colormaps are available if desired.
+However, other colormaps are available as a user-selectable option, if desired.
 The colorbars on the 2D slice views help mapping colors to number of datapoints.
 
 \begin{figure}
