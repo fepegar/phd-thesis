@@ -3,21 +3,22 @@
 % The signed declaration should be followed by an abstract consisting of no more than 300 words.
 
 Epilepsy is the most common neurological disorder, affecting around 1\% of the population.
-One third of epilepsies are drug-resistant.
+One third of patients with epilepsy are drug-resistant.
 If the epileptogenic zone can be localized precisely, curative resective surgery may be performed.
-However, only 40 to 70\% of patients remain seizure-free after the surgery.
+However, only 40 to 70\% of patients remain seizure-free after surgery.
 % Clinical pathway
-Presurgical evaluation is a complex, multimodal process that requires subjective clinical decisions, often relying mostly on the multidisciplinary team's experience.
+Presurgical evaluation, which in part aims to localize the \ac{EZ}, is a complex, multimodal process that requires subjective clinical decisions, often relying on the multidisciplinary team's experience.
 Thus, the clinical pathway could benefit from data-driven methods for clinical decision support.
 
 % Machines/ML could help
-In the last decade, deep learning has seen great advancements thanks to the improvement of \acp{GPU}, the development of new algorithms and the large amounts of data available for training.
+In the last decade, deep learning has seen great advancements due to the improvement of \acp{GPU}, the development of new algorithms and the large amounts of generated data that become available for training.
 % We don't have much data
-Using deep learning in clinical settings is challenging as large datasets are rare due to privacy concerns and expensive annotation processes.
+However, using deep learning in clinical settings is challenging as large datasets are rare due to privacy concerns and expensive annotation processes.
+Methods to overcome the lack of data are especially important in the context of presurgical evaluation of epilepsy, as only a small proportion of patients with epilepsy end up undergoing surgery, which limits the availability of data to learn from.
 
 % We worked on this and that
-This thesis introduces computational methods that pave the way towards a more data-driven clinical pathway for the treatment of epilepsy, overcoming the relatively small datasets available.
+This thesis introduces computational methods that pave the way towards integrating data-driven methods into the clinical pathway for the treatment of epilepsy, overcoming the relatively small datasets available.
 We used transfer learning from human action recognition datasets to characterize epileptic seizures from video-telemetry data.
-We developed a software framework to predict the location of the epileptogenic zone given seizure semiologies, based on retrospective information from the literature.
-We trained models using self-supervised and semi-supervised learning to perform quantitative analysis of resective surgery by segmenting resection cavities on brain \acp{MRI}.
-Finally, we shared datasets and software tools that will accelerate research in medical image computing, particularly in the field of epilepsy.
+We developed a software framework to predict the location of the epileptogenic zone given seizure semiologies based on retrospective information from the literature.
+We trained deep learning models using self-supervised and semi-supervised learning to perform quantitative analysis of resective surgery by segmenting resection cavities on brain \acp{MRI}.
+Throughout our work, we shared datasets and software tools that will accelerate research in medical image computing, particularly in the field of epilepsy.
