@@ -86,8 +86,8 @@ Furthermore, medical images are almost always greyscale, therefore colour-space 
 Additionally, cropping and scaling are more challenging to apply to medical images without affecting the spatial relationships of the data.
 Metadata should usually be considered when applying these transformations to medical images.
 
-In medical imaging, the purpose of data augmentation is designed to simulate anatomical variations and scanner artifacts.
-Anatomical variation and sample position can be simulated using spatial transforms such as elastic deformation, lateral flipping, or affine transformations.
+In medical imaging, the purpose of data augmentation is designed to simulate scanner artifacts and variations in sample anatomy, \ac{FOV}, and orientation.
+Variations in the anatomy, \ac{FOV} and orientation of the sample can be simulated using spatial transforms such as elastic deformation, lateral flipping, or affine transformations.
 Some artifacts are unique to specific medical image modalities.
 For example, ghosting artifacts will be present in \ac{MRI} if the patient moves during acquisition, and metallic implants often produce streak artifacts in \ac{CT}.
 Simulation of these artifacts can be useful when performing augmentation on medical images.
