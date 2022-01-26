@@ -1,22 +1,26 @@
 % \subsection{Contributions}
 
 % Background
-Epilepsy is a complex disorder with a complicated treatment pathway.
-Symptoms are strongly heterogeneous and may sometimes be interpreted differently by teams in different institutions.
+Epilepsy is a complex disorder with complicated treatment pathways.
+Symptoms are strongly heterogeneous across patients and, often, across seizures within same patient.
+Interpretation of the clinical data and the subsequent decisions are often performed differently by teams in different institutions.
 Decisions are often taken subjectively, based on clinicians' experience, who have seen a finite number of cases in their careers.
+This implies that younger and less experienced clinicians may make less apropriate choices, compared to more experienced colleagues.
 Data-driven techniques, such as machine learning, may be used to take objective decisions based on large amounts of retrospective data.
-However, large datasets are rare in clinical settings, hindering the performance of approaches reliant on vast amounts of data.
-
-% Problem statement
-The overall goal of this thesis is to identify elements in the current clinical pathway for the treatment of epilepsy that could be supported by data-driven computational methods, even when relatively small amounts of data are available.
-
+However, large datasets are rarely available in epilepsy units, hindering the performance of approaches reliant on vast amounts of data.
 
 % Challenges
-Deep learning, the main set of techniques utilized in this thesis, has seen great success in the last decade, mostly thanks to improvements in hardware, such as \acp{GPU}, and the vast amount of data generated every day.
-However, large datasets are typically not readily available in clinical settings because of privacy concerns and expensive annotation.
+Deep learning, the main set of techniques utilized in this thesis, has seen great success in the last decade, in part due to improvements and increased availability of hardware, such as \acp{GPU}, and the vast amount of data generated every day.
+However, large datasets are typically not readily available in clinical settings because of privacy concerns and the expense to acquire annotations.
 
-% How we're solving them
-In this thesis, we leverage techniques such as transfer learning, self-supervised learning and semi-supervised learning to overcome these low-data regimes.
+% Aim
+The overall goal of this thesis is to develop and validate data-driven approaches applied to several different steps in the treatment pathway, especially when the available datasets are relatively small.
+We leverage techniques such as transfer learning, self-supervised learning and semi-supervised learning to overcome these low-data regimes.
+
+% RACHEL:
+% I would also expand on this a bit -- maybe briefly touch on why you went with transfer learning/pretrained models for the videos and semi-supervised/un-supervised learning in the resection cavities.
+% You can touch on data being easier/less easy to simulate, availability of appropriate pre-trained model for a task, ease of accessing open source data for related/similar tasks etc.
+% You can even bring in data augmentation/TorchIO as another example of a method to deal with low data regimes within medical imaging.
 
 The specific directions for future work for the different chapters were described in \cref{sec:videos_discussion,sec:svt_discussion,sec:resections_discussion,sec:tio_discussion}.
 
@@ -28,7 +32,7 @@ In the next section, I summarize the contributions presented in each chapter.
 
 \Cref{chap:videos} introduces \ac{GESTURES} our open-source framework for automatic classification of seizures from videos.
 I present a novel method combining convolutional and recurrent neural networks to model seizures of arbitrary duration.
-Our deep learning approach is robust to occlusions by bed linens and clinical staff, differences in illumination and pose, and poor video quality caused by compression artifacts or details out of focus \cite{perez-garcia_transfer_2021}.
+Our deep learning approach is robust to obscurations by bed linens and clinical staff, differences in illumination and pose, and poor video quality caused by compression artifacts or details out of focus \cite{perez-garcia_transfer_2021}.
 The code is available on GitHub%
 \fnurl{https://github.com/fepegar/gestures-miccai-2021}.
 
@@ -44,7 +48,10 @@ However, a derived dataset of per-frame feature vectors with no identifiable pat
 % Ali also wrote software to query the database, which is an Excel spreadsheet \cite{alim-marvasti_mapping_2021}.
 % The input is a set of observed semiologies and some additional optional patient information such as the dominant hemisphere;
 % the output is a list of brain structures and the number of patients in the literature that were seizure-free after removal of the structure.
-My contributions to this project are 1) a 3D Slicer module \cite{fedorov_3d_2012} that reads the output of the querying tool and generates a 3D visualization on a parcellated brain \ac{MRI}, where the brightness associated to each brain structure is proportional to the probability of the \ac{EZ} being in the structure; 2) the software engineering aspects of the project: a \ac{PIP}-installable Python package for the querying tool, including \ac{CI}, and an \ac{API} to access the Python package from 3D Slicer or from the command line; and 3) the implementation of the online demo, which does not require installing 3D Slicer%
+My contributions to this project are
+1) a 3D Slicer module \cite{fedorov_3d_2012} that reads the output of the querying tool and generates a 3D visualization on a parcellated brain \ac{MRI}, in which the brightness associated to each brain structure is proportional to the probability of the \ac{EZ} being associated with the structure;
+2) the software engineering aspects of the project: a \ac{PIP}-installable Python package for the querying tool, including \ac{CI}, and an \ac{API} to access the Python package from 3D Slicer or from the command line; and
+3) the implementation of the online demo, which does not require installing 3D Slicer%
 \fnurl{https://github.com/fepegar/SVT-web}.
 The database and code are freely available on GitHub%
 \fnurl{\svtgithub}.
@@ -89,3 +96,5 @@ and code%
 are available online.
 A 3D Slicer extension to use TorchIO without the need to code can be installed from the Extensions Manager%
 \fnurl{https://github.com/fepegar/SlicerTorchIO}.
+
+% John suggests to add stuff here (see revision).
