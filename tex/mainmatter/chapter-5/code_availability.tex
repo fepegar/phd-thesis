@@ -9,7 +9,7 @@ The version described in this paper is \torchioversion \cite{perez-garcia_fepega
 Detailed \ac{API} documentation is hosted on Read the Docs (\cref{fig:tio_docs}) and comprehensive Jupyter notebook tutorials are hosted on Google Colaboratory, where users can run examples online.
 The library can be installed with a single line of code on Windows, macOS or Linux using the \ac{PIP} package manager: \texttt{pip install torchio}.
 
-TorchIO has a strong community of users, with more than \torchiostars stars on GitHub and more than \torchioweekdownloads \ac{PyPI} downloads per week\fnurl{https://pypistats.org/packages/torchio} as of December 2021.
+TorchIO has a strong community of users, with more than \torchiostars stars on GitHub and more than \torchiomonthdownloads \ac{PyPI} downloads per month\fnurl{https://pypistats.org/packages/torchio} as of \monthname~\the\year.
 
 \begin{figure}
   \centering
@@ -37,6 +37,8 @@ As with the \ac{CLI} tool, users can experimentally assess preprocessing and dat
   \includegraphics[width=\linewidth, trim = {0 0 0 0.1cm}, clip]{slicer}
   \caption[Graphical user interface for TorchIO]{
     \Ac{GUI} for TorchIO, implemented as a 3D Slicer extension.
+    Top: input image;
+    bottom: image after applying random transforms.
     In this example, the applied transforms are
     \texttt{RandomBiasField},
     \texttt{RandomGhosting},
