@@ -1,5 +1,3 @@
-% \subsection{Contributions}
-
 % Background
 Epilepsy is a complex disorder with complicated treatment pathways.
 Symptoms are strongly heterogeneous across patients and, often, across seizures within same patient.
@@ -17,16 +15,20 @@ However, large datasets are typically not readily available in clinical settings
 The overall goal of this thesis is to develop and validate data-driven approaches applied to several different steps in the treatment pathway, especially when the available datasets are relatively small.
 We leverage techniques such as transfer learning, self-supervised learning and semi-supervised learning to overcome these low-data regimes.
 
-% RACHEL:
-% I would also expand on this a bit -- maybe briefly touch on why you went with transfer learning/pretrained models for the videos and semi-supervised/un-supervised learning in the resection cavities.
-% You can touch on data being easier/less easy to simulate, availability of appropriate pre-trained model for a task, ease of accessing open source data for related/similar tasks etc.
-% You can even bring in data augmentation/TorchIO as another example of a method to deal with low data regimes within medical imaging.
+We used transfer learning within our framework for classification of seizure videos to avoid overfitting our models to the small datasets available for training, showing that a model trained on massive datasets for human action recognition (extracted from Instagram and YouTube) can be adapted to improve the treatment of epilepsy (\cref{chap:videos}).
 
-The specific directions for future work for the different chapters were described in \cref{sec:videos_discussion,sec:svt_discussion,sec:resections_discussion,sec:tio_discussion}.
+As annotating 3D \ac{MRI} is expensive, we developed a framework to simulate resected images that can be used for self-supervised training, i.e., training examples that are self-annotated.
+This approach allowed us to train a deep learning model for segmentation of resection cavities.
+To support the utility of our method in a typical clinical setting, where relatively large datasets without annotations are available, we used semi-supervised learning with uncertainty-driven selection of real postoperative images without annotations for training, improving the performance of our models.
+Additionally, we showed that our model can be easily fine-tuned to small datasets from different institutions with varying quality, acquisition type and resection types (\cref{chap:resection}).
 
-In the next section, I summarize the contributions presented in each chapter.
+Data augmentation may be used to modify training examples, simulating larger datasets available for training and therefore improving the generalizability of the trained models to unseen instances.
+We developed TorchIO, a software library for preprocessing and augmentation of multidimensional medical images.
 
-\section{Contributions}
+In the next section, I summarize the contributions of this thesis and the future directions of our research.
+
+
+\section{Contributions and future directions}
 
 \subsection{\nameref{chap:videos}}
 
@@ -39,15 +41,18 @@ The code is available on GitHub%
 Due to privacy concerns, we were not able to share the video data used in the study.
 However, a derived dataset of per-frame feature vectors with no identifiable patient data has been made open-access and it is freely available for download at the UCL Research Data Repository \cite{perez-garcia_data_2021}.
 
+In the future, we will investigate the potential of \ac{GESTURES} to classify different types of convulsive seizures and to localize the \ac{EZ}, potentially using data from different \acp{EMU}.
+Further developments of our approach could include
+distinguishing \acp{GTCS} from \acp{FBTCS}, as surgery is normally indicated only for the latter;
+detecting \acp{PNEA} and \acp{NES};
+lateralizing \acp{FOS}, i.e., determining the laterality of the \ac{EZ};
+and localizing \ac{FOS} onset, which could be performed in parallel with the tool we present in \cref{chap:svt}.
+Our framework could be further developed into a mobile phone application for seizure analysis, or for home monitoring systems of patients with epilepsy.
 
 
 \subsection{\nameref{chap:svt}}
 
 \Cref{chap:svt} describes a piece of software developed in collaboration with neurologists Ali Alim-Marvasti and Gloria Romagnoli.
-% They performed a systematic literature review to generate the \textit{Semio2Brain} database, which maps seizure semiologies to brain regions \cite{alim-marvasti_probabilistic_2021}.
-% Ali also wrote software to query the database, which is an Excel spreadsheet \cite{alim-marvasti_mapping_2021}.
-% The input is a set of observed semiologies and some additional optional patient information such as the dominant hemisphere;
-% the output is a list of brain structures and the number of patients in the literature that were seizure-free after removal of the structure.
 My contributions to this project are
 1) a 3D Slicer module \cite{fedorov_3d_2012} that reads the output of the querying tool and generates a 3D visualization on a parcellated brain \ac{MRI}, in which the brightness associated to each brain structure is proportional to the probability of the \ac{EZ} being associated with the structure;
 2) the software engineering aspects of the project: a \ac{PIP}-installable Python package for the querying tool, including \ac{CI}, and an \ac{API} to access the Python package from 3D Slicer or from the command line; and
@@ -56,6 +61,10 @@ My contributions to this project are
 The database and code are freely available on GitHub%
 \fnurl{\svtgithub}.
 Our \ac{SVT} may be used to better understand the relation between the seizure onset zone and the observed seizure semiologies, and to perform an objective planning of \ac{iEEG} electrodes implantation.
+
+In the future, we will improve the generalizability of our framework to improve the compatibility with custom semiology databases and different brain parcellation strategies.
+We will also implement an online version of our \ac{SVT} that uses a cloud infrastructure service, for a fast and seamless user experience.
+Additionally, we will assess the possibility of using a neural network to compute the parcellation within the \ac{SVT}, which would reduce the processing time from hours to seconds.
 
 
 \subsection{\nameref{chap:resection}}
@@ -85,6 +94,9 @@ We collaborated with hospitals in Milan, Paris and Marseille to validate our seg
 The code is available on GitHub%
 \fnurl{https://github.com/fepegar/resseg-ijcars}.
 
+The main line of future directions is the validation of a non-linear registration pipeline between the pre- and post-operative \acp{MRI}, potentially using the \ac{RC} segmentation to aid the registration \cite{brett_spatial_2001,chen_deformable_2015} or using a topology-aware registration approach \cite{nielsen_topaware_2019}.
+Such a study would help integrate our methods into research and clinical practice.
+
 
 \subsection{\nameref{chap:torchio}}
 
@@ -96,5 +108,10 @@ and code%
 are available online.
 A 3D Slicer extension to use TorchIO without the need to code can be installed from the Extensions Manager%
 \fnurl{https://github.com/fepegar/SlicerTorchIO}.
+
+TorchIO is is being used to accelerate research with medical images by institutions all around the world, and has been cited more than \torchiocitations times as of \monthname~\the\year%
+\fnurl{https://scholar.google.co.uk/scholar?oi=bibs\&cites=11818021599290863762}.
+
+In the future, we will improve compatibility with related frameworks, add support for transforms on \ac{GPU}, and add transforms specific to non-\ac{MRI} modalities such as \acs{CT} or ultrasound.
 
 % John suggests to add stuff here (see revision).
