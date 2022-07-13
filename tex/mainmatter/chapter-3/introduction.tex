@@ -1,41 +1,44 @@
 \section{Introduction}
 
-\Ac{ASM} is normally used to treat epilepsy.
-One third of epilepsies are drug-resistant \cite{engel_what_2016}.
-Curative resective surgery can be performed to remove the \ac{EZ}, which is ``the area of cortex indispensable for the generation of clinical seizures'' \cite{rosenow_presurgical_2001} (\cref{chap:resection}).
-The location of the \ac{EZ} is normally inferred by a multidisciplanary team following non-invasive evaluation such as video-\ac{EEG}, \ac{MRI} or neuropsychological tests.
-If the information regarding the location of the \ac{EZ} is clear and concordant between the different tests, curative resection may be performed to treat the epilepsy.
+\Ac{ASM} is the first-line treatment for epilepsy.
+However, one third of epilepsies are drug-resistant \cite{engel_what_2016}.
+The \ac{EZ} is ``the area of cortex indispensable for the generation of clinical seizures'' \cite{rosenow_presurgical_2001}.
+If the \ac{EZ} can be localized precisely, curative resective surgery may be performed.
+However, only 40 to 70\% of patients remain seizure-free after surgery \cite{jobst_resective_2015}.
+The location of the \ac{EZ} is normally inferred by a multidisciplanary team, following a multimodal non-invasive evaluation including different tools such as \ac{MRI}, neuropsychological tests, and seizure semiology reported by patients and witnesses, and recorded by video-\ac{EEG}.
+If the information regarding the location of the \ac{EZ} is clear and concordant between the different evaluation tests, curative resection may be performed to treat the epilepsy.
 Otherwise, \ac{iEEG} electrodes may be implanted to localize the \ac{EZ} precisely.
-% To determine the brain regions that may be involved in the \ac{EZ} which need to be recorded to resolve the \ac{EZ}, i.e., the targets for the \ac{iEEG} electrodes, the team leverages information from the non-invasive examinations, including seizure semiology from the recorded videos (\cref{chap:videos}).  % Rachel
-To determine the brain regions that need to be implanted with electrodes, the team leverages information from the non-invasive examinations, including seizure semiology history from patients and witnesses, and from the recorded videos (\cref{chap:videos}).  % John
-% To determine the brain regions that need to be recorded, i.e., the targets for the \ac{iEEG} electrodes, the team leverages information from the non-invasive examinations, including seizure semiology from the recorded videos (\cref{chap:videos}).  % original
+To determine the brain regions that need to be implanted with electrodes, i.e., the targets, the team leverages information from the previously described non-invasive examinations.
 The choice of targets is therefore influenced by the team's subjective experience and personal knowledge of the literature.
 This leads to substantial variations of implantation strategies across different epilepsy centers \cite{tufenkjian_seizure_2012}.
-The diagnostic pathway for surgical planning could be supported and standardized by an objective tool to aid clinicians in deducing the \ac{EZ} location from seizure semiology.
+Whilst the symptomatogenic and epileptogenic zones may not be coterminous, if a patient with particular semiological features becomes seizure-free after resection of a certain brain region, it is a reasonable inference considering that semiological feature as a marker for the curative resection of that area.
+The diagnostic pathway for surgical planning could therefore be supported and standardized by an objective tool to aid clinicians in deducing the possible \ac{EZ} location from patient seizure semiology.
 
-% Rachel's suggestion to replace the paragraph above
 It would be useful for clinicians to be able to quickly and easily assess relevant studies in the literature for a specific semiology.
-Such a method has been proposed \cite{alim-marvasti_probabilistic_2021} using a large number of studies analyzed via the \ac{PRISMA} framework, and generating a database of entries to map seizure semiologies to brain regions.
-Clinicians and researchers would benefit from a easy-to-use and intuitive \ac{GUI} to such a database.
-Moreover, visualizing the probability of each structure containing the \ac{EZ} on \ac{3DMMI} could help plan either resection or \ac{iEEG} implantation strategies \cite{nowell_resection_2017, nowell_utility_2015}, potentially using \ac{ATP} \cite{sparks_automated_2017}.
-Finally, a \ac{3DMMI} visualization could be used to perform qualitative and quantitative analyses of the retrospective information contained in the database.
+Such a method has been proposed using a large number of studies analyzed via the \ac{PRISMA} framework \cite{page_prisma_2021} to generate \svtdatabase, a database of entries mapping seizure semiologies to brain regions \cite{alim-marvasti_probabilistic_2022}.
+Clinicians and researchers would also benefit from a easy-to-use and intuitive \ac{GUI} to such a database.
+Moreover, visualizing the probability of each structure containing the \ac{EZ} on \ac{3DMMI} could help plan resection or \ac{iEEG} implantation strategies \cite{nowell_utility_2015,nowell_resection_2017}, and potentially be used to guide \ac{ATP} \cite{sparks_automated_2017}.
+% %%%%%%%%%%%%%%%%%%%
+% % Added by JD:
+% It is recognized that the symptomatogenic zone may be anatomically separate from the seizure onset zone, and needs to be considered with other imaging and \ac{EEG} data.
+% In the semiology database, we correlated semiological features with the seizure onset zone, as evidenced by seizure freedom following resection, localization of seizure onset with \ac{iEEG} or concordant MRI and \ac{EEG} data.
+% %%%%%%%%%%%%%%%%%%%
+Finally, a \ac{3DMMI} visualization could be used to perform qualitative and quantitative analyses of information contained in the database and further refine its utility to predict the \ac{EZ}.
 
-In this work, we present a software tool that, given an observed list of seizure semiologies and other patient data such as the dominant hemisphere, generates a table with the number of datapoints associated to each brain region.
-% Each datapoint represents a patient presenting the observed semiologies who became seizure-free after resection of the corresponding brain structure (\cref{tab:single_semiology}).
-Each datapoint represents a patient presenting the observed semiology, determined to have arisen from a brain structure being involved in the seizure, using an objective criterion, e.g., becoming seizure-free after resection (\cref{tab:single_semiology}).
-The usage examples in this thesis use the \svtdatabase database and the corresponding software used to query the database \cite{alim-marvasti_probabilistic_2021,alim-marvasti_mapping_2021}, which were defined based on the Neuromorphometrics atlas parcellation%
-\fnurl{http://www.neuromorphometrics.com}.
+In this work, we present the \ac{SVT}, a software tool that, given an observed list of seizure semiologies, provided by clinical observation, and other patient data, such as the dominant hemisphere, displays possible \ac{EZ} locations in an intuitive way.
+The \ac{SVT} provides a table with the number of datapoints associated with each brain region, where each datapoint represents a patient reported in the literature presenting the observed semiology, with an \ac{EZ} objectively determined to arise from the brain region, e.g., becoming seizure-free after resection of that region (\cref{tab:single_semiology}).
+Then, the information in the table is additionally represented using an intuitive \ac{3DMMI} visualization, personalized to each patient's imaging data.
+
 
 \begin{table}
   \setlength{\tabcolsep}{3pt}
   \centering
-  \caption[Result of querying an imaginary database with one semiology]{
-    Result of querying an imaginary database with the semiology \textit{Head version} and exemplar brain structures A, B and C, assuming that the brain has been parcellated into only three structures.
-    In this example, according to the literature analyzed to build the database, structure C was one of the resected structures in 20 patients presenting \textit{Head version} who became seizure-free after surgery, suggesting a high probability of the \ac{EZ} being associated with that structure.
+  \caption{
+    Result of querying an imaginary database with the semiology term \textit{Head version} and exemplar brain structures A, B and C, assuming that the brain has been parcellated into only three structures.
+    In this example, according to the hypothetical literature analyzed to build the database, structure C was one of the resected structures in 20 patients presenting \textit{Head version} who became seizure-free after surgery, suggesting a high probability of the \ac{EZ} being associated with that structure.
     Structure B was resected for five patients who became seizure-free after surgery.
     Structure A was never resected in patients who presented \textit{Head version} and became seizure-free after surgery.
     This result would support the decision of implanting electrodes in structure C (and possibly B), as they are likely to be associated with the \ac{EZ} according to the retrospective information in the literature.
-    The actual list of brain structures would depend on the method used to parcellate the brain.
   }
   \label{tab:single_semiology}
   \begin{tabular}{l*3c}
@@ -45,7 +48,3 @@ The usage examples in this thesis use the \svtdatabase database and the correspo
     \textbf{Head version} &                    0 &                    5 &                   20 \\
   \end{tabular}
 \end{table}
-
-% In this work, we present our software tool to visualize the \ac{EZ} probability map on \ac{3DMMI}.
-% Show example of multiple semiologies and aggregation
-% Details on the methods used for aggregation are out of the scope of this thesis

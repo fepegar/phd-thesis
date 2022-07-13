@@ -1,0 +1,30 @@
+\section{Results}
+
+In this section, we demonstrate a case study example of our \ac{SVT} for a retrospective analysis of a patient with epilepsy who underwent resective surgery at the \ac{NHNN} (Queen Square, London, UK).
+For all analyses, we use the \texttt{mega\_analysis} querying module, which uses the \svtdatabase database \cite{alim-marvasti_cortical_2022} (under review) \cite{alim-marvasti_probabilistic_2022}.
+
+The patient was right-handed and presented head version to the right at the beginning of seizures.
+Ictal \ac{EEG} was nonlateralizing and interictal \ac{EEG} showed bitemporal sharp waves.
+We used the patient's preoperative \acl{T1w} \ac{MRI} as reference for the visualization.
+The Neuromorphometrics brain parcellation was generated using \ac{GIF} \cite{cardoso_geodesic_2015}.
+
+We queried the \svtdatabase using the semiology \textit{Head version (right)} and setting the dominant hemisphere to \textit{Left}.
+The most highlighted structures concentrate in the left frontal lobe (\cref{fig:svt_case_heatmap}).
+
+We used a rigid registration algorithm to align the preoperative and postoperative \acp{MRI} for visualization purposes \cite{ourselin_block_2000}.
+As non-rigid brain deformations may happen after surgery and we used a rigid registration, the alignment is only approximate; however, it has sufficient accuracy to enable a visual analysis.
+When visualizing the aligned images, including the probability map, we observed an overlap between the highlighted areas (i.e., the brain structures with the highest number of datapoints) and the resection cavity (\cref{fig:svt_resection}).
+As this is a retrospective case from a patient who underwent resective surgery several years ago, the postoperative \ac{MRI} and the clinical outcome are available.
+The surgery was successful and resulted in complete seizure during a four-year follow-up.
+
+\begin{figure}
+  \centering
+  \svtscreenshot{08_svt_resection}
+  \caption{
+    Qualitative comparison of the \ac{EZ} probability map and the postoperative \ac{MRI}.
+    Note the overlap between the highlighted structures and the resection cavity.
+    The images were rigidly registered, and the crosshairs are centered on approximately the same region.
+    The patient became seizure-free after resective surgery.
+  }
+  \label{fig:svt_resection}
+\end{figure}
