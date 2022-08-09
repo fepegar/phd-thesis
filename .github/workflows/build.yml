@@ -13,3 +13,9 @@ jobs:
         with:
           root_file: root.tex
           latexmk_shell_escape: true
+      
+      - name: Upload PDF
+        uses: actions/upload-artifact@v2
+        with:
+          name: PDF
+          path: root.pdf
