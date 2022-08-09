@@ -11,7 +11,7 @@ Finally, the query is submitted using the \ac{API}, which returns the table of d
 \begin{figure}[!ht]
   \centering
   \includegraphics[trim=25 5 25 25, clip, width=0.8\linewidth]{01_svt_diagram}
-  \caption{
+  \caption[General architecture of the SVT]{
     General architecture of the \ac{SVT}.
     1) The user inputs a list of observed seizure semiologies and (optionally) patient's data comprising an \ac{MRI} and brain parcellation of the patient for visualization in the patient's space.
     2) The \ac{GUI} of the 3D Slicer module is used to input the observed semiologies to the software, without the need to code.
@@ -74,7 +74,7 @@ The user is then presented with the preprocessed data (\cref{fig:svt_loaded}).
 \begin{figure}
   \centering
   \svtscreenshot{02_svt_loaded}
-  \caption{
+  \caption[SVT after loading a template and its parcellation]{
     Semiology visualization module after loading an \ac{MNI} template as image reference and its corresponding brain parcellation.
     Left: main panel containing a list of suggested semiology terms to be selected by the user;
     right: images in the patient's space.
@@ -96,7 +96,7 @@ The dominant hemisphere may also be specified if known, helping to narrow result
 \begin{figure}
   \centering
   \includegraphics[width=0.8\linewidth]{03_svt_semiologies}
-  \caption{
+  \caption[List of pre-defined semiologies in the GUI]{
     List of pre-defined semiologies in the \ac{GUI}.
     Users can select a semiology in the list or add a custom one.
     Custom semiologies are matched to a pre-defined semiology using regular expressions to map concepts associated with that semiology.
@@ -111,7 +111,7 @@ Matching is performed in real time within the \ac{GUI} whenever the characters i
 \begin{figure}
   \centering
   \includegraphics[width=0.65\linewidth]{04_svt_custom_no_shadow}
-  \caption{
+  \caption[Adding a custom semiology to the semiology visualization module]{
     Adding a custom semiology term to the semiology visualization module.
     For example, `butterflies' and `déjà vu' would be matched with epigastric and psychic auras, respectively.
     In this case, the term \textit{butterfly} was entered as the patient described ``a butterfly feeling in my stomach''.
@@ -140,7 +140,7 @@ The datapoints table is displayed on the \ac{GUI} and the list of structures is 
 \begin{figure}
   \centering
   \svtscreenshot{05_svt_query}
-  \caption{
+  \caption[Results of querying the database with the \textit{Epigastric} semiology]{
     Results of querying the database with the \textit{Epigastric} semiology.
     Left: table showing the number of datapoints associated with each brain structure;
     right: \ac{EZ} probability map, where brightness (and opacity, on the 2D views) is linearly proportional to the number of datapoints.
@@ -160,7 +160,7 @@ The colorbars on the 2D slice views help create a mental mapping from colors to 
 \begin{figure}
   \centering
   \svtscreenshot{06_svt_advanced}
-  \caption{
+  \caption[Demonstration of advanced visualization settings]{
     Demonstration of advanced visualization settings.
     The selected settings are:
     show only the right hemisphere,
@@ -174,7 +174,7 @@ The colorbars on the 2D slice views help create a mental mapping from colors to 
 \begin{figure}
   \centering
   \svtscreenshot{07_svt_case_heatmap}
-  \caption{
+  \caption[Querying the database using data from a retrospective patient case]{
     Querying the database using data from a retrospective patient case.
     The selected semiology term was \textit{Head version (right)}, and the dominant hemisphere was \textit{Left}.
     The regions with highest numbers of datapoints concentrate around the left frontal lobe (represented on the right side of the axial and coronal views).

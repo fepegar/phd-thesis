@@ -3,7 +3,9 @@
 Patients were recorded using two full high-definition ($1920 \times 1080$ pixels, 30 \ac{FPS}) cameras installed in the \ac{EMU} as part of standard clinical practice.
 Infrared is used for acquisition in scenes with low light intensity, such as during nighttime.
 The acquisition software (Micromed, Treviso, Italy) automatically resizes one of the video streams ($800 \times 450$), superimposes it onto the top-left corner of the other stream and stores the montage using MPEG-2.
-See the supplementary materials for six examples of videos in our dataset.
+See the electronic supplementary material%
+\fnurl{https://link.springer.com/chapter/10.1007/978-3-030-87240-3\_32\#Sec11}
+for six examples of videos in our dataset.
 
 
 \subsection{Dataset description and ground-truth definitions}
@@ -20,7 +22,7 @@ The `median (min, max)' number of seizures per patient is 2 (1, 16).
 The duration of \ac{FOS} and \ac{FBTCS} is 53 (16, 701) s and 93 (51, 1098) s, respectively.
 The total duration of the dataset is 298 minutes, 20\% of which correspond to \ac{FBTCS} phase (i.e., the time interval $[t_G, t_1]$).
 Two patients had only \ac{FOS}, 32 patients had only \ac{FBTCS}, and 34 had seizures of both types.
-The `mean (standard deviation)' of the percentage of the seizure duration before the appearance of generalizing semiology, i.e., $r = (t_G - t_0) / (t_1 - t_0)$, is 0.56 (0.18), indicating that patients typically present generalizing semiological features in the second half of the seizure.
+The `mean (standard deviation)' of the percentage of the seizure duration before the appearance of generalizing semiology, i.e., $r = (t_G - t_0) / (t_1 - t_0)$, is 56\% (0.18\%), indicating that patients typically present generalizing semiological features in the second half of the seizure.
 
 A seizure video is represented as a sequence of $K$ frames starting at $t_0$.
 The time of frame $k \in \{ 0, \dots, K - 1 \}$ is ${t_k = t_0 + \frac{k}{f}}$, where $f$ is the video frame rate.
