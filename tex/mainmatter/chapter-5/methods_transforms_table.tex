@@ -12,17 +12,18 @@
     }
     \footnotesize
     \begin{center}
-        \begin{tabular}{c||c|c}
+        \begin{tabular}{@{}c | c c@{}}
+        \toprule
                                                     & \textbf{Spatial}                      & \textbf{Intensity}                                                      \\
-            \hline
-            \hline
+            
+            \midrule
+            
             \multirow{5}{*}{\textbf{Preprocessing}} & \trsfl{ToCanonical}{nipy}             &                                                                         \\
                                                     & \trsfl{Resample}{itk}                 & \trsfl{HistogramStandardization}{numpy} \cite{nyul_standardizing_1999} \\
                                                     & \trsfl{Crop}{itk}                     & \trsfl{RescaleIntensity}{numpy}                                         \\
                                                     & \trsfl{Pad}{itk}                      & \trsfl{ZNormalization}{pytorch}                                         \\
                                                     & \trsfl{CropOrPad}{itk}                &                                                                         \\
-            \hline
-            \multirow{7}{*}{\textbf{Augmentation}}  &                                       & \trsfl{RandomMotion}{numpy} \cite{shaw_mri_2019}                       \\
+            \multirow{10}{*}{\textbf{Augmentation}}  &                                       & \trsfl{RandomMotion}{numpy} \cite{shaw_mri_2019}                       \\
                                                     &                                       & \trsfl{RandomBiasField}{numpy} \cite{sudre_longitudinal_2017}          \\
                                                     &                                       & \trsfl{RandomGhosting}{numpy}                                           \\
                                                     & \trsfl{RandomAffine}{itk}             & \trsfl{RandomSpike}{numpy} \cite{shaw_heteroscedastic_2020}            \\
@@ -32,6 +33,7 @@
                                                     &                                       & \trsfl{RandomSwap}{pytorch} \cite{chen_self-supervised_2019}           \\
                                                     &                                       & \trsfl{RandomLabelsToImage}{pytorch} \cite{billot_learning_2020}       \\
                                                     &                                       & \trsfl{RandomAnisotropy}{itk} \cite{billot_partial_2020}               \\
+        \bottomrule
         \end{tabular}
     \end{center}
     \label{tab:transforms}
