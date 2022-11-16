@@ -10,7 +10,7 @@ In \cite{iglesias_joint_2020}, a method is proposed to simulate high-resolution 
 First, brain regions are segmented on publicly available datasets of brain \ac{MRI}.
 During training, an \ac{MRI} (\texttt{ScalarImage}) and the corresponding segmentation (\texttt{LabelMap}) corresponding to a specific subject (\texttt{Subject}) are sampled from the training dataset (\texttt{SubjectsDataset}).
 Next, the same spatial augmentation transform is applied to both images by composing an affine transform (\texttt{RandomAffine}) and a nonlinear diffeomorphic transform (\texttt{RandomElasticDeformation}).
-Then, a \ac{GMM} conditioned on the labels is sampled at each voxel location to simulate an \ac{MRI} of arbitrary contrast (\texttt{RandomLabelsToImage}) \cite{billot_learning_2020}.
+Then, a Gaussian mixture model conditioned on the labels is sampled at each voxel location to simulate an \ac{MRI} of arbitrary contrast (\texttt{RandomLabelsToImage}) \cite{billot_learning_2020}.
 Finally, multiple degrading phenomena are simulated on the synthetic image: variability in the coordinate frames (\texttt{RandomAffine}), bias field inhomogeneities (\texttt{RandomBiasField}),
 partial-volume effects due to a large slice thickness during acquisition \cite{billot_partial_2020} (\texttt{RandomAnisotropy}), registration errors (\texttt{RandomAffine}), and resampling artifacts (\texttt{Resample}).
 
