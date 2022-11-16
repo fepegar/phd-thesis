@@ -1,7 +1,9 @@
 \subsection{Snippet-level classification}
 \label{sec:snippet-level}
 
-The probability $\hat{Y}_k$ that a patient presents generalizing features within snippet $\x_k$ starting at frame $k$ is computed as
+The probability $\hat{Y}_k$ that a patient presents generalizing%
+\footnote{Here `generalizing' refers to the seizure propagating to both hemispheres, not to the concept of machine learning models generalizing to data from different distributions.}
+features within snippet $\x_k$ starting at frame $k$ is computed as
 \begin{equation}
     \Ypred_k = \Pr(Y_k = 1 \mid \x_k) = \Fzx( \Cx(\x_k) ) = \Fzx( \z_k)
 \end{equation}
