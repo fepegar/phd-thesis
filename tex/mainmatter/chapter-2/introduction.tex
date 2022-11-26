@@ -43,7 +43,7 @@ Finally, training neural networks from small datasets, as is often the case in c
 The goal of this work is to compute \emph{seizure-level} representations of arbitrarily long videos when a small dataset is available for training, which is typically the case in \acp{EMU}.
 
 % Why human action recognition models could be useful
-To overcome the challenge of training with small datasets, transfer learning from \acp{STCNN} trained for \ac{HAR} can be used \cite{karacsony_deep_2020}.
+To overcome the challenge of training with small datasets, transfer learning from \acp{STCNN} trained for \ac{HAR} can be used \cite{karacsony_deep_2020} (\cref{fig:kinetics}).
 Although seizures are, strictly speaking, not actions, \ac{HAR} models are expected to encode strong representations of human motion that may be relevant for seizure characterization.
 These methods are typically designed to classify human actions by aggregating predictions for snippets sampled from short clips ($\approx \SI{10}{\second}$).
 Epileptic seizures, however, can last from seconds to tens of minutes \cite{jenssen_how_2006}.
@@ -55,6 +55,15 @@ Therefore, simply averaging snippet-level predictions would result in a large nu
 \Acp{TSN} \cite{wang_temporal_2019} split videos of any duration into $n$ non-overlapping segments and a consensus function aggregates features extracted from each segment.
 Therefore, we propose the use of \acp{TSN} to capture semiological features across the entirety of the seizure.
 We use an \ac{RNN} as a consensus function to model the sequence of feature vectors extracted from the segments.
+
+\begin{figure}[hbt!]
+  \centering
+  \includegraphics[width=\linewidth]{har_kinetics}
+  \caption[Example classes from the Kinetics dataset]{
+    Example classes from the Kinetics dataset.
+    Adapted from \cite{kay_kinetics_2017}.
+  }\label{fig:kinetics}
+\end{figure}
 
 
 % Our proposal
