@@ -10,7 +10,7 @@ To obtain the final dataset $D\pseudo = \{ (\X_{\text{postop}_i}, \wt{\Y}_{\text
 
 We used $D\st{pre,train}$ (\cref{sec:self}) in addition to $D\pseudo$ to train a new model $\fp{sim,semi}(\cdot)$, using the same hyperparameters as in the self-supervised setting (\cref{sec:self}).
 To ensure that all batches contain real resections, we use $b - b\pseudo$ images from $D\st{pre,train}$ and $b\pseudo$ images from $D\pseudo$ to compose each mini-batch of size $b$.
-We chose $b\pseudo = 2$ for our experiments, i.e., 20\% of the images in each mini-batch contain real resection cavities.
+We chose $b\pseudo = 2$ for our experiments, i.e., 20\,\% of the images in each mini-batch contain real resection cavities.
 
 Semi-supervised learning improved the performance of the baseline model from 80.5 (18.7) to 81.5 (17.8) ($p = 0.474$).
 

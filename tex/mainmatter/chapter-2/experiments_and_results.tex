@@ -4,7 +4,7 @@ All videos were preprocessed by
 separating the two streams into different files (replacing the small embedded view with black pixels),
 resampling to 15 \ac{FPS} and $320 \times 180$ pixels,
 and reencoding using \ac{HEVC}.
-To avoid geometric distortions while maximizing the \ac{FOV} and resolution, videos were cropped horizontally by removing 5\% of the columns from each side, and padded vertically so frames were square.
+To avoid geometric distortions while maximizing the \ac{FOV} and resolution, videos were cropped horizontally by removing 5\,\% of the columns from each side, and padded vertically so frames were square.
 Snippets were resized as imposed by the corresponding architecture to $224 \times 224$ for \acp{SFCNN} and  $112 \times 112$ for \acp{STCNN}.
 For realism, six video streams in which the patient was completely outside of the \ac{FOV} were discarded for training but used for evaluation.
 Recorded audio signals were discarded.
@@ -121,7 +121,7 @@ We used a weighted binary cross-entropy loss for training, where the weight for 
 \end{figure}
 
 The highest accuracies were obtained using $n = 16$ segments, $\gamma \in \{ 2, 4 \}$ and the \ac{BLSTM} aggregator (\cref{fig:aggregation}).
-The model with the highest accuracy (98.9\%) and $F_1$-score (98.7\%) yielded 77 true positives, 104 true negatives, 2 false positives and 0 false negatives, where \ac{FBTCS} is the positive class (\cref{sec:dataset}).
+The model with the highest accuracy (98.9\,\%) and $F_1$-score (98.7\,\%) yielded 77 true positives, 104 true negatives, 2 false positives and 0 false negatives, where \ac{FBTCS} is the positive class (\cref{sec:dataset}).
 See the supplementary materials%
 \fnurl{https://link.springer.com/chapter/10.1007/978-3-030-87240-3\_32\#Sec11}
 for examples of videos classified correctly and incorrectly, with different levels of confidence.

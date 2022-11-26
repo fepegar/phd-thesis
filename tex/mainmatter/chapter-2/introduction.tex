@@ -49,7 +49,7 @@ These methods are typically designed to classify human actions by aggregating pr
 Epileptic seizures, however, can last from seconds to tens of minutes \cite{jenssen_how_2006}.
 A common aggregation method is to average predictions from randomly sampled snippets \cite{carreira_quo_2017,ghadiyaram_large-scale_2019,simonyan_two-stream_2014}.
 Averaging predictions typically works because most video datasets considered are trimmed, i.e., the same action occurs along most of the video duration.
-In our dataset, due to the nature of \acp{FBTCS}, more than half the frames are labeled as non-generalizing in 49/79 (62\%) of the \ac{FBTCS} videos.
+In our dataset, due to the nature of \acp{FBTCS}, more than half the frames are labeled as non-generalizing in 49/79 (62\,\%) of the \ac{FBTCS} videos.
 Therefore, simply averaging snippet-level predictions would result in a large number of seizures being misclassified as \acp{FOS}.
 % Why a TSN architecture helps
 \Acp{TSN} \cite{wang_temporal_2019} split videos of any duration into $n$ non-overlapping segments and a consensus function aggregates features extracted from each segment.

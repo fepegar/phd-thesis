@@ -86,7 +86,7 @@ These artifacts can be simulated using polynomial basis functions \cite{van_leem
 \label{sec:composability}
 
 All transforms can be composed in a linear fashion, as in the PyTorch \texttt{torchvision} library, or building a \ac{DAG} using the \texttt{OneOf} transform (as in \cite{buslaev_albumentations_2020}).
-For example, a user might want to apply a random spatial augmentation transform to $50\%$ of the samples using either an affine or an elastic transform, but they want the affine transform to be applied to $80\%$ of the augmented images, as the execution time is faster.
+For example, a user might want to apply a random spatial augmentation transform to $50\,\%$ of the samples using either an affine or an elastic transform, but they want the affine transform to be applied to $80\,\%$ of the augmented images, as the execution time is faster.
 Then, they might want to rescale the volume intensity for all images to be between 0 and 1.
 \Cref{fig:dag} shows a graph representing the transform composition.
 This transform composition can be implemented with just three statements:

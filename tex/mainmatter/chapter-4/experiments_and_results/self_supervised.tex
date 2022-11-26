@@ -3,7 +3,7 @@
 
 In our first experiment, we assess the relation between the resection simulation complexity and the segmentation performance of the model.
 We train our model with simulated resections on the publicly available dataset $D\pre = \{ \X_{{\pre}_i} \}_{i = 1}^{n\pre}$, where $n\pre = 1813$ (\cref{sec:data}).
-We use 90\% of the images in $D\pre$ for the training set $D\st{pre,train}$ and 10\% for the validation set.
+We use 90\,\% of the images in $D\pre$ for the training set $D\st{pre,train}$ and 10\,\% for the validation set.
 At each training iteration, $b$ images from $D\st{pre,train}$ are loaded, resected, preprocessed and augmented to obtain a mini-batch of $b$ training instances
 $\{ ( \X_{\text{sim}_i}, \Y_{\text{sim}_i}) \}_{i = 1}^{b}$.
 Note that the resection simulation is performed on the fly, which ensures that the network never sees the same resection during training.
