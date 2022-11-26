@@ -11,6 +11,7 @@ patterns = (
     'Fernando Perez-Garcia',
     'Fernando Pérez-García',
     'Pérez-García, Fernando',
+    'Pérez‐García, Fernando',
     # 'Pérez-García',
 )
 
