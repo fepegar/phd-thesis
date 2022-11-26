@@ -1,8 +1,8 @@
 \section{Discussion}
 \label{sec:resections_discussion}
 
-We addressed the challenge of segmenting postoperative brain \acp{RC} from \ac{T1w} \ac{MRI} without annotated data.
-We developed a self-supervised learning strategy to train without manually annotated data, and a method to simulate \acp{RC} from preoperative \ac{MRI} to generate training data.
+We addressed the challenge of segmenting postoperative brain resection cavities from \ac{T1w} \ac{MRI} without annotated data.
+We developed a self-supervised learning strategy to train without manually annotated data, and a method to simulate resection cavities from preoperative \ac{MRI} to generate training data.
 Our novel approach is conceptually simple, easy to implement, and relies on clinical knowledge about postoperative phenomena.
 The resection simulation is computationally efficient ($< \SI{1}{\second}$), so it can run during training as part of a data augmentation pipeline.
 It is compatible with the TorchIO framework \cite{perez-garcia_torchio_2021} (\cref{chap:torchio}) to leverage other data argumentation techniques during training, enabling our model to have a robust performance across \ac{MRI} of variable quality.
@@ -22,17 +22,17 @@ We believe that a setting with a smaller training dataset might benefit further 
 However, we did not perform an extensive assessment of our semi-supervised approach as this is out of the scope of this paper.
 
 We showed that our model correctly segmented an intraoperative image, respecting imaginary boundaries between brain and skull, suggesting a good inductive bias of human neuroanatomy.
-Qualitative results and execution time, which is in the order of milliseconds, suggest that our method could be used intraoperatively, for image guidance during resection or to improve registration with preoperative images by masking the cost function using the \ac{RC} segmentation \cite{brett_spatial_2001}.
-Segmenting the \ac{RC} may also be used to study potential damage to white matter tracts postoperatively \cite{winston_optic_2012}.
-Our method could be easily adapted to simulate other lesions for self-supervised training, such as cerebral microbleeds \cite{cuadrado-godia_cerebral_2018}, narrow and snake-shaped \acp{RC} typical of disconnective surgeries \cite{mohamed_temporoparietooccipital_2011}, or \acp{RC} with residual tumor \cite{meier_automatic_2017}.
+Qualitative results and execution time, which is in the order of milliseconds, suggest that our method could be used intraoperatively, for image guidance during resection or to improve registration with preoperative images by masking the cost function using the resection cavity segmentation \cite{brett_spatial_2001}.
+Segmenting the resection cavity may also be used to study potential damage to white matter tracts postoperatively \cite{winston_optic_2012}.
+Our method could be easily adapted to simulate other lesions for self-supervised training, such as cerebral microbleeds \cite{cuadrado-godia_cerebral_2018}, narrow and snake-shaped resection cavities typical of disconnective surgeries \cite{mohamed_temporoparietooccipital_2011}, or resection cavities with residual tumor \cite{meier_automatic_2017}.
 
-Our segmentation tool for \acp{RC}, Resseg, is available online%
+Our segmentation tool for resection cavities, Resseg, is available online%
 \fnurl{https://github.com/fepegar/resseg}
 and can be easily installed using \ac{PIP}.
 A 3D Slicer module is also available, so that segmentations may be performed using a \ac{GUI}, without any coding%
 \fnurl{https://github.com/fepegar/SlicerParcellation\#brain-resection-cavity-segmentation}.
 These tools can help clinical practice by allowing qualitative and quantitative analysis of resective surgeries.
-For example, the preoperative resection plan and the \ac{RC} could be compared by overlaying them on the preoperative \ac{MRI} space \cite{nowell_utility_2015,nowell_resection_2017}.
+For example, the preoperative resection plan and the resection cavity could be compared by overlaying them on the preoperative \ac{MRI} space \cite{nowell_utility_2015,nowell_resection_2017}.
 In the context of neuro-oncology, our tools could be used for longitudinal studies of tumor recurrence \cite{meier_automatic_2017} and, adapting the simulation framework, for tumor segmentation \cite{zhang_self-supervised_2021}.
 
 Our tools could also be used to assist research studies that analyze the relation between the extent of resected tissue and clinical outcomes \cite{taylor_impact_2018,galovic_association_2019} by automatically segmenting large datasets of postoperative images.

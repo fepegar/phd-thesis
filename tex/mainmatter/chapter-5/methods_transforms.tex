@@ -133,7 +133,7 @@ transforms.
 The \texttt{Lambda} transform can be passed an arbitrary callable object, which allows the user to augment the library with custom transforms without having a deep understanding of the underlying code.
 
 Additionally, more complex transforms can be developed.
-For example, we implemented a TorchIO transform to simulate brain \acp{RC} from preoperative \acp{MRI} within a self-supervised learning pipeline~\cite{perez-garcia_simulation_2020}.
+For example, we implemented a TorchIO transform to simulate brain resection cavities from preoperative \acp{MRI} within a self-supervised learning pipeline~\cite{perez-garcia_simulation_2020}.
 The \texttt{RandomLabelsToImage} transform may be used to simulate an image from a tissue segmentation.
 It can be composed with \texttt{RandomAnisotropy} to train neural networks agnostic to image contrast and resolution \cite{billot_learning_2020, billot_partial_2020,iglesias_joint_2020}.
 

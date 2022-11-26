@@ -35,7 +35,7 @@ Predictions $P = \{ \wt{\Y}'_{\text{cavity}_i} \}_{i=1}^{n\st{u}}$ are averaged 
 
 \paragraph{Uncertainty estimation as selection criterion for pseudolabeled instances}
 
-Images in $D\unl$ might have artifacts that limit the quality of the segmentation or include \acp{RC} not modeled by $\phi\simul$.
+Images in $D\unl$ might have artifacts that limit the quality of the segmentation or include resection cavities not modeled by $\phi\simul$.
 The corresponding noisy pseudolabels would hinder training of machine learning models.
 
 As $n\st{unl}$ might be large, rather than performing manual quality control to select pseudolabels with high reliability for training, we use uncertainty estimation as an automated selection criterion \cite{venturini_uncertainty_2020}.
@@ -49,5 +49,5 @@ We use the \ac{CQV} of the volumes \cite{zwillinger_crc_1999,wang_aleatoric_2019
     u = \frac{q_3 - q_1}{q_3 + q_1}
 \end{equation}
 where $q_1$ and $q_3$ are the first and third quartiles of $L$, respectively.
-The \ac{CQV} is agnostic to the volume of the segmented \ac{RC} and therefore avoids bias introduced by naturally-occurring uncertainty along the resection boundaries \cite{jungo_analyzing_2020}.
+The \ac{CQV} is agnostic to the volume of the segmented resection cavity and therefore avoids bias introduced by naturally-occurring uncertainty along the resection boundaries \cite{jungo_analyzing_2020}.
 Finally, training instances with an associated prediction uncertainty $u(f_{\theta\alpha\beta}, \X\post, n\st{unc})$ below a threshold $t\st{unc}$ are combined with self-labeled instances (\cref{sec:sim_res_self}) to train a new model.

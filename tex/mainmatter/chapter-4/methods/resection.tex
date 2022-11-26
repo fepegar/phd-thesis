@@ -5,7 +5,7 @@
 \newcommand{\NN}{\mathcal{N}}
 
 
-$\phi\simul$ takes images from $\Dom\pre$ to generate training instances by simulating a realistic shape, location and intensity pattern for the \ac{RC}.
+$\phi\simul$ takes images from $\Dom\pre$ to generate training instances by simulating a realistic shape, location and intensity pattern for the resection cavity.
 We present simulation of cavity shape and label in \cref{sec:cavity,sec:cavity_constrain}, respectively.
 In \cref{sec:texture_cavity}, we present our method to generate the corresponding resected image.
 
@@ -13,7 +13,7 @@ In \cref{sec:texture_cavity}, we present our method to generate the correspondin
 \subsubsection{Initial cavity shape}
 \label{sec:cavity}
 
-To simulate a realistic \ac{RC}, we consider its topological and geometric properties: it is a single volume with a non-smooth boundary.
+To simulate a realistic resection cavity, we consider its topological and geometric properties: it is a single volume with a non-smooth boundary.
 We generate a geodesic polyhedron with frequency $f$ by subdividing the edges of an icosahedron $f$ times and projecting each vertex onto a parametric sphere with a unit radius centered at the origin (\cref{fig:icosahedron}).
 This polyhedron models a spherical surface $S = \{ V, F \}$ with vertices
 $
@@ -85,7 +85,7 @@ where $r = (3 v / 4)^{1/3}$ and
 $\lambda$ controls the semiaxes length ratios\footnote{
   Note the volume of an ellipsoid with semiaxes $(a, b, c)$ is $v = \frac{4}{3} \pi a b c$.
 }.
-These transforms are applied to $V_{\delta}$ to define the initial \ac{RC} surface $S\st{E} = \{ V\st{E}, F \}$, where
+These transforms are applied to $V_{\delta}$ to define the initial resection cavity surface $S\st{E} = \{ V\st{E}, F \}$, where
 $V\st{E} =
 \{
   T\st{S}(\bm{r})
@@ -142,8 +142,8 @@ $.
 
 
 
-The simulated \ac{RC} should not span both hemispheres or include extracerebral tissues such as bone or scalp.
-This section describes our method to ensure that the \ac{RC} appears in anatomically plausible regions.
+The simulated resection cavity should not span both hemispheres or include extracerebral tissues such as bone or scalp.
+This section describes our method to ensure that the resection cavity appears in anatomically plausible regions.
 
 A \ac{T1w} \ac{MRI} is defined as $\X\pre : \Omega \to \R$.
 A full brain parcellation $\bm{P} : \Omega \to Z$ is generated \cite{cardoso_geodesic_2015} for $\X\pre$,
@@ -193,7 +193,7 @@ Finally, $\M_{S_a}$ is restricted by $\M\st{R}^h$ to generate the cavity label $
 \subsubsection{Simulating cavities filled with CSF}
 \label{sec:texture_cavity}
 
-Brain \acp{RC} are typically filled with \ac{CSF}.
+Brain resection cavities are typically filled with \ac{CSF}.
 To generate a realistic \acs{CSF} texture,
 we create a ventricle mask
 ${\M\st{V} : \Omega \to \{ 0, 1 \}}$ from $\bm{P}$, such that
