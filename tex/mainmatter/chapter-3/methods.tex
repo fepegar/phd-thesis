@@ -12,11 +12,11 @@ Finally, the query is submitted using the \ac{API}, which returns the table of d
   \centering
   \includegraphics[trim=25 5 25 25, clip, width=0.8\linewidth]{01_svt_diagram}
   \caption[General architecture of the SVT]{
-    General architecture of the \ac{SVT}.
+    General architecture of the \acf{SVT}.
     1) The user inputs a list of observed seizure semiologies and (optionally) patient's data comprising an \ac{MRI} and brain parcellation of the patient for visualization in the patient's space.
-    2) The \ac{GUI} of the 3D Slicer module is used to input the observed semiologies to the software, without the need to code.
-    3) The 3D Slicer module generates a structured query that is sent to be processed by the querying \ac{API} to access the database.
-    4) The database is queried and the retrieved datapoints are converted into a \ac{3DMMI} visualization showing the \ac{EZ} probability map overlaid to the patient's anatomy, if provided.
+    2) The \acf{GUI} of the 3D Slicer module is used to input the observed semiologies to the software, without the need to code.
+    3) The 3D Slicer module generates a structured query that is sent to be processed by the querying \acf{API} to access the database.
+    4) The database is queried and the retrieved datapoints are converted into a \acf{3DMMI} visualization showing the \acf{EZ} probability map overlaid to the patient's anatomy, if provided.
   }
   \label{fig:svt_architecture}
 \end{figure}
@@ -75,7 +75,7 @@ The user is then presented with the preprocessed data (\cref{fig:svt_loaded}).
   \centering
   \svtscreenshot{02_svt_loaded}
   \caption[SVT after loading a template and its parcellation]{
-    Semiology visualization module after loading an \ac{MNI} template as image reference and its corresponding brain parcellation.
+    Semiology visualization module after loading an \acf{MNI} template as image reference and its corresponding brain parcellation.
     Left: main panel containing a list of suggested semiology terms to be selected by the user;
     right: images in the patient's space.
     Images are shown using the radiological convention, i.e., the left hemisphere is shown on the right and vice versa.
@@ -97,7 +97,7 @@ The dominant hemisphere may also be specified if known, helping to narrow result
   \centering
   \includegraphics[width=0.8\linewidth]{03_svt_semiologies}
   \caption[List of pre-defined semiologies in the GUI]{
-    List of pre-defined semiologies in the \ac{GUI}.
+    List of pre-defined semiologies in the \acf{GUI}.
     Users can select a semiology in the list or add a custom one.
     Custom semiologies are matched to a pre-defined semiology using regular expressions to map concepts associated with that semiology.
   }
@@ -143,7 +143,7 @@ The datapoints table is displayed on the \ac{GUI} and the list of structures is 
   \caption[Results of querying the database with the \textit{Epigastric} semiology]{
     Results of querying the database with the \textit{Epigastric} semiology.
     Left: table showing the number of datapoints associated with each brain structure;
-    right: \ac{EZ} probability map, where brightness (and opacity, on the 2D views) is linearly proportional to the number of datapoints.
+    right: \acf{EZ} probability map, where brightness (and opacity, on the 2D views) is linearly proportional to the number of datapoints.
   }
   \label{fig:svt_query}
 \end{figure}

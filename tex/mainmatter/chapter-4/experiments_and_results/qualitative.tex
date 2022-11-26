@@ -30,7 +30,7 @@ The model successfully segmented the resection cavity on 11/13 images, even thou
   \vskip\baselineskip
   \begin{subfigure}{\textwidth}
     \qualitfig{4_air}
-    \caption{Image with air and CSF within the cavity \label{fig:bite_air}}
+    \caption{Image with air and \ac{CSF} within the cavity \label{fig:bite_air}}
   \end{subfigure}
   \vskip\baselineskip
   \begin{subfigure}{\textwidth}
@@ -43,10 +43,10 @@ The model successfully segmented the resection cavity on 11/13 images, even thou
     \caption{Image with \ac{MRI} motion artifacts and adjacent edema \label{fig:bite_motion}}
   \end{subfigure}
   \caption[Qualitative evaluation on postoperative brain tumor data]{
-    Qualitative evaluation of the self-supervised model on a dataset of postoperative brain tumor \ac{T1wCE} \ac{MRI}.
+    Qualitative evaluation of the self-supervised model on a dataset of postoperative brain tumor \acf{T1wCE} \ac{MRI}.
     The model is robust to multiple challenging scenarios:
     low contrast between the cavity and the brain (\subref{fig:bite_low_contrast}),
-    air and \ac{CSF} within the resection cavity (\subref{fig:bite_air}),
+    air and \acf{CSF} within the resection cavity (\subref{fig:bite_air}),
     highly anisotropic voxel spacing (\subref{fig:bite_aniso}),
     motion artifacts and edema (\subref{fig:bite_motion}),
     and a different modality than used for training (all).
@@ -69,7 +69,7 @@ Despite the large domain shift between the training dataset and the intraoperati
   \includegraphics[trim=0 0 0 12, clip, width=\linewidth]{intra}
   \caption[Qualitative result on an intraoperative \acs{MRI}]{
     Qualitative result on an intraoperative \ac{MRI}.
-    The baseline model correctly discarded regions filled with air or \ac{CSF} outside of the resection cavity.
+    The baseline model correctly discarded regions filled with air or \acf{CSF} outside of the resection cavity.
   }
   \label{fig:intra}
 \end{figure}
