@@ -7,8 +7,11 @@ dst_path = references_dir / 'phd_bold.bib'
 
 patterns = (
     r"P{\'e}rez-Garc{\'i}a",
-    'Fernando',
+    # 'Fernando',
     'Fernando Perez-Garcia',
+    'Fernando Pérez-García',
+    'Pérez-García, Fernando',
+    # 'Pérez-García',
 )
 
 lines = []
