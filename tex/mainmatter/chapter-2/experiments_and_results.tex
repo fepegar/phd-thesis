@@ -34,8 +34,9 @@ We assessed the ability of different feature extractors to model semiologies by 
   \caption[Performance of the feature extractors]{
     Performance of the feature extractors.
     The number of parameters is shown in millions.
-    AUC is the area under the precision-recall curve.
-    Accuracy is computed for \acp{FBTCS} and \acp{FOS}, while $F_1$-score and AUC only for \acp{FBTCS}, represented by an asterisk (*).
+    \acs{AUPRC} is the \acl{AUPRC}.
+    Accuracy is computed for \acp{FBTCS} and \acp{FOS}.
+    $F_1$-score and \acs{AUPRC} only for \acp{FBTCS}, represented by an asterisk (*).
     Metrics are expressed as `median (interquartile range)'.
     Wide R2D-50-2 is a 50-layer 2D ResNet with a widening factor of 2 \cite{zagoruyko_wide_2017}.
     R2D-34 is a standard 2D ResNet with 34 layers \cite{he_deep_2015}.
@@ -43,14 +44,14 @@ We assessed the ability of different feature extractors to model semiologies by 
   }
   \label{tab:models}
   \scriptsize
-  \begin{tabular}{@{}l*7c@{}}
+  \begin{tabular}{@{}lS[table-format=2.0]ccS[table-format=4.0]ccc@{}}
     \toprule
-    \textbf{Model} & \textbf{\# Frames} & \textbf{Type} & \textbf{\# Params.} & \textbf{Features} & \textbf{Accuracy} & $\bm{F_1}$\textbf{-score}* & \textbf{AUC}* \\
+    \textbf{Model} & \textbf{\# Frames} & \textbf{Type} & \textbf{\# Params.} & \textbf{\# Features} & \textbf{Accuracy} & $\bm{F_1}$\textbf{-score}* & \textbf{\acs{AUPRC}}* \\
     \midrule
-    Wide R2D-50-2  & 1                  & \ac{SFCNN}    &              66.8 M &              2048 &       80.3 (33.2) &                67.4 (30.2) &   75.7 (38.4) \\
-    R2D-34         & 1                  & \ac{SFCNN}    &              21.2 M &               512 &       89.7 (27.7) &                73.9 (23.6) &   84.3 (28.7) \\
-    R(2+1)D-34     & 8                  & \ac{STCNN}    &              63.5 M &               512 &       93.9 (18.3) &                81.6 (16.9) &   93.7 (13.4) \\
-    R(2+1)D-34     & 32                 & \ac{STCNN}    &              63.5 M &               512 &       96.9 (12.9) &                84.7 (13.4) &   94.7 (11.9) \\
+    Wide R2D-50-2  & 1                  & \ac{SFCNN}    &              66.8 M &                 2048 &       80.3 (33.2) &                67.4 (30.2) &   75.7 (38.4) \\
+    R2D-34         & 1                  & \ac{SFCNN}    &              21.2 M &                  512 &       89.7 (27.7) &                73.9 (23.6) &   84.3 (28.7) \\
+    R(2+1)D-34     & 8                  & \ac{STCNN}    &              63.5 M &                  512 &       93.9 (18.3) &                81.6 (16.9) &   93.7 (13.4) \\
+    R(2+1)D-34     & 32                 & \ac{STCNN}    &              63.5 M &                  512 &       96.9 (12.9) &                84.7 (13.4) &   94.7 (11.9) \\
     \bottomrule
   \end{tabular}
 \end{table}
