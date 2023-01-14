@@ -27,7 +27,7 @@ The `mean (standard deviation)' of the percentage of the seizure duration before
 A seizure video is represented as a sequence of $K$ frames starting at $t_0$.
 The time of frame $k \in \{ 0, \dots, K - 1 \}$ is ${t_k = t_0 + \frac{k}{f}}$, where $f$ is the video frame rate.
 We use 0 and 1 to represent \ac{FOS} and \ac{FBTCS} labels, respectively.
-The ground-truth label $y_k \in \{0, 1\}$ for frame $k$ is defined as $y_k \coloneqq 0$ if $t_k < t_G$ and 1 otherwise, where $t_G \rightarrow \infty$ for \acp{FOS}.
+The ground-truth label $y_k \in \{0, 1\}$ for frame $k$ is defined as $y_k \coloneqq 0$ if $t_k < t_G$ and 1 otherwise, where $t_G \rightarrow \infty$ for \acp{FOS}. I.e., only frames after the seizure onset are labeled as 1.
 
 Let $\x \in \R ^ {3 \times l \times h \times w}$ be a stack of frames or a \textit{snippet}, where
 $3$ denotes the \ac{RGB} channels,
