@@ -23,7 +23,7 @@ An instance of \texttt{Image} can be created using a filepath, a PyTorch tensor,
 This class uses lazy loading, i.e., the data is not loaded from disk at instantiation time.
 Instead, the data is only loaded when needed for an operation (e.g., if a transform is applied to the image).
 
-\cref{fig:data_structures} shows two instances of \texttt{Image}.
+\Cref{fig:data_structures} shows two instances of \texttt{Image}.
 The instance of \texttt{ScalarImage} contains a 4D tensor representing a \ac{dMRI}, which contains four 3D volumes (one per gradient direction), and the associated affine matrix.
 Additionally, it stores the strength and direction for each of the four gradients.
 The instance of \texttt{LabelMap} contains a brain parcellation of the same subject, the associated affine matrix, and the name and color of each brain structure.

@@ -22,7 +22,7 @@ This information can provide meaningful context when performing medical image pr
 Furthermore, metadata is often used to determine correspondence between images as well as voxels within an image.
 For example, registration algorithms for medical images typically work with physical coordinates rather than voxel indices.
 
-\cref{fig:metadata} shows the superposition of an \ac{MRI} and a corresponding brain parcellation~\cite{cardoso_geodesic_2015} with the same size ($181 \times 181$) but different origin, spacing and orientation.
+\Cref{fig:metadata} shows the superposition of an \ac{MRI} and a corresponding brain parcellation~\cite{cardoso_geodesic_2015} with the same size ($181 \times 181$) but different origin, spacing and orientation.
 A naïve user would assume that, given that the superimposition looks correct and both images have the same size, they are ready for training.
 However, the visualization is correct only because 3D Slicer~\cite{fedorov_3d_2012}, the software used for visualization, is aware of the spatial metadata of the images.
 As \acp{CNN} generally do not take spatial metadata into account, training using these images without preprocessing would lead to poor results.
