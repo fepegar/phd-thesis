@@ -34,17 +34,19 @@ Then, the information in the table is additionally represented using an intuitiv
   \setlength{\tabcolsep}{3pt}
   \centering
   \caption[Result of querying a database with the term \textit{Head version}]{
-    Result of querying an imaginary database with the semiology term \textit{Head version} and exemplar brain structures A, B and C, assuming that the brain has been parcellated into only three structures.
+    Result of querying a hypothetical database with the semiology terms \textit{Head version}, \textit{Ictal speech}, and \textit{Epigastric aura}, and hypothetical brain structures A, B and C, assuming that the brain has been parcellated into only three structures.
     In this example, according to the hypothetical literature analyzed to build the database, structure C was one of the resected structures in 20 patients presenting \textit{Head version} who became seizure-free after surgery, suggesting a high probability of the \ac{EZ} being associated with that structure.
     Structure B was resected for five patients who became seizure-free after surgery.
     Structure A was never resected in patients who presented \textit{Head version} and became seizure-free after surgery.
     This result would support the decision of implanting electrodes in structure C (and possibly B), as they are likely to be associated with the \ac{EZ} according to the retrospective information in the literature.
   }
   \label{tab:single_semiology}
-  \begin{tabular}{l*3c}
+  \begin{tabular}{lSSS}
     \toprule
-                          & \textbf{Structure A} & \textbf{Structure B} & \textbf{Structure C} \\
+                             & \textbf{Structure A} & \textbf{Structure B} & \textbf{Structure C} \\
     \midrule
-    \textbf{Head version} &                    0 &                    5 &                   20 \\
+    \textbf{Head version}    &                    0 &                    5 &                   20 \\
+    \textbf{Ictal speech}    &                   52 &                   12 &                    2 \\
+    \textbf{Epigastric aura} &                    5 &                    7 &                    0 \\
   \end{tabular}
 \end{table}
