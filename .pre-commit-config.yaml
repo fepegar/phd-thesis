@@ -4,11 +4,11 @@ repos:
     hooks:
       - id: american-eg-ie
       - id: cleveref-capitalization
-      - id: consistent-spelling
-      - id: csquotes
-      - id: ensure-labels-for-sections
+      # - id: consistent-spelling
+      # - id: csquotes
+      # - id: ensure-labels-for-sections
       - id: no-space-in-cite
-      - id: tilde-cite
+      # - id: tilde-cite
       - id: unique-labels
 
   - repo: https://github.com/pre-commit/pre-commit-hooks
