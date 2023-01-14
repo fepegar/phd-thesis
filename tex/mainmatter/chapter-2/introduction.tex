@@ -25,7 +25,7 @@ Early quantitative analysis studies of epileptic seizures evaluated patient moti
 These methods are not robust to obscurations by bed linens or clinical staff, differences in illumination and pose, or poor video quality caused by compression artifacts or details out of focus.
 
 % Other works using deep learning
-Neural networks can overcome these challenges by automatically learning features from the training data that are more robust to variations in the data distribution.
+Neural networks can partially overcome these challenges by automatically learning features that are more robust to variations in the data distribution, leveraging large-scale training datasets from similar domains for pre-training.
 Most related works using neural networks focus on classifying the \emph{epilepsy type} by predicting the location of the \ac{EZ}, e.g., ``temporal lobe epilepsy'' vs. ``extratemporal lobe epilepsy'', from short ($\le \SI{2}{s}$) snippets extracted from videos of one or more seizures \cite{ahmedt-aristizabal_deep_2018,ahmedt-aristizabal_hierarchical_2018,ahmedt-aristizabal_deep_2018-1,maia_epileptic_2019,karacsony_deep_2020}.
 Typically, this is done as follows.
 First, the bed is detected in the first frame and the entire video is cropped so the \ac{FOV} is centered on the bed.
