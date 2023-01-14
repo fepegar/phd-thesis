@@ -71,6 +71,7 @@ To model the relevant patient motion during seizure without the need for object 
 Then, an \ac{RNN} is used to learn a representation for the full duration of the seizure.
 
 % Our proof-of-concept task
-We chose as a proof of concept to distinguish between \acp{FOS} and \acp{FBTCS}, because the key distinction, if the discharge spreads across hemispheres, is only observed later in the seizure.
+We chose as a proof of concept to distinguish between \acp{FOS} and \acp{FBTCS}, because the key distinction, if the discharge spreads across hemispheres, is only observed later in the seizure%
+\footnote{Strictly speaking, \acp{FBTCS} are a subset of \acp{FOS}. Therefore, in this work, we actually train a neural network to detect whether a \ac{FOS} generalizes (becoming a \ac{FBTCS}) or not.}.
 This task demonstrates that we can train a model to take into account features across the entirety of the seizure to distinguish between seizure types.
 The main challenge (even for humans), apart from the typical challenges in video-telemetry data described above, is distinguishing between \acp{FBTCS} and hyperkinetic \acp{FOS}, which are characterized by intense motor activity involving the extremities and trunk.
