@@ -150,9 +150,18 @@ Furthermore, the \texttt{Subject} class includes a method to compose the transfo
 
 \subsubsection{Invertibility}
 
-Inverting transforms is especially useful in scenarios where one needs to apply some transformation, infer a segmentation on the transformed data and then apply the inverse transformation to bring the inference into the original image space.
+Inverting transforms is especially useful in scenarios where one needs to apply some transformation, infer a segmentation on the transformed data and then apply the inverse transformation to bring the inferred images back into the original image space.
 The \texttt{Subject} class includes a method to invert the transformations applied.
 It does this by first inverting all transforms that are invertible, discarding the ones that are not.
 Then, it composes the invertible transforms into a single transform.
 
-Transforms invertibility is most commonly applied to test-time augmentation \cite{moshkov_test-time_2020} or estimation of aleatoric uncertainty \cite{wang_aleatoric_2019} in the context of image segmentation.
+Transforms can be classified in three types, according to their degree of invertibility:
+\begin{itemize}
+  \item \textbf{Lossless}: Transforms that can be inverted with no loss of information, such as \texttt{RandomFlip}, \texttt{Pad}, or \texttt{RandomNoise}.
+
+  \item \textbf{Lossy}: Transforms that can be inverted with some loss of information, such as \texttt{RandomAffine}, or \texttt{Crop}.
+
+  \item \textbf{Non-invertible}: Transforms that cannot be inverted, such as \texttt{RandomBlur}.
+\end{itemize}
+
+Transforms inversion is most commonly used for test-time augmentation \cite{moshkov_test-time_2020}, or to estimation of aleatoric uncertainty \cite{wang_aleatoric_2019} in the context of image segmentation.
