@@ -7,3 +7,7 @@ Automatically built by the [Build LaTeX document](https://github.com/fepegar/phd
 [![Build LaTeX document](https://github.com/fepegar/phd-thesis/actions/workflows/build.yml/badge.svg)](https://github.com/fepegar/phd-thesis/actions/workflows/build.yml)
 
 ![Title page](./misc/title-page.png)
+
+## Acknowledgments
+
+This thesis is built on top of [Prof. Tom Vercauteren](https://www.kcl.ac.uk/people/tom-vercauteren)'s [template](https://github.com/tvercaut/TomThesisTemplate).
