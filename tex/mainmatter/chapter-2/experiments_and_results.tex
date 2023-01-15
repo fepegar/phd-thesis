@@ -13,7 +13,7 @@ Experiments were implemented in PyTorch 1.7.0.
 We used a stratified 10-fold cross-validation, generated to ensure the total duration of the videos and ratio of \acp{FOS} to \acp{FBTCS} were similar across folds.
 Both views from the same video were assigned to the same fold, but videos from the same patient were not.
 This is because individual patients can present with both \acp{FOS} or \acp{FBTCS}, so data leakage at the patient level is not a concern.
-We minimized the weighted binary cross-entropy loss to overcome dataset imbalance, using the AdamW optimizer \cite{loshchilov_decoupled_2019}.
+We minimized the weighted binary cross-entropy loss to overcome dataset imbalance, using the AdamW optimizer \cite{loshchilov_decoupled_2017}.
 The code is available at \myhref{https://github.com/fepegar/gestures-miccai-2021}.
 
 For each fold, evaluation is performed using the model from the epoch with the lowest validation loss.
@@ -38,7 +38,7 @@ We assessed the ability of different feature extractors to model semiologies by 
     Accuracy is computed for \acp{FBTCS} and \acp{FOS}.
     $F_1$-score and \acs{AUPRC} only for \acp{FBTCS}, represented by an asterisk (*).
     Metrics are expressed as `median (interquartile range)'.
-    Wide R2D-50-2 is a 50-layer 2D ResNet with a widening factor of 2 \cite{zagoruyko_wide_2017}.
+    Wide R2D-50-2 is a 50-layer 2D ResNet with a widening factor of 2 \cite{zagoruyko_wide_2016}.
     R2D-34 is a standard 2D ResNet with 34 layers \cite{he_deep_2015}.
     R(2+1)D-34 is a spatiotemporal---(2+1D)---ResNet with 34 layers used for video processing; these spatiotemporal models can take 8 or 32 frames as input \cite{ghadiyaram_large-scale_2019}.
   }
@@ -58,7 +58,7 @@ We assessed the ability of different feature extractors to model semiologies by 
 
 We used two pre-trained versions of the \ac{STCNN} R(2+1)D-34 \cite{ghadiyaram_large-scale_2019} that take as inputs 8 frames ($\approx \SI{0.5}{s}$) or 32 frames ($\approx \SI{2.1}{s}$).
 Models were trained using weakly supervised learning on over 65 million Instagram videos and fully supervised learning on over 250,000 YouTube videos of human actions.
-We selected two pre-trained \acp{SFCNN} with 34 (R2D-34) and 50 (Wide R2D-50-2) layers, trained on ImageNet \cite{zagoruyko_wide_2017}.
+We selected two pre-trained \acp{SFCNN} with 34 (R2D-34) and 50 (Wide R2D-50-2) layers, trained on ImageNet \cite{zagoruyko_wide_2016}.
 The \acp{SFCNN} were chosen so the numbers of layers (34) and parameters ($\approx 65$ million) were similar to the \acp{STCNN}.
 
 To ensure that all features datasets have the same number of training instances, we divided each video into segments of 32 frames.
