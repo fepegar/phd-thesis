@@ -1,0 +1,31 @@
+% Background
+Epilepsy is a complex disorder with complicated treatment pathways.
+Symptoms are strongly heterogeneous across patients and, often, across seizures within same patient.
+Interpretation of the clinical data and the subsequent decisions are often performed differently by teams in different institutions.
+Decisions are often taken subjectively, based on clinicians' experience, who have seen a finite number of cases in their careers.
+This implies that younger and less experienced clinicians may make less apropriate choices, compared to more experienced colleagues.
+Data-driven techniques, such as machine learning, may be used to take objective decisions based on large amounts of retrospective data.
+However, large datasets are rarely available in epilepsy units, hindering the performance of approaches reliant on vast amounts of data.
+
+% Challenges
+Deep learning, the main set of techniques utilized in this thesis, has seen great success in the last decade, in part due to improvements and increased availability of hardware, such as \acp{GPU}, and the vast amount of data generated every day.
+However, large datasets are typically not readily available in clinical settings because of privacy concerns and the expense to acquire annotations.
+
+% Aim
+The overall goal of this thesis is to develop and validate data-driven approaches applied to several steps in the treatment pathway, especially when the available datasets are relatively small.
+We leverage techniques such as transfer learning, self-supervised learning and semi-supervised learning to overcome these low-data regimes.
+
+We used transfer learning within our framework for classification of seizure videos to avoid overfitting our models to the small datasets available for training, showing that a model trained on massive datasets for human action recognition (extracted from Instagram and YouTube) can be adapted to improve the treatment of epilepsy (\cref{chap:videos}).
+The main improvement with respect to previous work \cite{ahmedtaristizabal_automated_2017,cunha_neurokinect_2016,ahmedt-aristizabal_deep_2018,ahmedt-aristizabal_hierarchical_2018,maia_epileptic_2019,karacsony_deep_2020} is that we classify seizure types and not epilepsy types, and our method is not limited to short clips lasting some seconds, but can be applied to seizures of arbitrary length.
+
+As annotating 3D \ac{MRI} is expensive, we developed a framework to simulate resected images that can be used for self-supervised training, i.e., training examples that are self-annotated.
+This approach allowed us to train a deep learning model for segmentation of resection cavities.
+To support the utility of our method in a typical clinical setting, where relatively large datasets without annotations are available, we used semi-supervised learning with uncertainty-driven selection of real postoperative images without annotations for training, improving the performance of our models.
+Additionally, we showed that our model can be easily fine-tuned to small datasets from different institutions with varying quality, acquisition type and resection types (\cref{chap:resection}).
+Compared to previous methods \cite{ermis_fully_2020,meier_automatic_2017}, our approach does not require any annotated data and it is robust to different \acs{MRI} sequences, and does not require skull-stripping or removal of bias field artifacts.
+Moreover, we only used publicly available data to train our model, and shared our curated EPISURG dataset for further research in the field.
+
+Data augmentation may be used to modify training examples, simulating larger datasets available for training and therefore improving the generalizability of the trained models to unseen instances.
+We developed TorchIO, a software library for preprocessing and augmentation of multidimensional medical images (\cref{chap:torchio}).
+TorchIO uses PyTorch, as opposed to older libraries built on top of TensorFlow \cite{pawlowski_dltk_2017,gibson_niftynet_2018}.
+It processes up to 4D data at the image level (as opposed to patch level \cite{isensee_batchgenerators_2020}), and does not need slice-by-slice processing \cite{christian_s_perone_peronemedicaltorch_2018}.
