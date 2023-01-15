@@ -14,12 +14,21 @@ Quantitative and qualitative evaluations are illustrated in \cref{fig:finetuning
 
 \begin{figure}
   \centering
-  \includegraphics[trim=1cm 0 0.8cm 0, clip, width=\linewidth]{boxplot_finetuning}
+  % \includegraphics[trim=1cm 0 0.8cm 0, clip, width=\linewidth]{boxplot_finetuning}
+  \begin{subfigure}[b]{0.70\linewidth}
+    \centering
+    \includegraphics[trim=1cm 0 4.8cm 0, clip, width=\linewidth]{boxplot_finetuning}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[b]{0.205\linewidth}
+    \centering
+    \includegraphics[trim=15.0cm 0 0.8cm 0, clip, width=\linewidth]{boxplot_finetuning}
+  \end{subfigure}
   \caption[Dice score without before and after fine-tuning]{
-    \acf{DSC} without (blue) and with (orange) fine-tuning of the model training using self-supervision.
+    \acf{DSC} before (blue) and after (orange) fine-tuning the model training using self-supervision.
     Horizontal lines in the boxes represent the first, second (median) and third quartiles.
-    The `EPISURG (worst)' dataset comprises the 20 cases from EPISURG with the lowest \ac{DSC} in the experiment described in \cref{sec:self}.
     Numbers in parentheses indicate subjects per dataset.
+    The `EPISURG (worst)' dataset (right) comprises the 20 cases from EPISURG with the lowest \ac{DSC} in the experiment described in \cref{sec:self}; this additional experiment suggests that few-shot fine-tuning is helpful even for very hard cases (\cref{fig:hard_resections}).
   }
   \label{fig:finetuning_quant}
 \end{figure}

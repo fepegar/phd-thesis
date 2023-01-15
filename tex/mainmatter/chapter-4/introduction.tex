@@ -13,6 +13,95 @@ A preoperative image with a corresponding brain parcellation can then be registe
 Resection cavity segmentation is also necessary in other applications.
 For neuro-oncology, the gross tumor volume, which is the sum of the resection cavity and residual tumor volumes, is estimated for postoperative radiotherapy \cite{ermis_fully_2020}.
 
+Manual segmentation of images is a time-consuming and tedious process, often prone to intra- and inter-rater variability due to fatigue, data overload, or missing manual steps.
+Moreover, it can take multiple hours for a human to perform a segmentation of a single three-dimensional medical image \cite{sharma_automated_2010}.
+
+While resection cavity segmentation may appear a simple task, the resection cavity fills with \ac{CSF}, and there are many \ac{MRI} sequences where \ac{CSF} and brain tissue have no distinct appearance.
+Moreover, multiple circumstances make automatic segmentation challenging, such as
+variation in intensity range in MR images,
+missing preoperative data,
+white-matter hypointensities around the resection cavity,
+small cavities (e.g., with size comparable to a sulcus),
+brain shift due to perioperative \ac{CSF} leakage,
+postoperative edema,
+other tissues present in the cavity (e.g., blood clots),
+arachnoid cysts,
+brain atrophy,
+presence of large ventricles, or
+union of lateral ventricle and cavity.
+\Cref{fig:hard_resections} shows multiple examples of challenging images.
+
+\begin{figure}
+  % \centering
+
+  \begin{subfigure}{0.49\textwidth}
+    \centering
+    \includegraphics[width=\linewidth]{figures/hard_0}
+    \caption{Small frontal lesionectomy surrounded by hypointense white matter}
+    \label{fig:hard_sub_0}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}{0.49\textwidth}
+    \centering
+    \includegraphics[width=\linewidth]{figures/hard_1}
+    \caption{Brain shift after contralateral temporal lobectomy}
+    \label{fig:hard_sub_1}
+  \end{subfigure}
+
+  \bigskip
+
+  \begin{subfigure}{0.49\textwidth}
+    \centering
+    \includegraphics[width=\linewidth]{figures/hard_3}
+    \caption{Small frontal lesionectomy near the Sylvian fissure}
+    \label{fig:hard_sub_3}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}{0.49\textwidth}
+    \centering
+    \includegraphics[width=\linewidth]{figures/hard_4}
+    \caption{Lack of boundaries between edema and resection cavity}
+    \label{fig:hard_sub_4}
+  \end{subfigure}
+
+  \bigskip
+
+  \begin{subfigure}{0.49\textwidth}
+    \centering
+    \includegraphics[width=\linewidth]{figures/hard_5}
+    \caption{Possible blood clot within the cavity}
+    \label{fig:hard_sub_5}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}{0.49\textwidth}
+    \centering
+    \includegraphics[width=\linewidth]{figures/hard_6}
+    \caption{Brain shift, edema and resection cavity}
+    \label{fig:hard_sub_6}
+  \end{subfigure}
+
+  \bigskip
+
+  \begin{subfigure}{0.49\textwidth}
+    \centering
+    \includegraphics[width=\linewidth]{figures/hard_7}
+    \caption{Arachnoid cyst and resection cavity}
+    \label{fig:hard_sub_7}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}{0.49\textwidth}
+    \centering
+    \includegraphics[width=\linewidth]{figures/hard_8}
+    \caption{Cerebellar degeneration}
+    \label{fig:hard_sub_8}
+  \end{subfigure}
+
+  \caption{
+    Examples of challenging cases for segmentation of resection cavities.
+  }
+  \label{fig:hard_resections}
+\end{figure}
+
 Despite recent efforts to segment resection cavities in the context of brain cancer \cite{meier_automatic_2017,ermis_fully_2020}, little research has been published in the context of epilepsy surgery.
 Furthermore, previous work is limited by the lack of benchmark datasets, released code or trained models, and evaluation is restricted to single-institution datasets used for both training and testing.
 
@@ -23,7 +112,14 @@ After surgery, resection cavities fill with \ac{CSF}.
 This causes an inherent uncertainty in delineating resection cavities adjacent to structures such as sulci, ventricles or edemas.
 Nonlinear registration has been presented to segment the resection cavity for epilepsy \cite{chitphakdithai_non-rigid_2010} and brain tumor \cite{chen_deformable_2015} surgeries by detecting non-corresponding regions between pre- and postoperative images.
 However, evaluation of these methods was restricted to a very small number of images.
-Furthermore, in cases with intensity changes due to the resection (e.g., brain shift, atrophy, fluid filling), non-corresponding voxels may not correspond to the resection cavity.
+Furthermore, in cases with intensity changes due to the resection (e.g., brain shift, atrophy, fluid filling), non-corresponding voxels may not correspond to the resection cavity (\cref{fig:missing_correspondences}).
+
+\begin{figure}
+  \centering
+  \includegraphics[width=\linewidth]{figures/edema_0985}
+  \caption[Example of a patient with postoperative edema]{Example of a patient with postoperative edema (green circle) and resection cavity (pink circle), where registration would be challenging due to missing correspondences between the pre- and post-operative images.}
+  \label{fig:missing_correspondences}
+\end{figure}
 
 Decision forests were presented for brain cavity segmentation after glioblastoma surgery, using four \ac{MRI} modalities \cite{meier_automatic_2017}.
 These methods, which aggregate hand-crafted features extracted from all  modalities to train a classifier, can be sensitive to signal inhomogeneity and unable to distinguish regions with intensity patterns similar to \ac{CSF} from resection cavities.
