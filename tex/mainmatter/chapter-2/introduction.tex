@@ -34,7 +34,7 @@ Then, a \ac{RNN} aggregates the features into a \emph{snippet-level} representat
 Finally, a \emph{subject-level} prediction is obtained by averaging all snippet-level predictions.
 This approach has several disadvantages.
 First, it is not robust to incorrect bed detection or changes in the \ac{FOV} due to zooming or panning.
-Second, the order of semiologies is ignored, as the epilepsy type is predicted from short snippets independently of their occurrence during a seizure.
+Second, the order of semiologies is ignored, as the epilepsy type is predicted from short snippets independently of when they occur during a seizure.
 Moreover, patients with the same epilepsy type may present several seizure types.
 Finally, training neural networks from small datasets, as is often the case in clinical settings, leads to limited model generalizability to new data.
 

@@ -55,7 +55,7 @@ The usage examples in this paper use the \svtdatabase database and the correspon
 \fnurl{http://www.neuromorphometrics.com}.
 
 To query the \svtdatabase database, in this work we used the \texttt{mega\_analysis} package, which can be installed using \ac{PIP} \cite{alim-marvasti_cortical_2022}.
-The \texttt{mega\_analysis} software package is installed within the 3D Slicer Python environment in the background, when loading the module, unless it was already installed.
+The \ac{SVT} installs the \texttt{mega\_analysis} software package within the 3D Slicer Python environment in the background, when loading the module, unless it was already installed.
 
 
 \subsection{Data loading}
@@ -77,7 +77,7 @@ The user is then presented with the preprocessed data (\cref{fig:svt_loaded}).
   \caption[SVT after loading a template and its parcellation]{
     Semiology visualization module after loading an \acf{MNI} template as image reference and its corresponding brain parcellation.
     Left: main panel containing a list of suggested semiology terms to be selected by the user;
-    right: images in the patient's space.
+    right: images in the patient's space (in this example, it is actually the space of the \ac{MNI} template).
     Images are shown using the radiological convention, i.e., the left hemisphere is shown on the right and vice versa.
   }
   \label{fig:svt_loaded}
@@ -134,7 +134,7 @@ Details on how the datapoints for multiple semiologies are combined can be found
 \subsection{Visualization}
 \label{sec:svt_visualization}
 
-Results from the database query are shown to the user in two ways: a table and a rendering leveraging the brain parcellation image loaded by the user.
+Results from the database query are shown to the user in two ways: a table and a 3D rendering leveraging the brain parcellation image loaded by the user.
 The datapoints table is displayed on the \ac{GUI} and the list of structures is sorted by the number of datapoints, showing first the structures with the highest number of datapoints in the database (\cref{fig:svt_query,fig:svt_case_heatmap}).
 
 \begin{figure}

@@ -11,7 +11,7 @@ Otherwise, \ac{iEEG} electrodes may be implanted to localize the \ac{EZ} precise
 To determine the brain regions that need to be implanted with electrodes, i.e., the targets, the team leverages information from the previously described non-invasive examinations.
 The choice of targets is therefore influenced by the team's subjective experience and personal knowledge of the literature.
 This leads to substantial variations of implantation strategies across different epilepsy centers \cite{tufenkjian_seizure_2012}.
-Whilst the symptomatogenic and epileptogenic zones may not be coterminous, if a patient with particular semiological features becomes seizure-free after resection of a certain brain region, it is a reasonable inference considering that semiological feature as a marker for the curative resection of that area.
+Whilst the symptomatogenic and epileptogenic zones may not be coterminous, if a patient with particular semiological features becomes seizure-free after resection of a certain brain region, it is reasonable to consider that semiological feature as a marker for the curative resection of that area.
 The diagnostic pathway for surgical planning could therefore be supported and standardized by an objective tool to aid clinicians in deducing the possible \ac{EZ} location from patient seizure semiology.
 
 It would be useful for clinicians to be able to quickly and easily assess relevant studies in the literature for a specific semiology.
@@ -25,28 +25,28 @@ Moreover, visualizing the probability of each structure containing the \ac{EZ} o
 % %%%%%%%%%%%%%%%%%%%
 Finally, a \ac{3DMMI} visualization could be used to perform qualitative and quantitative analyses of information contained in the database and further refine its utility to predict the \ac{EZ}.
 
-In this work, we present the \ac{SVT}, a software tool that, given an observed list of seizure semiologies, provided by clinical observation, and other patient data, such as the dominant hemisphere, displays possible \ac{EZ} locations in an intuitive way.
+In this work, we present the \ac{SVT}, a software tool that, given an observed list of seizure semiologies provided by clinical observation and other patient data, such as the dominant hemisphere, displays possible \ac{EZ} locations in an intuitive way.
 The \ac{SVT} provides a table with the number of datapoints associated with each brain region, where each datapoint represents a patient reported in the literature presenting the observed semiology, with an \ac{EZ} objectively determined to arise from the brain region, e.g., becoming seizure-free after resection of that region (\cref{tab:single_semiology}).
 Then, the information in the table is additionally represented using an intuitive \ac{3DMMI} visualization, personalized to each patient's imaging data.
 
 
 \begin{table}[hb]
-  \setlength{\tabcolsep}{3pt}
+  \setlength{\tabcolsep}{8pt}
   \centering
-  \caption[Result of querying a database with the term \textit{Head version}]{
-    Result of querying a hypothetical database with the semiology terms \textit{Head version}, \textit{Ictal speech}, and \textit{Epigastric aura}, and hypothetical brain structures A, B and C, assuming that the brain has been parcellated into only three structures.
-    In this example, according to the hypothetical literature analyzed to build the database, structure C was one of the resected structures in 20 patients presenting \textit{Head version} who became seizure-free after surgery, suggesting a high probability of the \ac{EZ} being associated with that structure.
+  \caption[Table created after querying a database]{
+    Table created after querying a database with the hypothetical semiology terms \textit{Semiology 1}, \textit{Semiology 2}, and \textit{Semiology 3}, and hypothetical brain structures A, B and C, assuming that the brain has been parcellated into only three structures.
+    In this example, according to the hypothetical literature analyzed to build the database, structure C was one of the resected structures in 20 patients presenting \textit{Semiology 1} who became seizure-free after surgery, suggesting a high probability of the \ac{EZ} being associated with that structure.
     Structure B was resected for five patients who became seizure-free after surgery.
-    Structure A was never resected in patients who presented \textit{Head version} and became seizure-free after surgery.
+    Structure A was never resected in patients who presented \textit{Semiology 1} and became seizure-free after surgery.
     This result would support the decision of implanting electrodes in structure C (and possibly B), as they are likely to be associated with the \ac{EZ} according to the retrospective information in the literature.
   }
   \label{tab:single_semiology}
   \begin{tabular}{lSSS}
     \toprule
-                             & \textbf{Structure A} & \textbf{Structure B} & \textbf{Structure C} \\
+                         & \textbf{Structure A} & \textbf{Structure B} & \textbf{Structure C} \\
     \midrule
-    \textbf{Head version}    &                    0 &                    5 &                   20 \\
-    \textbf{Ictal speech}    &                   52 &                   12 &                    2 \\
-    \textbf{Epigastric aura} &                    5 &                    7 &                    0 \\
+    \textbf{Semiology 1} &                    0 &                    5 &                   20 \\
+    \textbf{Semiology 2} &                   52 &                   12 &                    2 \\
+    \textbf{Semiology 3} &                    5 &                    7 &                    0 \\
   \end{tabular}
 \end{table}

@@ -61,7 +61,7 @@ Models were trained using weakly supervised learning on over 65 million Instagra
 We selected two pre-trained \acp{SFCNN} with 34 (R2D-34) and 50 (Wide R2D-50-2) layers, trained on ImageNet \cite{zagoruyko_wide_2016}.
 The \acp{SFCNN} were chosen so the numbers of layers (34) and parameters ($\approx 65$ million) were similar to the \acp{STCNN}.
 
-To ensure that all features datasets have the same number of training instances, we divided each video into segments of 32 frames.
+To ensure that all datasets of feature vectors have the same number of training instances, we divided each video into segments of 32 frames.
 Then, we use the models to extract features from snippets of the required length (8, 32, or 1) such that all snippets are centered in the segments.
 The datasets of extracted feature vectors are publicly available \cite{perez-garcia_data_2021}.
 We trained a fully-connected layer for 400 epochs on each feature set, treating views from the same video independently.

@@ -6,7 +6,7 @@ TorchIO uses the medical imaging libraries NiBabel and SimpleITK to read and wri
 Dependency on both is necessary to ensure broad support of image formats.
 For instance, NiBabel does not support reading \ac{PNG} files, while SimpleITK does not support some neuroimaging-specific formats.
 
-TorchIO supports up to 4D images, i.e., 2D or 3D single-channel or multi-channel data such as X-rays, \ac{RGB} histological slides, microscopy stacks, multispectral images, \ac{CT}-scans \ac{fMRI} and \ac{dMRI}.
+TorchIO supports up to 4D images, i.e., 2D or 3D single-channel or multi-channel data such as X-rays, \ac{RGB} histological slides, microscopy stacks, multispectral images, \ac{CT}-scans, \ac{fMRI} and \ac{dMRI}.
 
 
 \subsubsection{Data structures}
@@ -137,7 +137,7 @@ The end of a training epoch is defined as the moment after which patches from al
 At the beginning of each training epoch, the subjects list in the \texttt{SubjectsDataset} is shuffled, as is typically done in machine learning pipelines to increase variance of training instances during model optimization.A PyTorch loader queries the datasets copied in each subprocess,which load and process the volumes in parallel on the \ac{CPU}.
 A PyTorch loader begins by shallow-copying the dataset to each subprocess.
 Each worker subprocess loads and applies image transforms to the volumes in parallel.
-A patches list is filled with patches extracted by the sampler, and the queue is shuffled once it has reached a specified maximum length so that batches are composed of patches from different subjects.
+A list of patches is filled with patches extracted by the sampler, and the queue is shuffled once it has reached a specified maximum length so that batches are composed of patches from different subjects.
 The internal data loader continues querying the \texttt{SubjectsDataset} using multiprocessing.
-The patches list, when emptied, is refilled with new patches.
+The list of patches, when emptied, is refilled with new patches.
 A second data loader, external to the queue, may be used to collate batches of patches stored in the queue, which are passed to the neural network.
