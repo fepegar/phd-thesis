@@ -78,22 +78,12 @@ The difference between \acp{STCNN} was not significant ($p = 0.012$).
 
 \begin{figure}
   \centering
-  \includegraphics[width=0.8\textwidth]{diagram_gestures}
-  \caption[Overview of the GESTURES architecture]{
-    Our architecture: \acf{GESTURES}.
-    We train only the models with thick red borders.
-    FC stands for `fully-connected'.
-  }
-  \label{fig:gestures}
-\end{figure}
-
-
-
-\begin{figure}
-  \centering
   \includegraphics[width=0.7\textwidth]{beta}
   \caption[Probability distributions to sample snippets from video segments]{
     Probability distributions used to sample snippets from video segments.
+    The parameter $\gamma$ controls the dispersion of the $\text{Beta}$ distribution.
+    When $\gamma = 1$, the distribution is uniform and all snippets in the segment have the same probability of being sampled.
+    When $\gamma \rightarrow \infty$, the distribution is a Dirac delta function and the snippet in the middle of the segment is always sampled.
   }
   \label{fig:betas}
 \end{figure}
@@ -121,6 +111,7 @@ We used a weighted binary cross-entropy loss for training, where the weight for 
   \caption[Quantitative results for seizure-level classification]{
     Quantitative results for seizure-level classification.
     Marker brightness is proportional to the dispersion associated with the probability distribution used to sample snippets from the video segments (see \cref{fig:betas}).
+    The best results are obtained using \acp{LSTM} or \acp{BLSTM}, and a large number of segments.
   }
   \label{fig:aggregation}
 \end{figure}

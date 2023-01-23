@@ -18,6 +18,22 @@ In this work, we do not update $\pars{\x}$ during training.
 \subsection{Seizure-level classification}
 \label{sec:meth_seizure}
 
+\Cref{fig:gestures} shows an overview of our architecture for seizure-level classification.
+
+\begin{figure}
+  \centering
+  \includegraphics[width=0.8\textwidth]{diagram_gestures}
+  \caption[Overview of the GESTURES architecture]{
+    Overview of our architecture for seizure-level classification, which we name \acf*{GESTURES}.
+    We train only the models with thick red borders.
+    The video is split into $n$ segments of equal duration.
+    A snippet $\x_k$ is sampled from each segment.
+    Each snippet is fed to the feature extractor $\Cx$, which outputs a feature vector $\z_k$.
+    The sequence of feature vectors is aggregated using a \acf*{RNN} $\Rs$ to produce a single feature vector $\z$, which is passed to a fully-connected (FC) layer $\Fzs$ to produce a prediction $\hat{\Yb}$ representing a \acf*{FOS} or a \acf*{FBTCS}.
+  }
+  \label{fig:gestures}
+\end{figure}
+
 \subsubsection{Temporal segment network}
 Let $V = \{ \x_k \}_{k=1}^{K-l}$ be the set of all possible snippets sampled from a seizure video.
 We define a sampling function $f : (V, n, \gamma) \mapsto S$ that extracts a sequence $S$ of $n$ snippets by splitting $V$ into $n$ non-overlapping segments and randomly sampling one snippet per segment.
