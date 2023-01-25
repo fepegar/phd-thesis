@@ -8,7 +8,17 @@ As previously mentioned, only 40\,\% to 70\,\% of patients with refractory focal
 This is, in part, due to limitations identifying the \ac{EZ} during the presurgical evaluation.
 Retrospective studies relating presurgical clinical features and resected brain structures to surgical outcome provide useful insights to guide \ac{EZ} resection \cite{jobst_resective_2015}.
 To quantify resected structures, first, the resection cavity must be segmented on the postoperative \ac{MRI}.
-A preoperative image with a corresponding brain parcellation can then be registered to the postoperative \ac{MRI} to identify resected structures.
+A preoperative image with a corresponding brain parcellation can then be registered to the postoperative \ac{MRI} to identify resected structures (\cref{fig:resection_diagram}).
+
+\begin{figure}
+  \centering
+  \includegraphics[width=\linewidth]{from_slides/resection_diagram}
+  \caption[Diagram of a pipeline to compute resected structures]{
+    Diagram of an automatic image processing pipeline used to compute resected structures from a preoperative \ac{MRI} and a postoperative \ac{MRI}.
+    In this work, we focus on the elements marked in orange, at the bottom left of the diagram.
+  }
+  \label{fig:resection_diagram}
+\end{figure}
 
 Resection cavity segmentation is also necessary in other applications.
 For neuro-oncology, the gross tumor volume, which is the sum of the resection cavity and residual tumor volumes, is estimated for postoperative radiotherapy \cite{ermis_fully_2020}.

@@ -22,7 +22,47 @@ Therefore, automatic and quantitative analysis of video-recorded seizures is nee
 
 % Other works not using deep learning
 Early quantitative analysis studies of epileptic seizures evaluated patient motion by attaching infrared reflective markers to key points on the body or using cameras with color and depth streams \cite{li_z_movement_2002,cunha_movement_2003,odwyer_lateralizing_2007,cunha_neurokinect_2016}.
-These methods are not robust to obscurations by bed linens or clinical staff, differences in illumination and pose, or poor video quality caused by compression artifacts or details out of focus.
+These methods are not robust to obscurations by bed linens or clinical staff, differences in illumination and pose, or poor video quality caused by compression artifacts or details out of focus (\cref{fig:video_challenges})%
+\footnote{Deidentified images are reproduced with patients' permission. The study was approved by the National Research Ethics Committee (United Kingdom; 04/Q0512/77 and 14/SW/0021) and all patients gave written informed consent.}.
+
+\begin{figure}
+  \centering
+
+  \begin{subfigure}{0.48\linewidth}
+    \includegraphics[width=\linewidth]{from_slides/gestures-218}
+    \caption{\label{fig:gestures_video_1}}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}{0.48\linewidth}
+    \includegraphics[width=\linewidth]{from_slides/gestures-219}
+    \caption{\label{fig:gestures_video_2}}
+  \end{subfigure}
+
+  \par\bigskip
+
+  \begin{subfigure}{0.48\linewidth}
+    \includegraphics[width=\linewidth]{from_slides/gestures-220}
+    \caption{\label{fig:gestures_video_3}}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}{0.48\linewidth}
+    \includegraphics[width=\linewidth]{from_slides/gestures-221}
+    \caption{\label{fig:gestures_video_4}}
+  \end{subfigure}
+
+  \caption[Examples of challenging seizure videos in our dataset]{
+    Examples of challenging seizure videos in our dataset.
+    Some observed phenomena are:
+    camera out of focus (\subref{fig:gestures_video_1}),
+    infrared acquisition (\subref{fig:gestures_video_1}, \subref{fig:gestures_video_2}, \subref{fig:gestures_video_3}),
+    low lighting~(\subref{fig:gestures_video_2}),
+    compression artifacts (\subref{fig:gestures_video_3}),
+    interlacing artifacts (\subref{fig:gestures_video_1}, \subref{fig:gestures_video_2}, \subref{fig:gestures_video_3}, \subref{fig:gestures_video_4}),
+    occlusion by bedsheets (\subref{fig:gestures_video_1}, \subref{fig:gestures_video_2}, \subref{fig:gestures_video_3}, \subref{fig:gestures_video_4}),
+    and occlusion by nurses (\subref{fig:gestures_video_4}).
+  }
+  \label{fig:video_challenges}
+\end{figure}
 
 % Other works using deep learning
 Neural networks can partially overcome these challenges by automatically learning features that are more robust to variations in the data distribution, leveraging large-scale training datasets from similar domains for pre-training.
